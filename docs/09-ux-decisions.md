@@ -177,3 +177,32 @@ or `05-settings-cost-log.md`:
 8. **Release list visibility and reset (FR-E12).** Confirmed to live
    somewhere in the side panel, but the list view itself — and the
    reset-all vs. reset-one-item interaction — was not designed.
+9. **Opening screen state at product scale.** `demo/` (Phase 1) shows the
+   full catalog unfiltered on first load, before any query — see §10. That
+   is a demo-only precedent, not a product decision: whether the product's
+   opening screen shows an unfiltered browse view, something else, or
+   nothing before a query is typed is still undecided, and needs its own
+   answer given catalog sizes in the tens of thousands.
+
+---
+
+## 10. Demo precedent: opening screen shows the full catalog
+
+**Decided for `demo/` Phase 1 only (2026-08-30) — not a product decision.**
+See open item 9 above.
+
+On first load, before any query has been run, the demo shows all 128
+photos in the results grid as a plain gallery: no confidence badge, no
+match-reason strip — there is no query yet to explain a match against, so
+those would have nothing to say. The header reads "128 תמונות בקטלוג"
+("128 photos in the catalog") instead of a match/certain count. Running a
+query replaces this with the normal results view (§5); clearing the query
+box and pressing Run returns to the full gallery.
+
+This works at the demo's scale because rendering 128 thumbnails unfiltered
+is cheap. **It must not be assumed to carry over to the product.** The
+product catalog will hold tens of thousands of photos — showing all of
+them unfiltered on open is a different problem entirely (pagination or
+virtualization, load cost, and whether an unfiltered browse view belongs
+on this screen at all, given §1's query-centric navigation). That decision
+is still open (item 9) and belongs with `specs/03-server-ui.md`.
