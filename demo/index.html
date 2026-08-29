@@ -1,0 +1,291 @@
+<title>Sift — הדגמה</title>
+<meta charset="utf-8">
+<style>
+  :root {
+    --bg: #f6f5f3;
+    --panel: #ffffff;
+    --ink: #1c1c1c;
+    --muted: #6b6b6b;
+    --line: #e2dfda;
+    --accent: #2f6f4f;
+    --accent-ink: #ffffff;
+    --certain: #2f6f4f;
+    --certain-bg: #e7f3ec;
+    --borderline: #a3660b;
+    --borderline-bg: #fbeed9;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Segoe UI", Arial, sans-serif;
+  }
+  body {
+    direction: rtl;
+    padding: 24px 32px 64px;
+  }
+  h1 {
+    font-size: 20px;
+    margin: 0 0 4px;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-size: 13px;
+    margin: 0 0 20px;
+  }
+  .query-row {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+  }
+  #query {
+    flex: 1;
+    direction: ltr;
+    text-align: left;
+    font-size: 15px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+  }
+  #run {
+    padding: 10px 22px;
+    font-size: 15px;
+    border: none;
+    border-radius: 8px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    cursor: pointer;
+  }
+  #run:hover { opacity: 0.92; }
+  #run:disabled { opacity: 0.5; cursor: default; }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 16px 0;
+    min-height: 20px;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 6px 8px 6px 14px;
+    font-size: 13px;
+  }
+  .chip button {
+    border: none;
+    background: var(--line);
+    color: var(--ink);
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    line-height: 16px;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 0;
+  }
+  .chip button:hover { background: #cfcbc3; }
+
+  .source-note {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: -8px;
+    margin-bottom: 12px;
+  }
+
+  .header-row {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 18px 0 12px;
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  .card img {
+    display: block;
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+  }
+  .badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+  .badge.certain { background: var(--certain-bg); color: var(--certain); }
+  .badge.borderline { background: var(--borderline-bg); color: var(--borderline); }
+
+  .reason {
+    direction: ltr;
+    text-align: left;
+    font-size: 12px;
+    padding: 8px 10px;
+    color: var(--ink);
+    border-top: 1px solid var(--line);
+  }
+
+  .empty-state {
+    color: var(--muted);
+    font-size: 14px;
+    padding: 40px 0;
+    text-align: center;
+  }
+</style>
+
+<h1>Sift — הדגמה</h1>
+<p class="subtitle">כתבו תיאור באנגלית, ערכו את הפרדיקטים במידת הצורך, ולחצו הפעל.</p>
+
+<div class="query-row">
+  <input id="query" type="text" placeholder="a dog" autocomplete="off">
+  <button id="run">הפעל</button>
+</div>
+
+<div id="chips" class="chips"></div>
+<div id="sourceNote" class="source-note"></div>
+
+<div id="headerRow" class="header-row"></div>
+<div id="grid" class="grid"></div>
+
+<script>
+  const state = {
+    predicates: [],
+    lastExtractedQuery: null,
+  };
+
+  const queryInput = document.getElementById("query");
+  const runButton = document.getElementById("run");
+  const chipsEl = document.getElementById("chips");
+  const sourceNoteEl = document.getElementById("sourceNote");
+  const headerRowEl = document.getElementById("headerRow");
+  const gridEl = document.getElementById("grid");
+
+  async function postJSON(url, body) {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.error || `${url} failed (${res.status})`);
+    }
+    return res.json();
+  }
+
+  function renderChips() {
+    chipsEl.innerHTML = "";
+    state.predicates.forEach((pred, index) => {
+      const chip = document.createElement("span");
+      chip.className = "chip";
+      const label = document.createElement("span");
+      label.textContent = pred.label;
+      chip.appendChild(label);
+
+      const remove = document.createElement("button");
+      remove.textContent = "×";
+      remove.title = "הסר";
+      remove.addEventListener("click", () => {
+        state.predicates.splice(index, 1);
+        renderChips();
+      });
+      chip.appendChild(remove);
+
+      chipsEl.appendChild(chip);
+    });
+  }
+
+  function renderResults(data) {
+    headerRowEl.textContent = `${data.total} matches · ${data.certain} certain`;
+
+    gridEl.innerHTML = "";
+    if (data.total === 0) {
+      const empty = document.createElement("div");
+      empty.className = "empty-state";
+      empty.textContent = "אין תמונות שתואמות את החיפוש הזה. נסו להסיר פרדיקט או לנסח מחדש.";
+      gridEl.appendChild(empty);
+      return;
+    }
+
+    data.matches.forEach((match) => {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const img = document.createElement("img");
+      img.src = `/_ws/${match.thumb}`;
+      img.alt = match.id;
+      card.appendChild(img);
+
+      const badge = document.createElement("span");
+      badge.className = `badge ${match.confidence}`;
+      badge.textContent = match.confidence === "certain" ? "ודאי" : "גבולי";
+      card.appendChild(badge);
+
+      const reason = document.createElement("div");
+      reason.className = "reason";
+      reason.textContent = match.reasons
+        .map((r) => `${r.label} (${r.channel})`)
+        .join(", ");
+      card.appendChild(reason);
+
+      gridEl.appendChild(card);
+    });
+  }
+
+  async function runQuery() {
+    const query = queryInput.value.trim();
+    if (!query) return;
+
+    runButton.disabled = true;
+    try {
+      if (query !== state.lastExtractedQuery) {
+        const { predicates, source } = await postJSON("/api/predicates", { query });
+        state.predicates = predicates;
+        state.lastExtractedQuery = query;
+        renderChips();
+        sourceNoteEl.textContent =
+          source === "cache" ? "פרדיקטים ממטמון (ללא קריאת רשת)" :
+          source === "api" ? "פרדיקטים חדשים מה-API" :
+          "נפילה חזרה: פיצול מילולי (ה-API לא זמין)";
+      }
+      const results = await postJSON("/api/search", { predicates: state.predicates });
+      renderResults(results);
+    } catch (err) {
+      headerRowEl.textContent = "";
+      gridEl.innerHTML = "";
+      const empty = document.createElement("div");
+      empty.className = "empty-state";
+      empty.textContent = `שגיאה: ${err.message}`;
+      gridEl.appendChild(empty);
+    } finally {
+      runButton.disabled = false;
+    }
+  }
+
+  runButton.addEventListener("click", runQuery);
+  queryInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") runQuery();
+  });
+</script>

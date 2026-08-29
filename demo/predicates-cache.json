@@ -1,0 +1,79 @@
+{
+  "a dog": [
+    {
+      "label": "dog",
+      "terms": [
+        "dog",
+        "puppy",
+        "canine",
+        "pup"
+      ]
+    }
+  ],
+  "a clock": [
+    {
+      "label": "clock",
+      "terms": [
+        "clock",
+        "timepiece",
+        "watch"
+      ]
+    }
+  ],
+  "a cat": [
+    {
+      "label": "cat",
+      "terms": [
+        "cat",
+        "feline",
+        "kitten",
+        "kitty"
+      ]
+    }
+  ],
+  "a cup on a table": [
+    {
+      "label": "cup",
+      "terms": [
+        "cup",
+        "mug",
+        "drinking cup"
+      ]
+    },
+    {
+      "label": "table",
+      "terms": [
+        "table",
+        "desk",
+        "surface"
+      ]
+    }
+  ],
+  "a bowl of food on a table": [
+    {
+      "label": "bowl",
+      "terms": [
+        "bowl",
+        "dish",
+        "container"
+      ]
+    },
+    {
+      "label": "food",
+      "terms": [
+        "food",
+        "meal",
+        "dish",
+        "cuisine"
+      ]
+    },
+    {
+      "label": "table",
+      "terms": [
+        "table",
+        "desk",
+        "surface"
+      ]
+    }
+  ]
+}
