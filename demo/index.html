@@ -254,9 +254,39 @@
     });
   }
 
+  async function showGallery() {
+    chipsEl.innerHTML = "";
+    sourceNoteEl.textContent = "";
+    state.predicates = [];
+    state.lastExtractedQuery = null;
+
+    const res = await fetch("/api/gallery");
+    const data = await res.json();
+
+    headerRowEl.textContent = `${data.total} תמונות בקטלוג`;
+    gridEl.innerHTML = "";
+    data.photos.forEach((photo) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      const img = document.createElement("img");
+      img.src = `/_ws/${photo.thumb}`;
+      img.alt = photo.id;
+      card.appendChild(img);
+      gridEl.appendChild(card);
+    });
+  }
+
   async function runQuery() {
     const query = queryInput.value.trim();
-    if (!query) return;
+    if (!query) {
+      runButton.disabled = true;
+      try {
+        await showGallery();
+      } finally {
+        runButton.disabled = false;
+      }
+      return;
+    }
 
     runButton.disabled = true;
     try {
@@ -288,4 +318,6 @@
   queryInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") runQuery();
   });
+
+  showGallery();
 </script>

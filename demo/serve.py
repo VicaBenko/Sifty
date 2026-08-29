@@ -193,6 +193,14 @@ def channel_for(photo: dict, terms: list[str]) -> str | None:
     return None
 
 
+def gallery() -> dict:
+    """The full catalog, unfiltered — for the opening screen before any
+    query has been run. No reasons or confidence: there is no query to
+    explain a match against."""
+    photos = [{"id": pid, "thumb": THUMB_BY_ID.get(pid, "")} for pid in sorted(CATALOG)]
+    return {"photos": photos, "total": len(photos)}
+
+
 def search(predicates: list[dict]) -> dict:
     matches = []
     for photo_id, photo in CATALOG.items():
@@ -252,6 +260,10 @@ class Handler(BaseHTTPRequestHandler):
 
         if path in ("/", "/index.html"):
             self._send_file(INDEX_HTML, "text/html; charset=utf-8")
+            return
+
+        if path == "/api/gallery":
+            self._send_json(200, gallery())
             return
 
         if path.startswith("/_ws/thumbs/"):
