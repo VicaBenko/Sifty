@@ -152,13 +152,43 @@ def extract_predicates(query: str) -> tuple[list[dict], str]:
 # Predicates -> matches
 # ---------------------------------------------------------------------------
 
+def word_match(term: str, text: str) -> bool:
+    """Whole-word match, allowing a simple plural "s" (e.g. "cat" matches
+    "cat" and "cats", but never "catcher" or "location"). Used for the
+    caption channel, which is prose."""
+    return re.search(r"\b" + re.escape(term) + r"s?\b", text) is not None
+
+
+# Lexical exception list, NOT synonym tuning: these are fixed compounds
+# where the head noun is not the referent a query means (a hot dog is
+# food, not a dog) — head-word matching alone would still produce a false
+# positive for them, so they are blocked outright.
+OBJECT_LEXICAL_EXCEPTIONS: dict[str, set] = {
+    "dog": {"hot dog", "hot dogs", "hot dog bun", "corn dog"},
+}
+
+
+def objects_match(term: str, entry: str) -> bool:
+    """Head-word match against an object phrase: a term matches only if it
+    equals the whole phrase, or equals the phrase's last word (the head
+    noun) — so "cup" matches "coffee cup" and "table" matches "dining
+    table", but "cat" does not match "cat toy" and "dog" does not match
+    "dog house"."""
+    entry_l = entry.lower().strip()
+    if entry_l in OBJECT_LEXICAL_EXCEPTIONS.get(term, ()):
+        return False
+    if entry_l == term or entry_l == term + "s":
+        return True
+    head = entry_l.rsplit(" ", 1)[-1]
+    return head == term or head == term + "s"
+
+
 def channel_for(photo: dict, terms: list[str]) -> str | None:
     for entry in photo.get("objects", []):
-        entry_l = entry.lower()
-        if any(term in entry_l for term in terms):
+        if any(objects_match(term, entry) for term in terms):
             return "objects"
     text = (photo.get("caption", "") + " " + photo.get("setting", "")).lower()
-    if any(term in text for term in terms):
+    if any(word_match(term, text) for term in terms):
         return "caption"
     return None
 

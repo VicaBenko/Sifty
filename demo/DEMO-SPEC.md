@@ -127,7 +127,7 @@ even in throwaway code.
 | # | Criterion |
 |---|---|
 | D-1 | `python demo/serve.py` starts, prints a localhost URL, page loads. |
-| D-2 | `a dog` returns 11 photos, each showing `dog (objects)`. |
+| D-2 | `a dog` returns 11 photos: 10 real dogs showing `dog (objects)`, plus a hot-dog-food photo correctly downgraded to `dog (caption)` / borderline — not falsely claimed as an exact object match. |
 | D-3 | `a cup on a table` returns 6 photos whose reason names both predicates and their channels. |
 | D-4 | A query with no matches shows a readable empty state, not a stack trace. |
 | D-5 | Removing a predicate chip and pressing Run widens the result set. |
@@ -143,11 +143,31 @@ photo. These counts were measured against the actual tags, not estimated.
 
 | Query | Matches | Why it is worth showing |
 |---|---|---|
-| `a dog` | 11 | Baseline. One obvious object. The pipeline is live. |
-| `a clock` | 9 | **The important one.** A small, non-dominant object — precisely the case where embedding search collapses. |
-| `a cat` | 8 | A second clean single-object case. |
+| `a dog` | 11 | Baseline: 10 real dogs, certain. The 11th is a hot-dog-food photo, correctly downgraded to borderline via the caption channel instead of falsely claimed as an exact object match — a live demonstration of the confidence system catching a false friend. |
+| `a clock` | 10 | **The important one.** A small, non-dominant object — precisely the case where embedding search collapses. |
+| `a cat` | 4 | A second clean single-object case. |
 | `a cup on a table` | 6 | Two objects bound together. The everyday case. |
-| `a bowl of food on a table` | 4 | Multi-predicate, including one satisfied through the caption channel — shows both confidence levels in one screen. |
+| `a bowl of food on a table` | 3 | Multi-predicate, including matches satisfied through the caption channel — shows both confidence levels in one screen. |
+
+Re-measured after fixing whole-word matching (2026-08-29): matching used to
+test predicate terms via substring containment, so `a cat` picked up baseball
+"catcher" photos and captions containing "location"/"scattered" — 8 matches,
+only 4 real cats. Terms now match as whole words (`cat` matches `cat` and
+`cats`, never `catcher`), which also dropped `a bowl of food on a table`
+from 4 to 3. `a cup on a table` was unaffected.
+
+Re-measured again after fixing head-word matching (2026-08-29): whole-word
+matching still matched a term against *any* word inside a multi-word object
+phrase, so `a dog` counted a hot-dog-food photo (tagged `hot dog`, `hot dog
+bun`) as an exact object match. The objects channel now matches only the
+full phrase or its last word (the head noun) — `cup` matches `coffee cup`,
+`cat` no longer matches `cat toy` — plus a small lexical exception list for
+compounds where the head noun isn't the referent (`hot dog`, `corn dog`,
+etc.). `a dog` is still 11 total, but the hot-dog photo now surfaces through
+the caption channel (its caption literally says "hot dogs") at borderline
+confidence instead of falsely claimed as `dog (objects)`/certain — see the
+reworded D-2 above. The other four queries were unaffected by this change.
+See `demo/test_matching.py` for the regression tests.
 
 Avoid in the demo: `a laptop` (1 match), `a cup and a bowl on a table` (1).
 Three-predicate queries are thin at 128 photos. That is a property of the demo
