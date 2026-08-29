@@ -1,0 +1,39 @@
+[
+  {
+    "id": "app_screenshot",
+    "label": "צילומי מסך של אפליקציות",
+    "difficulty": "primary",
+    "note": "כוונת המחיקה העיקרית. סמן תמונה שכולה לכידת מסך של טלפון או מחשב — לא תצלום שיש בו מסך.",
+    "is_screenshot": true,
+    "all_of": []
+  },
+  {
+    "id": "screen_with_code",
+    "label": "צילום של מסך עם קוד או טרמינל",
+    "difficulty": "hard",
+    "note": "המבחן המכריע: חיבור בין 'יש מסך' לבין 'מה שמוצג עליו הוא קוד'. סמן תצלומים של מסך שמראה קוד, טרמינל או סביבת פיתוח.",
+    "all_of": [
+      ["monitor", "screen", "laptop", "computer", "display", "television", "tv"],
+      ["code", "terminal", "ide", "editor", "command line", "console", "script", "source code", "programming", "diagram", "flowchart"]
+    ]
+  },
+  {
+    "id": "laptop_desk",
+    "label": "לפטופ על שולחן",
+    "difficulty": "easy",
+    "note": "בקרה. שני אובייקטים גדולים ובולטים — אמור לעבוד. אם גם זה נכשל, יש בעיה בסיסית בתיוג.",
+    "all_of": [
+      ["laptop", "notebook computer", "computer"],
+      ["desk", "table", "workspace", "desktop", "workbench"]
+    ]
+  },
+  {
+    "id": "cat",
+    "label": "חתול בתמונה",
+    "difficulty": "baseline",
+    "note": "רצפה. אובייקט יחיד, בולט וקל לזיהוי. אם זה לא עובד, שום דבר לא יעבוד.",
+    "all_of": [
+      ["cat", "kitten", "tabby", "feline"]
+    ]
+  }
+]

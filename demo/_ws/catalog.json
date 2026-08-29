@@ -1,0 +1,2659 @@
+{
+  "0000": {
+    "objects": [
+      "birds",
+      "branch",
+      "sky"
+    ],
+    "caption": "Multiple small gray birds perched on bare branches against a light sky.",
+    "setting": "outdoor, natural environment",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 672,
+      "out": 74
+    }
+  },
+  "0001": {
+    "objects": [
+      "zebra",
+      "grass"
+    ],
+    "caption": "A zebra grazes on green grass in an open field.",
+    "setting": "grassland, savanna",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 62
+    }
+  },
+  "0002": {
+    "objects": [
+      "bed",
+      "canopy",
+      "curtain",
+      "drape",
+      "column",
+      "pillow",
+      "bedspread",
+      "doorway",
+      "door",
+      "wall hanging",
+      "sconce",
+      "lamp",
+      "decorative trim"
+    ],
+    "caption": "A four-poster bed with yellow curtains and canopy in an ornate period room, photographed from the foot of the bed looking toward the headboard.",
+    "setting": "bedroom, palace or historic house interior",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 616,
+      "out": 157
+    }
+  },
+  "0003": {
+    "objects": [
+      "person",
+      "baseball uniform",
+      "baseball cap",
+      "catcher's mask",
+      "catcher's gear",
+      "baseball glove",
+      "baseball",
+      "grass",
+      "dirt",
+      "infield",
+      "base"
+    ],
+    "caption": "A baseball catcher in black gear stands behind home plate while a batter in a white uniform prepares during a game.",
+    "setting": "baseball field",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 134
+    }
+  },
+  "0005": {
+    "objects": [
+      "cat",
+      "car"
+    ],
+    "caption": "A tabby and white cat stands on the roof of a car with a blurred background.",
+    "setting": "car roof, outdoor",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 66
+    }
+  },
+  "0004": {
+    "objects": [
+      "person",
+      "vehicle",
+      "railing",
+      "stop sign",
+      "trees",
+      "forest",
+      "path",
+      "leaves",
+      "branches"
+    ],
+    "caption": "View from inside a vehicle looking out at a forest path with a stop sign mounted on a tree.",
+    "setting": "vehicle, forest road",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 112
+    }
+  },
+  "0006": {
+    "objects": [
+      "stove",
+      "oven",
+      "microwave",
+      "cabinet",
+      "backsplash",
+      "tile",
+      "countertop",
+      "knife block",
+      "knife",
+      "paper towel holder",
+      "paper towels",
+      "cookbook",
+      "remote control",
+      "phone",
+      "picture frame",
+      "range hood",
+      "pot",
+      "pan",
+      "utensil",
+      "cat"
+    ],
+    "caption": "A kitchen counter with a stove, backsplash lighting, knife block, and various cooking items, with a cat sitting on the counter.",
+    "setting": "kitchen",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 191
+    }
+  },
+  "0007": {
+    "objects": [
+      "bus",
+      "storefront",
+      "awning",
+      "sign",
+      "street",
+      "building",
+      "window",
+      "door",
+      "tree",
+      "branch",
+      "person",
+      "trash can",
+      "pole",
+      "street lamp",
+      "pavement",
+      "vehicle",
+      "license plate",
+      "headlight",
+      "mirror",
+      "wheel",
+      "tire"
+    ],
+    "caption": "A public transit bus travels down an urban street lined with storefronts and bare trees.",
+    "setting": "city street",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 174
+    }
+  },
+  "0008": {
+    "objects": [
+      "person",
+      "skateboard",
+      "statue",
+      "graffiti wall",
+      "building",
+      "tree",
+      "cloud",
+      "lamppost",
+      "concrete ground"
+    ],
+    "caption": "A skateboarder performs a trick at a skate park with bronze statues and a colorful graffiti wall.",
+    "setting": "skate park",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 121
+    }
+  },
+  "0009": {
+    "objects": [
+      "person",
+      "dog",
+      "frisbee",
+      "grass",
+      "sandal",
+      "shorts",
+      "shirt"
+    ],
+    "caption": "A person in a tie-dye shirt playing frisbee with a small dog on a grassy field.",
+    "setting": "outdoor park or lawn",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 106
+    }
+  },
+  "0010": {
+    "objects": [
+      "frisbee",
+      "person",
+      "grass",
+      "trees"
+    ],
+    "caption": "Three people play frisbee in an open grassy field with trees in the background.",
+    "setting": "outdoor park or field",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 73
+    }
+  },
+  "0011": {
+    "objects": [
+      "elephant",
+      "tree",
+      "grass",
+      "sky",
+      "cloud"
+    ],
+    "caption": "A herd of elephants walks across an African savanna dotted with acacia trees under a partly cloudy sky.",
+    "setting": "savanna, African wildlife reserve",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 588,
+      "out": 97
+    }
+  },
+  "0012": {
+    "objects": [
+      "dog",
+      "frisbee"
+    ],
+    "caption": "A white dog holds a purple frisbee in its mouth while standing on grass.",
+    "setting": "outdoor grassy area",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 700,
+      "out": 74
+    }
+  },
+  "0013": {
+    "objects": [
+      "motorcycle",
+      "sidecar",
+      "wheel",
+      "tire",
+      "headlight",
+      "handlebars",
+      "seat",
+      "engine",
+      "license plate",
+      "footrest",
+      "chain",
+      "sprocket",
+      "brake",
+      "mirror",
+      "horn",
+      "car",
+      "tree",
+      "asphalt"
+    ],
+    "caption": "A vintage motorcycle with sidecar attachment parked on a street, displaying registration number SL6260.",
+    "setting": "street, parking area",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 686,
+      "out": 167
+    }
+  },
+  "0014": {
+    "objects": [
+      "person",
+      "tennis court",
+      "net",
+      "fence",
+      "tree",
+      "bench",
+      "pole",
+      "ball hopper"
+    ],
+    "caption": "A person in black clothing stands on a tennis court while another person in red clothing stands near the baseline with a ball hopper.",
+    "setting": "outdoor tennis court",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 113
+    }
+  },
+  "0015": {
+    "objects": [
+      "person",
+      "frisbee",
+      "grass",
+      "trees",
+      "shrubs"
+    ],
+    "caption": "A person throws a frisbee in a grassy outdoor area at night, surrounded by trees and vegetation.",
+    "setting": "backyard or park",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 81
+    }
+  },
+  "0016": {
+    "objects": [
+      "umbrella",
+      "person",
+      "dress",
+      "sky",
+      "building",
+      "water",
+      "trees"
+    ],
+    "caption": "A person in a colorful sequined dress holds a pink umbrella while standing outdoors on a sunny day near a waterfront.",
+    "setting": "outdoor waterfront area with building",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 110
+    }
+  },
+  "0018": {
+    "objects": [
+      "coffee cup",
+      "saucer",
+      "spoon",
+      "latte art",
+      "table",
+      "plate",
+      "pastry",
+      "glass",
+      "water",
+      "paper",
+      "text"
+    ],
+    "caption": "A latte with latte art sits on a blue saucer next to a pastry plate and a paper note on a wooden table.",
+    "setting": "café",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 133
+    }
+  },
+  "0017": {
+    "objects": [
+      "shelving unit",
+      "monitor",
+      "computer tower",
+      "desk",
+      "keyboard",
+      "mouse",
+      "mousepad",
+      "bottle",
+      "cup",
+      "books",
+      "figurine",
+      "photo frame",
+      "poster",
+      "action figure",
+      "plant",
+      "lamp",
+      "cable",
+      "speaker",
+      "drawer",
+      "plate",
+      "decorative item",
+      "sunflower artwork"
+    ],
+    "caption": "A computer desk setup with a monitor, tower, shelving unit, and various desk accessories against a blue wall.",
+    "setting": "bedroom desk or home office",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 191
+    }
+  },
+  "0019": {
+    "objects": [
+      "plate",
+      "bread",
+      "chocolate spread",
+      "banana",
+      "milk carton",
+      "silk",
+      "jar",
+      "peanut butter",
+      "counter",
+      "monitor"
+    ],
+    "caption": "A plate with chocolate spread and sliced bananas on bread sits next to a carton of Silk milk and a jar of peanut butter on a kitchen counter.",
+    "setting": "kitchen counter",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 134
+    }
+  },
+  "0021": {
+    "objects": [
+      "person",
+      "broccoli",
+      "shirt",
+      "skirt",
+      "brick",
+      "window",
+      "gutter",
+      "house"
+    ],
+    "caption": "A young child holding a large head of broccoli outdoors in front of a brick house.",
+    "setting": "outdoor residential area, house exterior",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 111
+    }
+  },
+  "0020": {
+    "objects": [
+      "giraffe",
+      "fence",
+      "gate",
+      "trough",
+      "tree",
+      "sky"
+    ],
+    "caption": "A giraffe feeds from a trough in an enclosure at a zoo or wildlife facility.",
+    "setting": "zoo enclosure",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 97
+    }
+  },
+  "0022": {
+    "objects": [
+      "person",
+      "tennis racket",
+      "grass court",
+      "white line",
+      "athletic shoe",
+      "wristband",
+      "headband",
+      "tennis ball"
+    ],
+    "caption": "A tennis player in white attire executes a forehand stroke on a grass court, captured from an overhead angle.",
+    "setting": "grass tennis court",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 630,
+      "out": 117
+    }
+  },
+  "0024": {
+    "objects": [
+      "pizza",
+      "plate",
+      "person",
+      "basil",
+      "bottle"
+    ],
+    "caption": "A Margherita pizza with fresh basil is served on a plate at a restaurant or pizzeria.",
+    "setting": "restaurant or pizzeria",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 79
+    }
+  },
+  "0023": {
+    "objects": [
+      "plate",
+      "potato",
+      "chickpea",
+      "carrot",
+      "green onion",
+      "seaweed",
+      "spoon",
+      "chopsticks",
+      "tablecloth"
+    ],
+    "caption": "A white plate of roasted vegetables and chickpeas with dark seaweed garnish served at a restaurant table.",
+    "setting": "restaurant",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 123
+    }
+  },
+  "0025": {
+    "objects": [
+      "giraffe",
+      "person",
+      "enclosure",
+      "wall",
+      "mat",
+      "door",
+      "window",
+      "barrier",
+      "gate"
+    ],
+    "caption": "Two giraffes stand in an indoor enclosure while visitors observe them through a viewing area.",
+    "setting": "zoo or wildlife facility",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 112
+    }
+  },
+  "0026": {
+    "objects": [
+      "bear",
+      "rocks",
+      "grass",
+      "vegetation",
+      "dirt",
+      "ground"
+    ],
+    "caption": "A black bear walks across rocky, grassy terrain in a wilderness setting.",
+    "setting": "mountainside, forest, wilderness",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 76
+    }
+  },
+  "0028": {
+    "objects": [
+      "dog",
+      "skateboard",
+      "window",
+      "sunlight",
+      "wooden floor"
+    ],
+    "caption": "A dog stands in a sunlit room next to a skateboard leaning against a white wall.",
+    "setting": "indoor room with wooden flooring",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 700,
+      "out": 81
+    }
+  },
+  "0029": {
+    "objects": [
+      "cat",
+      "sofa",
+      "remote control",
+      "plant",
+      "pot"
+    ],
+    "caption": "A tabby cat sits on a leather sofa next to remote controls and a potted plant.",
+    "setting": "living room",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 630,
+      "out": 90
+    }
+  },
+  "0027": {
+    "objects": [
+      "person",
+      "suit",
+      "tie",
+      "shirt",
+      "camera",
+      "strap",
+      "door",
+      "doorframe",
+      "mirror",
+      "curtain",
+      "wall",
+      "ceiling"
+    ],
+    "caption": "A man in a dark suit and burgundy tie holds up a vintage camera in what appears to be a mirror selfie taken indoors.",
+    "setting": "hallway or entryway with mirror",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 672,
+      "out": 140
+    }
+  },
+  "0030": {
+    "objects": [
+      "hot dog",
+      "hot dog bun",
+      "peppers",
+      "onions",
+      "condiment",
+      "container",
+      "foam container",
+      "wooden surface"
+    ],
+    "caption": "Two white foam containers with hot dogs and toppings displayed on a wooden surface.",
+    "setting": "outdoor food service or picnic area",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 114
+    }
+  },
+  "0031": {
+    "objects": [
+      "door",
+      "motorcycle",
+      "building",
+      "wall",
+      "ivy",
+      "window",
+      "tree",
+      "street",
+      "ground"
+    ],
+    "caption": "A motorcycle is parked in front of a weathered pink building with blue wooden doors and ivy-covered walls.",
+    "setting": "street, urban alley",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 114
+    }
+  },
+  "0032": {
+    "objects": [
+      "bowl",
+      "plate",
+      "noodles",
+      "meat",
+      "carrot",
+      "lettuce",
+      "spoon",
+      "fork",
+      "cup",
+      "table",
+      "napkin"
+    ],
+    "caption": "A Vietnamese pho or noodle soup dish topped with shredded carrots and greens, served in a white bowl with utensils and a beverage cup nearby.",
+    "setting": "restaurant table",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 141
+    }
+  },
+  "0034": {
+    "objects": [
+      "toilet",
+      "toilet seat",
+      "toilet lid",
+      "concrete",
+      "metal hinge",
+      "wall",
+      "outdoor scene"
+    ],
+    "caption": "An open toilet with a view of an outdoor landscape visible through the bowl opening.",
+    "setting": "bathroom or outhouse",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 101
+    }
+  },
+  "0033": {
+    "objects": [
+      "river",
+      "vegetation",
+      "grass",
+      "shrubs",
+      "trees",
+      "barrel",
+      "log",
+      "sky",
+      "hillside"
+    ],
+    "caption": "A black barrel sits in shallow water along a riverbank lined with green vegetation and overgrown grass.",
+    "setting": "river, outdoor, countryside",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 114
+    }
+  },
+  "0036": {
+    "objects": [
+      "person",
+      "dog",
+      "pier",
+      "lamp post",
+      "bench",
+      "grass",
+      "water",
+      "boat",
+      "tree",
+      "building",
+      "rope",
+      "railing"
+    ],
+    "caption": "A waterfront park with a grassy area, pier, and people enjoying the waterside on a sunny day.",
+    "setting": "waterfront park",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 630,
+      "out": 129
+    }
+  },
+  "0035": {
+    "objects": [
+      "bento box",
+      "container",
+      "bread",
+      "broccoli",
+      "chicken",
+      "corn",
+      "potato",
+      "rice",
+      "meat"
+    ],
+    "caption": "A colorful bento box lunch compartmentalized with rice, broccoli, chicken, corn, bread, and potatoes in pink, yellow, and blue plastic containers.",
+    "setting": "lunch box or meal preparation",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 131
+    }
+  },
+  "0037": {
+    "objects": [
+      "person",
+      "chair",
+      "couch",
+      "lamp",
+      "purse",
+      "necklace",
+      "dress",
+      "wall"
+    ],
+    "caption": "Three people in formal attire sit together on furniture in an indoor room.",
+    "setting": "living room or formal event space",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 106
+    }
+  },
+  "0038": {
+    "objects": [
+      "sink",
+      "faucet",
+      "mirror",
+      "shelf",
+      "towel",
+      "newspaper",
+      "shower enclosure",
+      "showerhead",
+      "vanity",
+      "candle",
+      "soap"
+    ],
+    "caption": "A modern bathroom featuring a floating black vanity with vessel sink, newspaper-tiled shower accent wall, and frameless glass enclosure.",
+    "setting": "bathroom",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 672,
+      "out": 134
+    }
+  },
+  "0040": {
+    "objects": [
+      "person",
+      "bench",
+      "railing",
+      "shoe",
+      "water",
+      "building",
+      "sky",
+      "pathway"
+    ],
+    "caption": "A man sits alone on a wooden bench overlooking a waterfront with city buildings in the background.",
+    "setting": "waterfront promenade",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 107
+    }
+  },
+  "0042": {
+    "objects": [
+      "cat",
+      "shoe",
+      "grass"
+    ],
+    "caption": "A tabby and white cat playfully attacks a brown hiking boot on grass.",
+    "setting": "outdoor grassy area",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 66
+    }
+  },
+  "0039": {
+    "objects": [
+      "arch",
+      "banner",
+      "bicycle",
+      "building",
+      "cloud",
+      "flag",
+      "ice cream truck",
+      "person",
+      "pole",
+      "sky",
+      "street",
+      "tower",
+      "tree",
+      "van"
+    ],
+    "caption": "A public square with an ornate arch monument, ice cream trucks, and visitors on a sunny day.",
+    "setting": "street, public plaza",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 138
+    }
+  },
+  "0041": {
+    "objects": [
+      "sign",
+      "hotel",
+      "street",
+      "building",
+      "car",
+      "truck",
+      "mountain",
+      "power line",
+      "pole",
+      "window",
+      "door",
+      "storefront",
+      "roof",
+      "antenna",
+      "barrel",
+      "pavement"
+    ],
+    "caption": "A street in a Middle Eastern town with a Peace Way Hotel sign, buildings climbing a hillside, and vehicles parked along the road.",
+    "setting": "urban street in a hillside town",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 159
+    }
+  },
+  "0044": {
+    "objects": [
+      "person",
+      "teddy bear",
+      "shirt",
+      "pants",
+      "collar",
+      "flooring",
+      "furniture"
+    ],
+    "caption": "A person poses with a large teddy bear wearing a pink shirt indoors.",
+    "setting": "living room or indoor space",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 100
+    }
+  },
+  "0045": {
+    "objects": [
+      "dog",
+      "shoe",
+      "sock",
+      "floor",
+      "leg",
+      "person"
+    ],
+    "caption": "A small dog lying on its back on a tiled floor, looking up at the camera with its mouth open, next to a person's legs and shoes.",
+    "setting": "indoor floor, possibly kitchen or entryway",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 686,
+      "out": 112
+    }
+  },
+  "0043": {
+    "objects": [
+      "person",
+      "baseball bat",
+      "baseball glove",
+      "baseball",
+      "catcher's mask",
+      "protective gear",
+      "baseball uniform",
+      "bleachers",
+      "fence",
+      "tree",
+      "grass field",
+      "dirt"
+    ],
+    "caption": "A baseball game in progress with a batter, catcher, and umpire during what appears to be early spring season.",
+    "setting": "baseball field",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 630,
+      "out": 140
+    }
+  },
+  "0046": {
+    "objects": [
+      "dog",
+      "frisbee",
+      "grass",
+      "trees",
+      "car",
+      "sky"
+    ],
+    "caption": "A brown and white dog stands on a grassy field with a blue and yellow frisbee in the foreground.",
+    "setting": "outdoor park or field",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 85
+    }
+  },
+  "0047": {
+    "objects": [
+      "bicycle",
+      "dog",
+      "pavement",
+      "curb",
+      "building",
+      "window",
+      "person"
+    ],
+    "caption": "A small white dog lies on a stone pavement next to a bicycle in a European-style narrow street with pedestrians in the background.",
+    "setting": "urban street, European city center",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 112
+    }
+  },
+  "0048": {
+    "objects": [
+      "elephant",
+      "tire",
+      "log",
+      "fence",
+      "vegetation"
+    ],
+    "caption": "Two young elephants interact in an enclosure, with one standing behind the other near a tire and wooden log.",
+    "setting": "zoo or wildlife sanctuary enclosure",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 686,
+      "out": 95
+    }
+  },
+  "0049": {
+    "objects": [
+      "person",
+      "suitcase",
+      "luggage cart",
+      "bench",
+      "trash bin",
+      "sign",
+      "digital display",
+      "light fixture",
+      "column",
+      "floor",
+      "ceiling",
+      "door",
+      "window",
+      "building"
+    ],
+    "caption": "A person with luggage stands in an underground transit station or airport terminal at night.",
+    "setting": "underground station or airport terminal",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 140
+    }
+  },
+  "0050": {
+    "objects": [
+      "person",
+      "tennis racket",
+      "tennis court",
+      "seat",
+      "banner",
+      "spectator"
+    ],
+    "caption": "A tennis player in white clothing strikes a ball on a blue hard court during a professional match at a stadium.",
+    "setting": "tennis stadium",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 672,
+      "out": 99
+    }
+  },
+  "0052": {
+    "objects": [
+      "dog",
+      "pen",
+      "cage",
+      "bag",
+      "toy",
+      "blanket",
+      "bowl",
+      "water bottle",
+      "agility jump",
+      "agility weave poles"
+    ],
+    "caption": "A curly-haired dog rests in a pen surrounded by training equipment, toys, and supplies.",
+    "setting": "dog training or exercise pen",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 126
+    }
+  },
+  "0051": {
+    "objects": [
+      "chair",
+      "desk",
+      "shelving unit",
+      "microwave",
+      "coffee maker",
+      "kettle",
+      "mug",
+      "cup",
+      "plate",
+      "bowl",
+      "utensils",
+      "jar",
+      "container",
+      "bottle",
+      "lamp",
+      "light fixture",
+      "clock",
+      "papers",
+      "notebook",
+      "pen",
+      "book",
+      "decorative item",
+      "plant",
+      "canister",
+      "toaster",
+      "dispenser"
+    ],
+    "caption": "A compact kitchen or kitchenette workspace with shelving, appliances, and supplies organized on a counter and wall-mounted storage.",
+    "setting": "kitchenette or break room",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 220
+    }
+  },
+  "0053": {
+    "objects": [
+      "person",
+      "kitchen",
+      "stove",
+      "range hood",
+      "refrigerator",
+      "cabinet",
+      "countertop",
+      "window",
+      "door",
+      "clock",
+      "pendant lamp",
+      "sink",
+      "faucet",
+      "tile",
+      "chair",
+      "table",
+      "picture frame",
+      "pot",
+      "pan",
+      "cutting board",
+      "utensil",
+      "dishwasher",
+      "microwave"
+    ],
+    "caption": "People work and socialize in a modern kitchen with stainless steel appliances and pendant lighting.",
+    "setting": "kitchen",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 602,
+      "out": 194
+    }
+  },
+  "0054": {
+    "objects": [
+      "person",
+      "tie",
+      "shirt",
+      "lamp",
+      "arch",
+      "column",
+      "ceiling"
+    ],
+    "caption": "A bearded man in a white shirt and green tie smiles at what appears to be a formal indoor event or gathering.",
+    "setting": "ornate hall or ballroom",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 107
+    }
+  },
+  "0055": {
+    "objects": [
+      "airplane",
+      "cloud",
+      "sky",
+      "wing",
+      "engine",
+      "fuselage",
+      "tail",
+      "landing gear",
+      "cockpit"
+    ],
+    "caption": "An Air France Airbus A380 aircraft in flight against a cloudy sky.",
+    "setting": "sky",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 109
+    }
+  },
+  "0057": {
+    "objects": [
+      "giraffe",
+      "tree",
+      "leaves",
+      "branches"
+    ],
+    "caption": "Two giraffes reach up to feed on tree leaves in a wooded savanna setting.",
+    "setting": "savanna, woodland",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 86
+    }
+  },
+  "0056": {
+    "objects": [
+      "person",
+      "vest",
+      "shirt",
+      "pants",
+      "microphone",
+      "speaker",
+      "bookshelf",
+      "books",
+      "wall",
+      "door",
+      "wreath",
+      "lights",
+      "drum",
+      "cymbal",
+      "cable"
+    ],
+    "caption": "A person holds a microphone while standing in front of musical equipment and a decorated wall in an indoor venue or studio.",
+    "setting": "indoor venue or music studio with blue walls",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 153
+    }
+  },
+  "0059": {
+    "objects": [
+      "wine bottle",
+      "wine glass",
+      "table",
+      "chair",
+      "window",
+      "shutter",
+      "person"
+    ],
+    "caption": "A bottle of red wine and a filled wine glass sit on a reflective glass table on an outdoor patio.",
+    "setting": "outdoor patio or deck",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 107
+    }
+  },
+  "0058": {
+    "objects": [
+      "plate",
+      "bowl",
+      "baking sheet",
+      "baking pan",
+      "skillet",
+      "spoon",
+      "ladle",
+      "table",
+      "salad",
+      "bread",
+      "pasta",
+      "vegetable dish",
+      "meat dish",
+      "door",
+      "wall",
+      "switch",
+      "container"
+    ],
+    "caption": "A dining table laden with various prepared dishes including salads, pasta, bread, and cooked vegetables arranged on plates, bowls, and baking pans.",
+    "setting": "dining room or kitchen table",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 175
+    }
+  },
+  "0060": {
+    "objects": [
+      "loft bed",
+      "desk",
+      "chair",
+      "dresser",
+      "drawer",
+      "knob",
+      "mattress",
+      "pillow",
+      "sheet",
+      "ladder",
+      "wall",
+      "poster",
+      "bag",
+      "person"
+    ],
+    "caption": "A wooden loft bed with integrated desk, chair, and white dresser below in a bedroom.",
+    "setting": "bedroom",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 138
+    }
+  },
+  "0062": {
+    "objects": [
+      "bed",
+      "canopy",
+      "curtain",
+      "garland",
+      "berry",
+      "flower",
+      "rose",
+      "leaf",
+      "cushion",
+      "pillow",
+      "ornament",
+      "bell",
+      "wreath",
+      "decoration",
+      "fabric",
+      "cloth"
+    ],
+    "caption": "A decorative bed with red velvet bedding and a canopy adorned with red garlands, flowers, berries, and festive ornaments.",
+    "setting": "bedroom",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 161
+    }
+  },
+  "0061": {
+    "objects": [
+      "clock",
+      "pole",
+      "tree",
+      "car",
+      "building",
+      "street",
+      "sidewalk",
+      "brick",
+      "crosswalk",
+      "person",
+      "shrub",
+      "sky",
+      "sign"
+    ],
+    "caption": "A street clock mounted on a black pole stands next to a large tree on an urban sidewalk, with parked cars and buildings visible in the background.",
+    "setting": "street, sidewalk",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 145
+    }
+  },
+  "0063": {
+    "objects": [
+      "person",
+      "door",
+      "suitcase",
+      "doorframe",
+      "wall",
+      "hallway"
+    ],
+    "caption": "Two people stand in a narrow hallway near a wooden door with a purple suitcase visible on the floor.",
+    "setting": "hallway or entryway",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 104
+    }
+  },
+  "0065": {
+    "objects": [
+      "skis",
+      "ski poles",
+      "person",
+      "mountain",
+      "snow",
+      "ski tracks"
+    ],
+    "caption": "Skiers descending a snow-covered mountain slope with ski tracks visible on the white snow and snow-capped peaks in the background.",
+    "setting": "alpine mountain slope",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 90
+    }
+  },
+  "0066": {
+    "objects": [
+      "stuffed animal",
+      "ribbon",
+      "branch",
+      "decorations"
+    ],
+    "caption": "A white fluffy stuffed animal with a red ribbon bow hangs among holiday decorations.",
+    "setting": "outdoor holiday display or decorated tree",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 630,
+      "out": 89
+    }
+  },
+  "0067": {
+    "objects": [
+      "clock",
+      "candle",
+      "candle holder",
+      "owl figurine",
+      "wall",
+      "shadow"
+    ],
+    "caption": "A decorative wooden clock with Roman numerals stands next to a lit candle in an owl-shaped holder against a beige wall.",
+    "setting": "indoor shelf or table against wall",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 700,
+      "out": 110
+    }
+  },
+  "0064": {
+    "objects": [
+      "bus",
+      "truck",
+      "person",
+      "road",
+      "tree",
+      "fence",
+      "wheel",
+      "headlight",
+      "grille",
+      "bumper",
+      "door",
+      "window",
+      "roof",
+      "mirror",
+      "tire"
+    ],
+    "caption": "A red decorated public transport bus is parked on a street with people nearby and another vehicle visible in the background.",
+    "setting": "street, parking area",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 146
+    }
+  },
+  "0068": {
+    "objects": [
+      "person",
+      "lightbulb",
+      "t-shirt"
+    ],
+    "caption": "A person in a white t-shirt holds an illuminated lightbulb extended outward against a dark background.",
+    "setting": "dark indoor space, possibly a studio or room with minimal lighting",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 87
+    }
+  },
+  "0069": {
+    "objects": [
+      "person",
+      "horse",
+      "fence",
+      "jump",
+      "barrel",
+      "tree",
+      "grass",
+      "sky",
+      "flag"
+    ],
+    "caption": "A rider on a black horse jumps over a fence obstacle during an equestrian event in a grassy field.",
+    "setting": "outdoor equestrian arena or field",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 117
+    }
+  },
+  "0071": {
+    "objects": [
+      "clock",
+      "clock tower",
+      "building",
+      "skyscraper",
+      "window",
+      "arch",
+      "cloud",
+      "sky"
+    ],
+    "caption": "A historic brick clock tower building stands in front of modern high-rise skyscrapers under a partly cloudy sky.",
+    "setting": "urban street, downtown cityscape",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 116
+    }
+  },
+  "0070": {
+    "objects": [
+      "laptop",
+      "asus",
+      "tablet",
+      "charging cable",
+      "power adapter",
+      "wooden floor",
+      "white surface"
+    ],
+    "caption": "An Asus laptop displaying a boot screen sits on a white surface next to a tablet, with charging cables connected.",
+    "setting": "desk or table on wooden floor",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 111
+    }
+  },
+  "0072": {
+    "objects": [
+      "person",
+      "stairs",
+      "pavement",
+      "flowers",
+      "plants",
+      "shrubs",
+      "grass",
+      "pole",
+      "planter",
+      "bench"
+    ],
+    "caption": "A person stands on a paved plaza overlooking a landscaped garden with colorful flower beds and green grass.",
+    "setting": "public plaza or park",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 122
+    }
+  },
+  "0074": {
+    "objects": [
+      "tennis court",
+      "net",
+      "fence",
+      "residential buildings",
+      "trees",
+      "person",
+      "shadow"
+    ],
+    "caption": "A person plays tennis on an outdoor court on a sunny day with residential buildings visible in the background.",
+    "setting": "outdoor tennis facility",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 101
+    }
+  },
+  "0073": {
+    "objects": [
+      "person",
+      "plaid shirt",
+      "jeans",
+      "plant",
+      "sofa",
+      "couch",
+      "curtains",
+      "window",
+      "cup",
+      "plate",
+      "lamp",
+      "picture frame",
+      "basket"
+    ],
+    "caption": "A man stands in a living room while others sit on a couch during what appears to be a casual gathering or party.",
+    "setting": "living room",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 140
+    }
+  },
+  "0075": {
+    "objects": [
+      "plate",
+      "pastry",
+      "cup",
+      "saucer",
+      "spoon",
+      "napkin",
+      "magazine",
+      "table",
+      "chair",
+      "umbrella",
+      "bag",
+      "person",
+      "deck",
+      "railing",
+      "tree",
+      "grass",
+      "building"
+    ],
+    "caption": "A pastry and cup of coffee served on a wooden deck table overlooking a garden area.",
+    "setting": "outdoor café or patio",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 157
+    }
+  },
+  "0076": {
+    "objects": [
+      "person",
+      "cap",
+      "jacket",
+      "phone",
+      "watch",
+      "buildings",
+      "storefront",
+      "signage",
+      "crowd"
+    ],
+    "caption": "An older man wearing a red jacket and black cap talks on a phone while standing in a busy urban plaza.",
+    "setting": "city street, public plaza",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 686,
+      "out": 115
+    }
+  },
+  "0077": {
+    "objects": [
+      "beach umbrella",
+      "beach chair",
+      "person",
+      "building",
+      "skyscraper",
+      "beach towel",
+      "cooler",
+      "beach bag",
+      "ball",
+      "tent",
+      "ocean",
+      "sand"
+    ],
+    "caption": "People enjoy a sunny day at the beach with umbrellas and chairs set up along the shoreline, with a cityscape visible in the background.",
+    "setting": "beach",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 142
+    }
+  },
+  "0078": {
+    "objects": [
+      "person",
+      "cake",
+      "plate",
+      "knife",
+      "table",
+      "chair",
+      "sofa",
+      "wall",
+      "poster",
+      "jar",
+      "bowl"
+    ],
+    "caption": "Two people stand beside a table with a decorated cake during what appears to be a celebration or birthday party.",
+    "setting": "living room or community center",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 630,
+      "out": 123
+    }
+  },
+  "0082": {
+    "objects": [
+      "person",
+      "glasses",
+      "shirt",
+      "sandwich",
+      "chair",
+      "door",
+      "wall",
+      "light fixture"
+    ],
+    "caption": "A person wearing glasses and a light blue shirt eats a sandwich while sitting indoors.",
+    "setting": "indoor room or hallway",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 105
+    }
+  },
+  "0081": {
+    "objects": [
+      "person",
+      "bench",
+      "military uniform",
+      "medal",
+      "insignia",
+      "cap",
+      "shoes",
+      "document",
+      "paper"
+    ],
+    "caption": "Three military officers in dress uniforms sit on a bench reviewing documents together.",
+    "setting": "outdoor public space, bench",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 108
+    }
+  },
+  "0079": {
+    "objects": [
+      "airplane",
+      "runway",
+      "taxiway",
+      "highway",
+      "overpass",
+      "bridge",
+      "road",
+      "building",
+      "skyscraper",
+      "grass",
+      "trees",
+      "vehicles",
+      "truck",
+      "car",
+      "container",
+      "terminal",
+      "hangar",
+      "crane",
+      "city"
+    ],
+    "caption": "An airplane with red and white livery taxis on a runway at an urban airport with city skyline and highway infrastructure visible below.",
+    "setting": "airport, aerial view",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 174
+    }
+  },
+  "0080": {
+    "objects": [
+      "street sign",
+      "pole",
+      "skyscraper",
+      "building",
+      "cloud",
+      "sky"
+    ],
+    "caption": "Street intersection showing Greenwich Street and West Street signs with tall urban buildings in the background under a partly cloudy sky.",
+    "setting": "urban street corner",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 101
+    }
+  },
+  "0084": {
+    "objects": [
+      "airplane",
+      "propeller",
+      "fuselage",
+      "windshield",
+      "wing",
+      "landing gear",
+      "tail",
+      "runway",
+      "tarmac",
+      "person",
+      "hangar",
+      "building",
+      "utility vehicle",
+      "cargo container",
+      "pole",
+      "stripe",
+      "tire"
+    ],
+    "caption": "A blue and white military transport airplane is parked on a runway with ground personnel and support equipment nearby.",
+    "setting": "airport runway",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 160
+    }
+  },
+  "0085": {
+    "objects": [
+      "person",
+      "grass",
+      "tree",
+      "light"
+    ],
+    "caption": "A person in athletic stance throwing a frisbee in a dark grassy field at night with trees and distant lights visible.",
+    "setting": "outdoor field at night",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 78
+    }
+  },
+  "0083": {
+    "objects": [
+      "school bus",
+      "utility pole",
+      "streetlight",
+      "asphalt",
+      "sky",
+      "windshield",
+      "window",
+      "tire",
+      "bumper",
+      "grille",
+      "door",
+      "mirror",
+      "headlight",
+      "roof",
+      "parking lot"
+    ],
+    "caption": "A yellow school bus is parked in an empty parking lot under clear skies.",
+    "setting": "parking lot",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 146
+    }
+  },
+  "0086": {
+    "objects": [
+      "snowboard",
+      "rack",
+      "ski lift",
+      "snow",
+      "tree",
+      "person"
+    ],
+    "caption": "Multiple snowboards leaning against a display rack in a snowy ski resort with a chairlift and trees in the background.",
+    "setting": "ski resort",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 148
+    }
+  },
+  "0087": {
+    "objects": [
+      "traffic light",
+      "street lamp",
+      "building",
+      "skyscraper",
+      "car",
+      "street",
+      "cloud",
+      "sky"
+    ],
+    "caption": "Silhouetted view of a city street with a traffic light and distant skyscraper, shot against a bright overcast sky.",
+    "setting": "urban street",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 117
+    }
+  },
+  "0088": {
+    "objects": [
+      "elephant",
+      "tree",
+      "grass",
+      "dirt road",
+      "sky"
+    ],
+    "caption": "A herd of African elephants, including adults and a young calf, walk together on a dirt path through sparse woodland with dry grass.",
+    "setting": "African savanna or wildlife reserve",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 88
+    }
+  },
+  "0089": {
+    "objects": [
+      "person",
+      "suit",
+      "tie",
+      "military uniform",
+      "flag",
+      "patch",
+      "medal",
+      "ribbon",
+      "door",
+      "wall"
+    ],
+    "caption": "A civilian in a dark suit and a military officer in camouflage uniform exchange or present a medal or ribbon at an official ceremony.",
+    "setting": "indoor institutional space with flags",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 672,
+      "out": 125
+    }
+  },
+  "0090": {
+    "objects": [
+      "pontoon boat",
+      "water",
+      "railing",
+      "window",
+      "door",
+      "registration plate",
+      "buoy",
+      "flag",
+      "person",
+      "tube",
+      "canopy"
+    ],
+    "caption": "A white and gray pontoon boat with registration number MS 815 AJ floats on water with a person visible inside.",
+    "setting": "water, boat",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 700,
+      "out": 131
+    }
+  },
+  "0091": {
+    "objects": [
+      "lizard",
+      "sink",
+      "faucet",
+      "toothbrush",
+      "soap dispenser",
+      "countertop",
+      "backsplash",
+      "mirror",
+      "drain",
+      "towel rack"
+    ],
+    "caption": "A bathroom sink with two decorative orange lizard figurines on the counter, with faucets and soap dispenser visible.",
+    "setting": "bathroom",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 133
+    }
+  },
+  "0093": {
+    "objects": [
+      "bird",
+      "pier",
+      "water",
+      "cloud",
+      "light pole",
+      "building",
+      "sky",
+      "dock",
+      "post"
+    ],
+    "caption": "Birds fly over a waterfront pier at sunset with dramatic cloudy skies and industrial buildings in the background.",
+    "setting": "waterfront, harbor",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 113
+    }
+  },
+  "0092": {
+    "objects": [
+      "locomotive",
+      "train car",
+      "utility pole",
+      "power line",
+      "wire",
+      "building",
+      "roof",
+      "window",
+      "door",
+      "shrub",
+      "plant",
+      "flower pot",
+      "gate",
+      "fence",
+      "ground",
+      "sky"
+    ],
+    "caption": "A red and yellow locomotive is parked at a railway yard next to industrial buildings and utility infrastructure.",
+    "setting": "railway yard or depot",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 150
+    }
+  },
+  "0095": {
+    "objects": [
+      "person",
+      "baseball glove",
+      "baseball",
+      "bat",
+      "uniform",
+      "grass",
+      "dirt",
+      "baseline",
+      "bleachers",
+      "stadium"
+    ],
+    "caption": "A baseball game in progress with players on the field and spectators in the bleachers behind home plate.",
+    "setting": "baseball stadium",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 574,
+      "out": 119
+    }
+  },
+  "0094": {
+    "objects": [
+      "boat",
+      "rope",
+      "pole",
+      "mast",
+      "sail",
+      "water",
+      "sky",
+      "cloud",
+      "bridge",
+      "dock",
+      "person",
+      "bucket",
+      "net",
+      "buoy"
+    ],
+    "caption": "Traditional wooden fishing boats moored in calm blue water under a partly cloudy sky, with a bridge visible in the background.",
+    "setting": "harbor or bay",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 141
+    }
+  },
+  "0098": {
+    "objects": [
+      "box",
+      "paper",
+      "donut",
+      "pastry"
+    ],
+    "caption": "A cardboard box containing an assortment of glazed and chocolate donuts and pastries arranged on white paper.",
+    "setting": "bakery or food delivery",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 92
+    }
+  },
+  "0099": {
+    "objects": [
+      "counter",
+      "bowl",
+      "wooden table",
+      "shelf",
+      "cabinet",
+      "stove",
+      "oven",
+      "microwave",
+      "refrigerator",
+      "pot",
+      "pan",
+      "utensil",
+      "towel",
+      "lamp",
+      "clock",
+      "container",
+      "paper",
+      "cutting board",
+      "window",
+      "door",
+      "ceiling tile",
+      "light fixture",
+      "trash can",
+      "storage bin",
+      "jar",
+      "pitcher",
+      "whisk",
+      "ladle"
+    ],
+    "caption": "A commercial kitchen workspace with wooden countertops, stove, oven, and shelving units.",
+    "setting": "commercial kitchen",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 220
+    }
+  },
+  "0096": {
+    "objects": [
+      "airplane",
+      "propeller",
+      "wing",
+      "fuselage",
+      "landing gear",
+      "cockpit window",
+      "door",
+      "person",
+      "hat",
+      "coat",
+      "suit",
+      "dress",
+      "shoe",
+      "ground",
+      "sky",
+      "rope",
+      "ladder",
+      "wheel",
+      "registration marking"
+    ],
+    "caption": "A group of people stand near a vintage propeller aircraft on the ground, with some individuals boarding or preparing to depart.",
+    "setting": "airfield or landing strip",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 173
+    }
+  },
+  "0097": {
+    "objects": [
+      "refrigerator",
+      "stove",
+      "oven",
+      "cabinet",
+      "shelf",
+      "backsplash",
+      "tile",
+      "clock",
+      "pan",
+      "skillet",
+      "basket",
+      "jar",
+      "utensil holder",
+      "pencil",
+      "book",
+      "flour",
+      "cloth",
+      "rug",
+      "picture frame",
+      "drawer",
+      "handle",
+      "countertop",
+      "pot",
+      "towel",
+      "chalkboard",
+      "bottle",
+      "bowl"
+    ],
+    "caption": "A Sims-style virtual kitchen setup with a cream-colored refrigerator, dark stove with oven, wooden cabinetry, tiled backsplash, and various kitchen accessories and decorative items.",
+    "setting": "kitchen",
+    "is_screenshot": true,
+    "_tokens": {
+      "in": 686,
+      "out": 243
+    }
+  },
+  "0100": {
+    "objects": [
+      "giraffe",
+      "tree",
+      "log",
+      "grass",
+      "sky",
+      "shrub"
+    ],
+    "caption": "A giraffe stretches its neck upward to reach foliage from tall trees in a natural landscape setting.",
+    "setting": "savanna or wildlife park",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 103
+    }
+  },
+  "0102": {
+    "objects": [
+      "airplane",
+      "water",
+      "trees",
+      "islands"
+    ],
+    "caption": "A small airplane flies over calm greenish-blue water near forested islands.",
+    "setting": "aerial view over water",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 574,
+      "out": 69
+    }
+  },
+  "0101": {
+    "objects": [
+      "person",
+      "tree",
+      "vegetation",
+      "leaf",
+      "branch",
+      "log",
+      "rock",
+      "ground"
+    ],
+    "caption": "People trekking through dense jungle vegetation and forest terrain.",
+    "setting": "tropical forest, jungle",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 97
+    }
+  },
+  "0103": {
+    "objects": [
+      "pizza",
+      "plate",
+      "table"
+    ],
+    "caption": "A pizza topped with meat, corn, and green onions served on a white plate.",
+    "setting": "restaurant or dining table",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 78
+    }
+  },
+  "0105": {
+    "objects": [
+      "chandelier",
+      "curtain",
+      "window",
+      "sofa",
+      "cushion",
+      "coffee table",
+      "clock",
+      "lamp",
+      "remote control",
+      "magazine",
+      "book"
+    ],
+    "caption": "A bright living room with two tall windows dressed in sheer curtains, a black sofa with red cushions, a chandelier overhead, and a coffee table with scattered items.",
+    "setting": "living room",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 141
+    }
+  },
+  "0104": {
+    "objects": [
+      "dog",
+      "person",
+      "jeans",
+      "shirt",
+      "headphones",
+      "remote control",
+      "carpet",
+      "shoe",
+      "leg warmer"
+    ],
+    "caption": "A white and brown dog lies on its back on an orange carpet surrounded by people sitting on the floor.",
+    "setting": "living room or indoor floor space",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 118
+    }
+  },
+  "0106": {
+    "objects": [
+      "vase",
+      "flowers",
+      "dahlias",
+      "baby's breath",
+      "table",
+      "grass",
+      "foliage"
+    ],
+    "caption": "A white pedestal vase filled with red dahlias and white baby's breath flowers sits on a white table outdoors.",
+    "setting": "outdoor garden or patio",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 114
+    }
+  },
+  "0107": {
+    "objects": [
+      "person",
+      "tennis racket",
+      "tennis court",
+      "banner",
+      "logo",
+      "net"
+    ],
+    "caption": "A tennis player in blue attire prepares to serve on a professional tennis court during a USTA event.",
+    "setting": "professional tennis court",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 616,
+      "out": 100
+    }
+  },
+  "0108": {
+    "objects": [
+      "plate",
+      "cake",
+      "fork",
+      "chocolate",
+      "wafer"
+    ],
+    "caption": "A slice of layered chocolate cake with chocolate frosting and wafer garnish sits on a white plate with a gold fork beside it.",
+    "setting": "restaurant or cafe",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 98
+    }
+  },
+  "0109": {
+    "objects": [
+      "motorcycle",
+      "helmet",
+      "person",
+      "grass",
+      "sky",
+      "clouds",
+      "wheel",
+      "tire",
+      "seat",
+      "handlebars",
+      "engine",
+      "exhaust pipe"
+    ],
+    "caption": "A person in a helmet and pink outfit sits on a dirt bike in a field during golden hour.",
+    "setting": "open field, outdoor",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 129
+    }
+  },
+  "0110": {
+    "objects": [
+      "person",
+      "skateboard",
+      "skate ramp",
+      "concrete",
+      "railing"
+    ],
+    "caption": "A skateboarder performs a trick on a concrete ramp in black and white photography.",
+    "setting": "skate park",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 93
+    }
+  },
+  "0112": {
+    "objects": [
+      "dog",
+      "person",
+      "grass",
+      "ribbon"
+    ],
+    "caption": "Aerial view of three dogs and a person on green grass, with one dog wearing a red ribbon.",
+    "setting": "grassy field or lawn",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 700,
+      "out": 87
+    }
+  },
+  "0111": {
+    "objects": [
+      "soccer ball",
+      "goal",
+      "net",
+      "person",
+      "grass",
+      "tree",
+      "jersey",
+      "shorts",
+      "sock",
+      "shoe"
+    ],
+    "caption": "A young soccer player in a maroon jersey dribbles a yellow soccer ball during a youth soccer match on a grass field.",
+    "setting": "outdoor soccer field",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 121
+    }
+  },
+  "0113": {
+    "objects": [
+      "zebra",
+      "grass"
+    ],
+    "caption": "Three zebras grazing in a grassy field, with one in the foreground and two others at a distance.",
+    "setting": "savanna or grassland",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 73
+    }
+  },
+  "0114": {
+    "objects": [
+      "oven",
+      "pizza",
+      "oven rack",
+      "refrigerator",
+      "tile",
+      "floor",
+      "wall",
+      "paper",
+      "bottle",
+      "person"
+    ],
+    "caption": "A pizza baking in an open commercial oven in a kitchen, with a refrigerator visible to the right.",
+    "setting": "restaurant or commercial kitchen",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 124
+    }
+  },
+  "0115": {
+    "objects": [
+      "person",
+      "kite",
+      "tree",
+      "grass",
+      "cloud",
+      "sky",
+      "building",
+      "container",
+      "lamp post",
+      "fence"
+    ],
+    "caption": "People fly kites in an open green field on a partly cloudy day with buildings visible in the distance.",
+    "setting": "outdoor park or field",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 119
+    }
+  },
+  "0117": {
+    "objects": [
+      "person",
+      "cabinet",
+      "pan",
+      "skillet",
+      "pot",
+      "clock",
+      "wall",
+      "shelf",
+      "utensil holder",
+      "utensils",
+      "knife",
+      "spoon",
+      "fork",
+      "paper towel holder",
+      "paper towels",
+      "stove",
+      "kitchen counter",
+      "glasses"
+    ],
+    "caption": "A man reaches up to hang or retrieve a pan from a wall-mounted storage rack in a kitchen.",
+    "setting": "kitchen",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 167
+    }
+  },
+  "0118": {
+    "objects": [
+      "pizza",
+      "plate",
+      "basil",
+      "glass",
+      "tablecloth",
+      "person"
+    ],
+    "caption": "A Margherita pizza with fresh basil leaves served on a white plate at a restaurant table.",
+    "setting": "restaurant",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 96
+    }
+  },
+  "0116": {
+    "objects": [
+      "pizza",
+      "plate",
+      "cardigan",
+      "shirt",
+      "chair",
+      "table",
+      "notebook",
+      "pen"
+    ],
+    "caption": "A woman and child share a pizza at a crowded indoor gathering or event.",
+    "setting": "community venue or event space",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 103
+    }
+  },
+  "0119": {
+    "objects": [
+      "toothbrush",
+      "glass",
+      "water"
+    ],
+    "caption": "Three toothbrushes with different colored bristles standing in a glass of water.",
+    "setting": "bathroom",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 78
+    }
+  },
+  "0120": {
+    "objects": [
+      "brick",
+      "window",
+      "plant",
+      "book",
+      "mirror",
+      "cabinet",
+      "hot tub",
+      "faucet",
+      "towel",
+      "step",
+      "screen",
+      "frame"
+    ],
+    "caption": "A luxurious bathroom spa with a built-in hot tub, decorative screens, and brick walls.",
+    "setting": "bathroom spa",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 131
+    }
+  },
+  "0121": {
+    "objects": [
+      "person",
+      "snowboard",
+      "ramp",
+      "snow",
+      "flag",
+      "pole",
+      "tree",
+      "sky",
+      "building",
+      "signage"
+    ],
+    "caption": "A snowboarder performs a trick on a snowy ramp at a winter sports facility with branded flags and signage visible.",
+    "setting": "outdoor snow park or ski resort",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 126
+    }
+  },
+  "0122": {
+    "objects": [
+      "motorcycle",
+      "person",
+      "hat",
+      "shirt",
+      "pants",
+      "shoes",
+      "trees",
+      "path",
+      "sign",
+      "grass"
+    ],
+    "caption": "A man in period clothing sits on an early motorcycle on a tree-lined path, wearing a hat and light-colored shirt.",
+    "setting": "park or tree-lined avenue",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 123
+    }
+  },
+  "0123": {
+    "objects": [
+      "person",
+      "hat",
+      "sunglasses",
+      "wine glass",
+      "barrel",
+      "table",
+      "shirt",
+      "paper cup",
+      "apron",
+      "landscape painting",
+      "tent",
+      "grass field"
+    ],
+    "caption": "People sample wine at an outdoor winery event with wooden barrels and a pastoral landscape backdrop.",
+    "setting": "vineyard or winery outdoor event",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 134
+    }
+  },
+  "0124": {
+    "objects": [
+      "balloon",
+      "cake",
+      "string"
+    ],
+    "caption": "A smiling toddler with red hair celebrates next to a small decorated cake and white balloon.",
+    "setting": "indoor celebration space",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 616,
+      "out": 79
+    }
+  },
+  "0126": {
+    "objects": [
+      "snow",
+      "tree",
+      "power line",
+      "pole",
+      "cloud",
+      "mountain",
+      "sky",
+      "log"
+    ],
+    "caption": "A snowy mountainous landscape with evergreen trees, power lines, and distant peaks under a cloudy sky.",
+    "setting": "mountain slope, outdoor wilderness",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 658,
+      "out": 110
+    }
+  },
+  "0125": {
+    "objects": [
+      "person",
+      "baseball player",
+      "catcher",
+      "umpire",
+      "bat",
+      "baseball",
+      "glove",
+      "uniform",
+      "helmet",
+      "chest protector",
+      "mask",
+      "shin guard",
+      "grass",
+      "dirt",
+      "home plate",
+      "outfield wall",
+      "advertising board",
+      "sign",
+      "nikon",
+      "stadium seats",
+      "bleachers",
+      "crowd"
+    ],
+    "caption": "A baseball game in progress with a batter at home plate, catcher, and umpire during play with a large crowd in the stadium.",
+    "setting": "baseball stadium",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 200
+    }
+  },
+  "0127": {
+    "objects": [
+      "train",
+      "railway tracks",
+      "railway signal",
+      "utility pole",
+      "building",
+      "billboard",
+      "sky",
+      "clouds",
+      "trees",
+      "grass",
+      "gravel",
+      "platform",
+      "road",
+      "vehicle",
+      "fence",
+      "lamppost"
+    ],
+    "caption": "A passenger train traveling on multiple railway tracks at a station with buildings and billboards visible in the background.",
+    "setting": "railway station",
+    "is_screenshot": false,
+    "_tokens": {
+      "in": 644,
+      "out": 149
+    }
+  }
+}
