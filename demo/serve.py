@@ -1,8 +1,11 @@
 """
-Demo server — Phase 1 only. See demo/DEMO-SPEC.md.
+Demo server — Phase 1 + Phase 2. See demo/DEMO-SPEC.md.
 
 Throwaway demo code. Serves the query -> predicates -> matches flow over the
-128-photo catalog built by Step 0 (validation/step1_sample.py + step2_tag.py).
+128-photo catalog built by Step 0 (validation/step1_sample.py + step2_tag.py),
+plus the quarantine / approval / deletion loop of Phase 2.
+
+Nothing outside demo/ is ever read, written, or deleted.
 
 Usage:
     python demo/serve.py [--port 8000]
@@ -11,11 +14,14 @@ Binds to 127.0.0.1 only. Never 0.0.0.0.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import mimetypes
 import os
 import re
+import shutil
 import sys
+from datetime import datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
@@ -25,6 +31,11 @@ WORKSPACE = DEMO_DIR / "_ws"
 THUMBS_DIR = WORKSPACE / "thumbs"
 INDEX_HTML = DEMO_DIR / "index.html"
 CACHE_PATH = DEMO_DIR / "predicates-cache.json"
+
+PHOTOS_DIR = DEMO_DIR / "photos"
+QUARANTINE_DIR = DEMO_DIR / "quarantine"
+QUARANTINE_MANIFEST = QUARANTINE_DIR / "manifest.json"
+OPERATION_LOG = DEMO_DIR / "operation-log.json"
 
 MODEL = os.environ.get("SIFT_MODEL", "claude-haiku-4-5")
 
@@ -59,6 +70,7 @@ def save_json(path: Path, data) -> None:
 CATALOG: dict = load_json(WORKSPACE / "catalog.json", default={})
 _manifest = load_json(WORKSPACE / "manifest.json", default=[])
 THUMB_BY_ID = {item["id"]: item["thumb"] for item in _manifest}
+MANIFEST_BY_ID = {item["id"]: item for item in _manifest}
 PREDICATE_CACHE: dict = load_json(CACHE_PATH, default={})
 
 if not CATALOG:
@@ -197,13 +209,19 @@ def gallery() -> dict:
     """The full catalog, unfiltered — for the opening screen before any
     query has been run. No reasons or confidence: there is no query to
     explain a match against."""
-    photos = [{"id": pid, "thumb": THUMB_BY_ID.get(pid, "")} for pid in sorted(CATALOG)]
+    photos = [
+        {"id": pid, "thumb": THUMB_BY_ID.get(pid, ""), "bytes": photo_bytes(pid)}
+        for pid in sorted(CATALOG)
+        if photo_exists(pid)
+    ]
     return {"photos": photos, "total": len(photos)}
 
 
 def search(predicates: list[dict]) -> dict:
     matches = []
     for photo_id, photo in CATALOG.items():
+        if not photo_exists(photo_id):
+            continue  # deleted in an earlier round — it is no longer in the gallery
         reasons = []
         satisfied = True
         for pred in predicates:
@@ -222,12 +240,182 @@ def search(predicates: list[dict]) -> dict:
                 "thumb": THUMB_BY_ID.get(photo_id, ""),
                 "reasons": reasons,
                 "confidence": confidence,
+                "bytes": photo_bytes(photo_id),
             }
         )
 
     matches.sort(key=lambda m: (m["confidence"] != "certain", m["id"]))
     certain = sum(1 for m in matches if m["confidence"] == "certain")
     return {"matches": matches, "total": len(matches), "certain": certain}
+
+
+# ---------------------------------------------------------------------------
+# Phase 2 — quarantine, approval gate, deletion
+# See demo/DEMO-SPEC.md, Phase 2 (P2-1 .. P2-10).
+#
+# Rules that hold even in throwaway code:
+#   * Copy, never move (P2-3 / D-10). shutil.copy2 only; shutil.move appears
+#     nowhere in this file.
+#   * Delete in place, only from demo/photos/, and only for sources whose
+#     copy is still sitting in the quarantine folder (P2-8 / D-9).
+# ---------------------------------------------------------------------------
+
+def quarantine_path_is_safe() -> bool:
+    """P2-5: the quarantine folder must live outside the photo folder, so a
+    copy can never be mistaken for an original — and so emptying quarantine
+    can never touch the gallery."""
+    q = QUARANTINE_DIR.resolve()
+    p = PHOTOS_DIR.resolve()
+    return q != p and p not in q.parents and q not in p.parents
+
+
+def file_signature(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for block in iter(lambda: f.read(65536), b""):
+            h.update(block)
+    return h.hexdigest()
+
+
+def photo_path(photo_id: str) -> Path | None:
+    entry = MANIFEST_BY_ID.get(photo_id)
+    if not entry:
+        return None
+    return PHOTOS_DIR / Path(entry["filename"]).name
+
+
+def photo_exists(photo_id: str) -> bool:
+    path = photo_path(photo_id)
+    return bool(path and path.is_file())
+
+
+def photo_bytes(photo_id: str) -> int:
+    path = photo_path(photo_id)
+    return path.stat().st_size if path and path.is_file() else 0
+
+
+def quarantine_manifest() -> list[dict]:
+    return load_json(QUARANTINE_MANIFEST, default=[]) or []
+
+
+def quarantine_status() -> dict:
+    """P2-6: read from disk every time, so the banner survives restarts."""
+    entries = quarantine_manifest()
+    present, released = [], []
+    for entry in entries:
+        copy_path = QUARANTINE_DIR / Path(entry["filename"]).name
+        (present if copy_path.is_file() else released).append(entry)
+    return {
+        "total": len(entries),
+        "awaiting": len(present),
+        "released": len(released),
+        "bytes": sum(e.get("bytes", 0) for e in present),
+        "queries": sorted({e.get("query", "") for e in entries if e.get("query")}),
+        "folder": str(QUARANTINE_DIR),
+        "items": [
+            {"id": e["id"], "filename": e["filename"], "thumb": THUMB_BY_ID.get(e["id"], "")}
+            for e in present
+        ],
+    }
+
+
+def copy_to_quarantine(ids: list[str], query: str) -> dict:
+    if not quarantine_path_is_safe():
+        raise RuntimeError(
+            "refusing to copy: the quarantine folder is inside the photo folder"
+        )
+
+    QUARANTINE_DIR.mkdir(exist_ok=True)
+    existing = {e["id"]: e for e in quarantine_manifest()}
+
+    copied, skipped = [], []
+    for photo_id in ids:
+        source = photo_path(photo_id)
+        if source is None or not source.is_file():
+            skipped.append(photo_id)
+            continue
+        destination = QUARANTINE_DIR / source.name
+        shutil.copy2(source, destination)  # copy, never move
+        existing[photo_id] = {
+            "id": photo_id,
+            "filename": source.name,
+            "source": str(source),
+            "quarantine": str(destination),
+            "bytes": destination.stat().st_size,
+            "sha256": file_signature(destination),
+            "query": query,
+            "added_at": datetime.now().isoformat(timespec="seconds"),
+        }
+        copied.append(photo_id)
+
+    ordered = sorted(existing.values(), key=lambda e: e["id"])
+    save_json(QUARANTINE_MANIFEST, ordered)  # P2-4
+
+    status = quarantine_status()
+    status["copied"] = len(copied)
+    status["skipped"] = skipped
+    return status
+
+
+def approve_deletion() -> dict:
+    """P2-8: delete from demo/photos/ ONLY those sources whose copy is still
+    in demo/quarantine/. A photo the user pulled out of the quarantine folder
+    is released, and its original is left untouched. This is AC-3."""
+    entries = quarantine_manifest()
+    deleted, released, missing = [], [], []
+    stamp = datetime.now().isoformat(timespec="seconds")
+
+    for entry in entries:
+        copy_path = QUARANTINE_DIR / Path(entry["filename"]).name
+        source = PHOTOS_DIR / Path(entry["filename"]).name
+
+        if not copy_path.is_file():
+            released.append(entry)          # pulled out before approval — spared
+            continue
+        if not source.is_file():
+            missing.append(entry)           # already gone; nothing to delete
+            continue
+
+        source.unlink()                     # delete in place, never move
+        deleted.append(
+            {
+                "id": entry["id"],
+                "source": str(source),
+                "date": stamp,
+                "query": entry.get("query", ""),
+            }
+        )
+
+    log = load_json(OPERATION_LOG, default=None) or {"deletions": [], "rounds": []}
+    log["deletions"].extend(deleted)        # P2-9
+    total = len(deleted) + len(released)
+    log["rounds"].append(                   # P2-10
+        {
+            "date": stamp,
+            "queries": sorted({e.get("query", "") for e in entries if e.get("query")}),
+            "quarantined": len(entries),
+            "deleted": len(deleted),
+            "released": len(released),
+            "already_missing": len(missing),
+            "release_rate": round(len(released) / total, 3) if total else 0.0,
+        }
+    )
+    save_json(OPERATION_LOG, log)
+
+    # Empty the quarantine folder so the banner clears and the next round
+    # starts clean. Only copies live here; originals are in demo/photos/.
+    for item in list(QUARANTINE_DIR.glob("*")) if QUARANTINE_DIR.is_dir() else []:
+        if item.is_file():
+            item.unlink()
+
+    return {
+        "deleted": len(deleted),
+        "released": len(released),
+        "already_missing": len(missing),
+        "release_rate": log["rounds"][-1]["release_rate"],
+        "deleted_ids": [d["id"] for d in deleted],
+        "released_ids": [e["id"] for e in released],
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -264,6 +452,10 @@ class Handler(BaseHTTPRequestHandler):
 
         if path == "/api/gallery":
             self._send_json(200, gallery())
+            return
+
+        if path == "/api/quarantine":
+            self._send_json(200, quarantine_status())
             return
 
         if path.startswith("/_ws/thumbs/"):
@@ -304,6 +496,19 @@ class Handler(BaseHTTPRequestHandler):
                 self._send_json(200, search(predicates))
                 return
 
+            if parsed.path == "/api/quarantine":
+                ids = [str(i) for i in body.get("ids", [])]
+                query = str(body.get("query", "")).strip()
+                if not ids:
+                    self._send_json(400, {"error": "no photos selected"})
+                    return
+                self._send_json(200, copy_to_quarantine(ids, query))
+                return
+
+            if parsed.path == "/api/approve":
+                self._send_json(200, approve_deletion())
+                return
+
             self.send_error(404, "Not found")
         except Exception as exc:  # noqa: BLE001 — never let one bad request kill the server
             self._send_json(500, {"error": str(exc)})
@@ -316,9 +521,14 @@ def main() -> None:
     ap.add_argument("--port", type=int, default=8000)
     args = ap.parse_args()
 
+    if not quarantine_path_is_safe():
+        print("Quarantine folder is inside the photo folder. Refusing to start.")
+        sys.exit(1)
+
     server = ThreadingHTTPServer(("127.0.0.1", args.port), Handler)
     url = f"http://127.0.0.1:{args.port}/"
-    print(f"Catalog: {len(CATALOG)} photos")
+    print(f"Catalog: {len(CATALOG)} photos ({sum(1 for p in CATALOG if photo_exists(p))} still in demo/photos/)")
+    print(f"Quarantine: {QUARANTINE_DIR} — {quarantine_status()['awaiting']} awaiting approval")
     print(f"Serving at {url}")
     try:
         server.serve_forever()

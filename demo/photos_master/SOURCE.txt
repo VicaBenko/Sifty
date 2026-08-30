@@ -1,0 +1,11 @@
+Demo photo set - 128 images from the COCO 2017 dataset (coco128 sample,
+distributed by Ultralytics: https://github.com/ultralytics/yolov5).
+
+COCO images are sourced from Flickr under Creative Commons licences and are
+widely used as a public research benchmark. They are used here as a neutral,
+public stand-in for a personal photo gallery, so that no private photos are
+shown during the demo.
+
+Everyday multi-object scenes - people, animals, food, furniture, tableware,
+vehicles - which is exactly the material the Sift architecture is built to
+query.
