@@ -6,6 +6,9 @@ rem --- optional: needed only for NEW queries that are not in the cache ---
 rem set ANTHROPIC_API_KEY=sk-ant-...
 
 echo.
+echo   Restoring the photo set...
+python demo\reset.py
+echo.
 echo   Sift demo starting...
 echo   Browser will open in a moment.
 echo.

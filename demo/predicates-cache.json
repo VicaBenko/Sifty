@@ -75,5 +75,702 @@
         "surface"
       ]
     }
+  ],
+  "a car": [
+    {
+      "label": "car",
+      "terms": [
+        "car",
+        "automobile",
+        "vehicle",
+        "auto"
+      ]
+    }
+  ],
+  "a bottle": [
+    {
+      "label": "bottle",
+      "terms": [
+        "bottle",
+        "flask",
+        "vial",
+        "container"
+      ]
+    }
+  ],
+  "a cup": [
+    {
+      "label": "cup",
+      "terms": [
+        "cup",
+        "mug",
+        "drinking cup",
+        "beverage cup"
+      ]
+    }
+  ],
+  "a bowl": [
+    {
+      "label": "bowl",
+      "terms": [
+        "bowl",
+        "dish",
+        "container"
+      ]
+    }
+  ],
+  "a plate": [
+    {
+      "label": "plate",
+      "terms": [
+        "plate",
+        "dish",
+        "platter",
+        "dinnerware"
+      ]
+    }
+  ],
+  "a chair": [
+    {
+      "label": "chair",
+      "terms": [
+        "chair",
+        "seat",
+        "seating"
+      ]
+    }
+  ],
+  "a lamp": [
+    {
+      "label": "lamp",
+      "terms": [
+        "lamp",
+        "light",
+        "lighting fixture",
+        "bulb"
+      ]
+    }
+  ],
+  "a mirror": [
+    {
+      "label": "mirror",
+      "terms": [
+        "mirror",
+        "looking glass",
+        "reflective surface"
+      ]
+    }
+  ],
+  "a bench": [
+    {
+      "label": "bench",
+      "terms": [
+        "bench",
+        "seat",
+        "seating"
+      ]
+    }
+  ],
+  "a spoon": [
+    {
+      "label": "spoon",
+      "terms": [
+        "spoon",
+        "utensil",
+        "flatware"
+      ]
+    }
+  ],
+  "a pizza": [
+    {
+      "label": "pizza",
+      "terms": [
+        "pizza",
+        "pie",
+        "slice"
+      ]
+    }
+  ],
+  "an airplane": [
+    {
+      "label": "airplane",
+      "terms": [
+        "airplane",
+        "aircraft",
+        "plane",
+        "jet"
+      ]
+    }
+  ],
+  "a frisbee": [
+    {
+      "label": "frisbee",
+      "terms": [
+        "frisbee",
+        "disc",
+        "flying disc"
+      ]
+    }
+  ],
+  "a flag": [
+    {
+      "label": "flag",
+      "terms": [
+        "flag",
+        "banner",
+        "pennant",
+        "standard"
+      ]
+    }
+  ],
+  "a towel": [
+    {
+      "label": "towel",
+      "terms": [
+        "towel",
+        "bath towel",
+        "cloth"
+      ]
+    }
+  ],
+  "a stove": [
+    {
+      "label": "stove",
+      "terms": [
+        "stove",
+        "oven",
+        "range",
+        "cooktop"
+      ]
+    }
+  ],
+  "a sign": [
+    {
+      "label": "sign",
+      "terms": [
+        "sign",
+        "signage",
+        "poster",
+        "placard"
+      ]
+    }
+  ],
+  "a shoe": [
+    {
+      "label": "shoe",
+      "terms": [
+        "shoe",
+        "footwear",
+        "sneaker",
+        "boot"
+      ]
+    }
+  ],
+  "a plant": [
+    {
+      "label": "plant",
+      "terms": [
+        "plant",
+        "vegetation",
+        "foliage",
+        "greenery"
+      ]
+    }
+  ],
+  "a window": [
+    {
+      "label": "window",
+      "terms": [
+        "window",
+        "windowpane",
+        "glass window",
+        "pane"
+      ]
+    }
+  ],
+  "a door": [
+    {
+      "label": "door",
+      "terms": [
+        "door",
+        "doorway",
+        "entrance",
+        "gate"
+      ]
+    }
+  ],
+  "a tree": [
+    {
+      "label": "tree",
+      "terms": [
+        "tree",
+        "trees",
+        "woody plant",
+        "trunk"
+      ]
+    }
+  ],
+  "a building": [
+    {
+      "label": "building",
+      "terms": [
+        "building",
+        "structure",
+        "edifice",
+        "house"
+      ]
+    }
+  ],
+  "a skyscraper": [
+    {
+      "label": "skyscraper",
+      "terms": [
+        "skyscraper",
+        "high-rise",
+        "tall building",
+        "skyscraper building"
+      ]
+    }
+  ],
+  "a fence": [
+    {
+      "label": "fence",
+      "terms": [
+        "fence",
+        "fencing",
+        "railing",
+        "barrier"
+      ]
+    }
+  ],
+  "a bicycle": [
+    {
+      "label": "bicycle",
+      "terms": [
+        "bicycle",
+        "bike",
+        "cycle"
+      ]
+    }
+  ],
+  "a boat": [
+    {
+      "label": "boat",
+      "terms": [
+        "boat",
+        "vessel",
+        "watercraft",
+        "ship"
+      ]
+    }
+  ],
+  "a plate and a spoon": [
+    {
+      "label": "plate",
+      "terms": [
+        "plate",
+        "dish",
+        "platter"
+      ]
+    },
+    {
+      "label": "spoon",
+      "terms": [
+        "spoon",
+        "utensil",
+        "cutlery"
+      ]
+    }
+  ],
+  "a cup and a plate": [
+    {
+      "label": "cup",
+      "terms": [
+        "cup",
+        "mug",
+        "drinking cup"
+      ]
+    },
+    {
+      "label": "plate",
+      "terms": [
+        "plate",
+        "dish",
+        "dinner plate"
+      ]
+    }
+  ],
+  "a chair and a table": [
+    {
+      "label": "chair",
+      "terms": [
+        "chair",
+        "seat",
+        "stool"
+      ]
+    },
+    {
+      "label": "table",
+      "terms": [
+        "table",
+        "desk",
+        "surface"
+      ]
+    }
+  ],
+  "a pot and a pan": [
+    {
+      "label": "pot",
+      "terms": [
+        "pot",
+        "cooking pot",
+        "saucepot"
+      ]
+    },
+    {
+      "label": "pan",
+      "terms": [
+        "pan",
+        "frying pan",
+        "skillet"
+      ]
+    }
+  ],
+  "a pot on a stove": [
+    {
+      "label": "pot",
+      "terms": [
+        "pot",
+        "cooking pot",
+        "saucepot"
+      ]
+    },
+    {
+      "label": "stove",
+      "terms": [
+        "stove",
+        "stovetop",
+        "range",
+        "cooktop"
+      ]
+    }
+  ],
+  "a pan on a stove": [
+    {
+      "label": "pan",
+      "terms": [
+        "pan",
+        "skillet",
+        "frying pan",
+        "cookware"
+      ]
+    },
+    {
+      "label": "stove",
+      "terms": [
+        "stove",
+        "stovetop",
+        "range",
+        "cooktop"
+      ]
+    }
+  ],
+  "a dog and a person": [
+    {
+      "label": "dog",
+      "terms": [
+        "dog",
+        "puppy",
+        "canine",
+        "pup"
+      ]
+    },
+    {
+      "label": "person",
+      "terms": [
+        "person",
+        "human",
+        "man",
+        "woman",
+        "child"
+      ]
+    }
+  ],
+  "a person on a bench": [
+    {
+      "label": "person",
+      "terms": [
+        "person",
+        "human",
+        "people",
+        "man",
+        "woman"
+      ]
+    },
+    {
+      "label": "bench",
+      "terms": [
+        "bench",
+        "seat",
+        "park bench"
+      ]
+    }
+  ],
+  "a person with a frisbee": [
+    {
+      "label": "person",
+      "terms": [
+        "person",
+        "human",
+        "people",
+        "man",
+        "woman"
+      ]
+    },
+    {
+      "label": "frisbee",
+      "terms": [
+        "frisbee",
+        "disc",
+        "flying disc"
+      ]
+    }
+  ],
+  "a baseball glove": [
+    {
+      "label": "baseball glove",
+      "terms": [
+        "baseball glove",
+        "glove",
+        "mitt",
+        "baseball mitt"
+      ]
+    }
+  ],
+  "a person in a baseball uniform": [
+    {
+      "label": "person",
+      "terms": [
+        "person",
+        "human",
+        "player"
+      ]
+    },
+    {
+      "label": "baseball uniform",
+      "terms": [
+        "baseball uniform",
+        "baseball jersey",
+        "baseball outfit"
+      ]
+    }
+  ],
+  "a lamp and a window": [
+    {
+      "label": "lamp",
+      "terms": [
+        "lamp",
+        "light",
+        "lighting fixture"
+      ]
+    },
+    {
+      "label": "window",
+      "terms": [
+        "window",
+        "windowpane",
+        "glass window"
+      ]
+    }
+  ],
+  "a car and a building": [
+    {
+      "label": "car",
+      "terms": [
+        "car",
+        "automobile",
+        "vehicle",
+        "truck"
+      ]
+    },
+    {
+      "label": "building",
+      "terms": [
+        "building",
+        "structure",
+        "house",
+        "edifice"
+      ]
+    }
+  ],
+  "a sign on a building": [
+    {
+      "label": "sign",
+      "terms": [
+        "sign",
+        "signage",
+        "placard",
+        "board"
+      ]
+    },
+    {
+      "label": "building",
+      "terms": [
+        "building",
+        "structure",
+        "facade",
+        "wall"
+      ]
+    }
+  ],
+  "a tree and a fence": [
+    {
+      "label": "tree",
+      "terms": [
+        "tree",
+        "trees",
+        "woody plant"
+      ]
+    },
+    {
+      "label": "fence",
+      "terms": [
+        "fence",
+        "fencing",
+        "railing"
+      ]
+    }
+  ],
+  "trees and grass": [
+    {
+      "label": "tree",
+      "terms": [
+        "tree",
+        "trees",
+        "woodland",
+        "forest"
+      ]
+    },
+    {
+      "label": "grass",
+      "terms": [
+        "grass",
+        "lawn",
+        "turf",
+        "grassland"
+      ]
+    }
+  ],
+  "a person wearing a shirt": [
+    {
+      "label": "person",
+      "terms": [
+        "person",
+        "human",
+        "people",
+        "man",
+        "woman"
+      ]
+    },
+    {
+      "label": "shirt",
+      "terms": [
+        "shirt",
+        "top",
+        "blouse",
+        "t-shirt"
+      ]
+    }
+  ],
+  "a street with poles": [
+    {
+      "label": "street",
+      "terms": [
+        "street",
+        "road",
+        "sidewalk",
+        "pavement"
+      ]
+    },
+    {
+      "label": "pole",
+      "terms": [
+        "pole",
+        "post",
+        "pillar",
+        "column"
+      ]
+    }
+  ],
+  "a pot, a pan and a stove": [
+    {
+      "label": "pot",
+      "terms": [
+        "pot",
+        "cooking pot",
+        "saucepot"
+      ]
+    },
+    {
+      "label": "pan",
+      "terms": [
+        "pan",
+        "frying pan",
+        "skillet"
+      ]
+    },
+    {
+      "label": "stove",
+      "terms": [
+        "stove",
+        "cooktop",
+        "range",
+        "oven"
+      ]
+    }
+  ],
+  "a plate, a cup and a table": [
+    {
+      "label": "plate",
+      "terms": [
+        "plate",
+        "dish",
+        "platter"
+      ]
+    },
+    {
+      "label": "cup",
+      "terms": [
+        "cup",
+        "mug",
+        "glass"
+      ]
+    },
+    {
+      "label": "table",
+      "terms": [
+        "table",
+        "desk",
+        "surface"
+      ]
+    }
+  ],
+  "a lamp on the table": [
+    {
+      "label": "lamp",
+      "terms": [
+        "lamp",
+        "light",
+        "lighting fixture"
+      ]
+    },
+    {
+      "label": "table",
+      "terms": [
+        "table",
+        "desk",
+        "surface"
+      ]
+    }
   ]
 }
