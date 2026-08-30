@@ -100,6 +100,10 @@ python demo/verify_phase2.py
 
 ## הפעלה
 
+**דאבל-קליק על `RUN-DEMO.bat`** בשורש התיקייה — מאפס, מעלה שרת, פותח דפדפן.
+
+או ידנית:
+
 ```
 cd /d "%USERPROFILE%\Sift"
 python demo\reset.py
