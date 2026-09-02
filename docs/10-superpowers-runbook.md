@@ -2,7 +2,7 @@
 
 **תאריך:** 28.08.2026 · **קדם:** `08-handover-to-development.md`
 
-תיקיית העבודה: `C:\Users\vicab\Sift`.
+תיקיית העבודה: `%USERPROFILE%\Sift`.
 
 ---
 

@@ -157,7 +157,118 @@ def extract_predicates(query: str) -> tuple[list[dict], str]:
         return predicates, "api"
     except Exception as exc:  # noqa: BLE001 — the demo must never hard-fail on a query
         print(f"[predicates] API extraction failed ({exc}); using literal fallback.")
-        return fallback_predicates(query), "fallback"
+def analyze_single_photo_vision(photo: dict, api_key: str = "") -> dict:
+    """Analyzes a single base64 image using Gemini or Claude Vision for maximum accuracy."""
+    src = photo.get("src", "")
+    filename = photo.get("filename", "")
+    default_res = {
+        "id": photo.get("id"),
+        "filename": filename,
+        "objects": photo.get("objects", ["photo"]),
+        "caption": photo.get("caption", f"Photo {filename}"),
+        "setting": "indoor/outdoor",
+        "source": "heuristic"
+    }
+
+    if not src or not src.startswith("data:"):
+        return default_res
+
+    # Extract base64 and mime
+    try:
+        header, b64_data = src.split(",", 1)
+        mime_match = re.search(r"data:([^;]+);", header)
+        mime = mime_match.group(1) if mime_match else "image/jpeg"
+    except Exception:
+        return default_res
+
+    gemini_key = api_key or os.environ.get("GEMINI_API_KEY", "")
+    anthropic_key = os.environ.get("ANTHROPIC_API_KEY", "")
+
+    # Try Gemini Vision REST API
+    if gemini_key:
+        try:
+            import urllib.request
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={gemini_key}"
+            prompt = (
+                "Analyze this image for photo cataloging and retrieval. Return ONLY a JSON object with: "
+                "1. 'objects': an array of all detected English nouns and objects (e.g. ['receipt', 'invoice', 'table', 'document', 'dog', 'laptop', 'coffee cup', 'person', 'car', 'food']). "
+                "2. 'caption': an accurate, detailed descriptive sentence of the image content. "
+                "3. 'setting': location/scene type. "
+                "Return raw JSON only, no markdown."
+            )
+            payload = {
+                "contents": [{
+                    "parts": [
+                        {"text": prompt},
+                        {"inline_data": {"mime_type": mime, "data": b64_data}}
+                    ]
+                }],
+                "generationConfig": {"temperature": 0.1, "maxOutputTokens": 500}
+            }
+            req = urllib.request.Request(
+                url,
+                data=json.dumps(payload).encode("utf-8"),
+                headers={"Content-Type": "application/json"}
+            )
+            with urllib.request.urlopen(req, timeout=12) as response:
+                res_data = json.loads(response.read().decode("utf-8"))
+                text = res_data["candidates"][0]["content"]["parts"][0]["text"]
+                # Parse JSON
+                fence = re.search(r"```(?:json)?\s*(.*?)```", text, re.DOTALL)
+                if fence: text = fence.group(1).strip()
+                parsed = json.loads(text)
+                return {
+                    "id": photo.get("id"),
+                    "filename": filename,
+                    "objects": [str(o).lower().strip() for o in parsed.get("objects", []) if o],
+                    "caption": str(parsed.get("caption", f"Photo {filename}")),
+                    "setting": str(parsed.get("setting", "scene")),
+                    "source": "gemini-2.5-flash"
+                }
+        except Exception as e:
+            print(f"[Vision] Gemini analysis failed: {e}")
+
+    # Try Anthropic Claude Vision
+    if anthropic_key:
+        try:
+            import anthropic
+            client = anthropic.Anthropic()
+            response = client.messages.create(
+                model="claude-3-5-haiku-latest",
+                max_tokens=400,
+                messages=[{
+                    "role": "user",
+                    "content": [
+                        {"type": "image", "source": {"type": "base64", "media_type": mime, "data": b64_data}},
+                        {"type": "text", "text": "Analyze this photo for precision search. Return ONLY JSON: {\"objects\": [\"receipt\", \"table\"], \"caption\": \"...\", \"setting\": \"...\"}"}
+                    ]
+                }]
+            )
+            text = response.content[0].text
+            fence = re.search(r"```(?:json)?\s*(.*?)```", text, re.DOTALL)
+            if fence: text = fence.group(1).strip()
+            parsed = json.loads(text)
+            return {
+                "id": photo.get("id"),
+                "filename": filename,
+                "objects": [str(o).lower().strip() for o in parsed.get("objects", []) if o],
+                "caption": str(parsed.get("caption", f"Photo {filename}")),
+                "setting": str(parsed.get("setting", "scene")),
+                "source": "claude-3-5-haiku"
+            }
+        except Exception as e:
+            print(f"[Vision] Claude analysis failed: {e}")
+
+    return default_res
+
+
+def analyze_photos_batch(photos: list[dict], api_key: str = "") -> list[dict]:
+    """Analyzes a batch of uploaded photos with vision AI models."""
+    results = []
+    for p in photos:
+        res = analyze_single_photo_vision(p, api_key)
+        results.append(res)
+    return results
 
 
 # ---------------------------------------------------------------------------
@@ -450,6 +561,18 @@ class Handler(BaseHTTPRequestHandler):
             self._send_file(INDEX_HTML, "text/html; charset=utf-8")
             return
 
+        if path == "/catalog-data.js":
+            p = DEMO_DIR / "catalog-data.js"
+            if p.is_file():
+                self._send_file(p, "application/javascript; charset=utf-8")
+                return
+
+        if path == "/i18n.js":
+            p = DEMO_DIR / "i18n.js"
+            if p.is_file():
+                self._send_file(p, "application/javascript; charset=utf-8")
+                return
+
         if path == "/api/gallery":
             self._send_json(200, gallery())
             return
@@ -457,6 +580,14 @@ class Handler(BaseHTTPRequestHandler):
         if path == "/api/quarantine":
             self._send_json(200, quarantine_status())
             return
+
+        if path.startswith("/assets/"):
+            name = path[len("/assets/") :]
+            candidate = (DEMO_DIR / "assets" / name).resolve()
+            if candidate.is_file():
+                content_type = mimetypes.guess_type(str(candidate))[0] or "application/octet-stream"
+                self._send_file(candidate, content_type)
+                return
 
         if path.startswith("/_ws/thumbs/"):
             name = path[len("/_ws/thumbs/") :]
@@ -503,6 +634,24 @@ class Handler(BaseHTTPRequestHandler):
                     self._send_json(400, {"error": "no photos selected"})
                     return
                 self._send_json(200, copy_to_quarantine(ids, query))
+                return
+
+            if parsed.path == "/api/unquarantine":
+                photo_id = str(body.get("id", "")).strip()
+                if photo_id:
+                    entry = MANIFEST_BY_ID.get(photo_id)
+                    if entry:
+                        copy_path = QUARANTINE_DIR / Path(entry["filename"]).name
+                        if copy_path.is_file():
+                            copy_path.unlink()
+                self._send_json(200, quarantine_status())
+                return
+
+            if parsed.path == "/api/catalog_photos":
+                photos = body.get("photos", [])
+                api_key = str(body.get("apiKey", "")).strip()
+                results = analyze_photos_batch(photos, api_key)
+                self._send_json(200, {"results": results, "status": "success"})
                 return
 
             if parsed.path == "/api/approve":

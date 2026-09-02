@@ -1,9 +1,6 @@
 @echo off
 title Sift - Demo Server
-cd /d "%USERPROFILE%\Sift"
-
-rem --- optional: needed only for NEW queries that are not in the cache ---
-rem set ANTHROPIC_API_KEY=sk-ant-...
+cd /d "%~dp0"
 
 echo.
 echo   Restoring the photo set...
