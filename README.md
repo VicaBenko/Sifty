@@ -5,9 +5,7 @@
 ---
 
 ## 🌐 Live Demo
-✨ **[Experience Sifty Live on GitHub Pages](https://vicab.github.io/Sift/)** ✨
-
-*(If you push to a different repository, your link will be: `https://<YOUR_GITHUB_USERNAME>.github.io/<YOUR_REPO_NAME>/`)*
+✨ **[Experience Sifty Live on GitHub Pages](https://vicabenko.github.io/sifty/)** ✨
 
 ---
 
