@@ -6790,12 +6790,30 @@ window.I18N_DATA = {
         if (model && imgEl.width > 0) {
           const detections = await model.detect(imgEl);
           if (Array.isArray(detections) && detections.length > 0) {
+            // Sort detections by score descending
+            detections.sort((a, b) => b.score - a.score);
+
+            const hasPet = detections.some(d => (d.class === "cat" || d.class === "dog") && d.score >= 0.40);
+
             detections.forEach(d => {
-              if (d.score >= 0.35) {
-                let cleanLabel = d.class.toLowerCase().trim();
-                if (cleanLabel === "potted plant") cleanLabel = "plant";
-                if (cleanLabel === "dining table") cleanLabel = "table";
-                if (cleanLabel === "cell phone") cleanLabel = "phone";
+              let cleanLabel = d.class.toLowerCase().trim();
+              if (cleanLabel === "potted plant") cleanLabel = "plant";
+              if (cleanLabel === "dining table") cleanLabel = "table";
+              if (cleanLabel === "cell phone") cleanLabel = "phone";
+              if (cleanLabel === "bowl" || cleanLabel === "pizza" || cleanLabel === "sandwich") cleanLabel = "food";
+
+              // High-precision threshold rules:
+              if (cleanLabel === "person") {
+                // Require high certainty (>= 0.65) and do not tag pet photos as person
+                if (d.score >= 0.65 && !hasPet) {
+                  if (!results.includes("person")) results.push("person");
+                }
+              } else if (cleanLabel === "cat" || cleanLabel === "dog") {
+                if (d.score >= 0.40) {
+                  if (!results.includes(cleanLabel)) results.push(cleanLabel);
+                  if (!results.includes("pet")) results.push("pet");
+                }
+              } else if (d.score >= 0.42) {
                 if (!results.includes(cleanLabel)) results.push(cleanLabel);
               }
             });
@@ -6812,12 +6830,22 @@ window.I18N_DATA = {
       });
 
       // Link recognized objects to official CLIP 512-D vector embeddings
+      // Prioritize pets, food, technology over generic person
       if (results.length > 0 && SIFT.queryEmbeddings) {
+        let chosenLabel = null;
         for (const resLabel of results) {
           if (SIFT.queryEmbeddings[resLabel]) {
-            clipVec = [...SIFT.queryEmbeddings[resLabel]];
-            break;
+            if (resLabel !== "person" || results.length === 1) {
+              chosenLabel = resLabel;
+              break;
+            }
           }
+        }
+        if (!chosenLabel && SIFT.queryEmbeddings[results[0]]) {
+          chosenLabel = results[0];
+        }
+        if (chosenLabel && SIFT.queryEmbeddings[chosenLabel]) {
+          clipVec = [...SIFT.queryEmbeddings[chosenLabel]];
         }
       }
 
