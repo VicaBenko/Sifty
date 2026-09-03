@@ -6680,7 +6680,8 @@ window.I18N_DATA = {
       };
 
       for (const [kw, mapped] of Object.entries(keywordMap)) {
-        if (lowerName.includes(kw)) {
+        const regex = new RegExp(`(^|[^a-z])${kw}s?([^a-z]|$)`, "i");
+        if (regex.test(lowerName)) {
           mapped.forEach(t => { if (!tags.includes(t)) tags.push(t); });
         }
       }
@@ -6810,8 +6811,11 @@ window.I18N_DATA = {
                 }
               } else if (cleanLabel === "cat" || cleanLabel === "dog") {
                 if (d.score >= 0.40) {
-                  if (!results.includes(cleanLabel)) results.push(cleanLabel);
-                  if (!results.includes("pet")) results.push("pet");
+                  const otherPet = cleanLabel === "cat" ? "dog" : "cat";
+                  if (!results.includes(otherPet) || d.score >= 0.60) {
+                    if (!results.includes(cleanLabel)) results.push(cleanLabel);
+                    if (!results.includes("pet")) results.push("pet");
+                  }
                 }
               } else if (d.score >= 0.42) {
                 if (!results.includes(cleanLabel)) results.push(cleanLabel);
@@ -6918,9 +6922,27 @@ window.I18N_DATA = {
     function fallbackExtractPredicates(query) {
       const segments = query.split(/,| and /i);
       const preds = [];
+      const synonymDict = {
+        cat: ["cat", "cats", "kitten", "kitty", "feline"],
+        dog: ["dog", "dogs", "puppy", "pup", "canine"],
+        receipt: ["receipt", "receipts", "invoice", "invoices", "bill"],
+        invoice: ["invoice", "invoices", "receipt", "receipts", "bill"],
+        document: ["document", "documents", "paper", "text", "contract"],
+        laptop: ["laptop", "laptops", "computer", "notebook"],
+        car: ["car", "cars", "automobile", "vehicle"],
+        cup: ["cup", "cups", "mug", "coffee cup"],
+        table: ["table", "tables", "desk", "dining table"],
+        food: ["food", "meal", "sandwich", "pizza", "snack"],
+        person: ["person", "people", "man", "woman", "human"]
+      };
+
       segments.forEach(seg => {
         let phr = seg.trim().toLowerCase().replace(/^(a|an|the)\s+/i, "");
-        if (phr) preds.push({ label: phr, terms: [phr] });
+        if (phr) {
+          const terms = synonymDict[phr] ? [...synonymDict[phr]] : [phr];
+          if (!terms.includes(phr)) terms.unshift(phr);
+          preds.push({ label: phr, terms: terms });
+        }
       });
       return preds.length > 0 ? preds : [{ label: query.trim().toLowerCase(), terms: [query.trim().toLowerCase()] }];
     }
@@ -6928,6 +6950,10 @@ window.I18N_DATA = {
     function extractPredicates(query) {
       const q = query.trim().toLowerCase();
       if (SIFT.cache && SIFT.cache[q]) return SIFT.cache[q];
+      const withA = "a " + q;
+      if (SIFT.cache && SIFT.cache[withA]) return SIFT.cache[withA];
+      const withAn = "an " + q;
+      if (SIFT.cache && SIFT.cache[withAn]) return SIFT.cache[withAn];
       return fallbackExtractPredicates(q);
     }
 
@@ -6961,7 +6987,7 @@ window.I18N_DATA = {
 
       photos.forEach(photo => {
         const reasons = [];
-        let satisfied = false;
+        let satisfied = true;
         let clipScore = 0;
 
         // 1. Calculate CLIP semantic cosine similarity if vectors exist
@@ -6969,40 +6995,20 @@ window.I18N_DATA = {
           clipScore = cosineSimilarity(queryVec, photo.clipEmbedding);
         }
 
-        // 2. Calculate channel predicates (lexical matching)
-        let lexicalSatisfied = true;
+        // 2. Strict predicate matching: EVERY predicate must be satisfied!
         for (const pred of predicates) {
           const terms = pred.terms || [pred.label];
           const ch = getChannelForPhoto(photo, terms);
           if (ch === null) {
-            lexicalSatisfied = false;
+            satisfied = false;
+            break;
           } else {
             reasons.push({ label: pred.label, channel: ch });
           }
         }
 
-        // Semantic thresholds for CLIP:
-        // >= 0.238 is a strong visual/semantic match (Certain)
-        // >= 0.198 is a moderate match (Borderline)
-        const isSemanticCertain = clipScore >= 0.238;
-        const isSemanticBorderline = clipScore >= 0.198;
-
-        if (lexicalSatisfied && reasons.length > 0) {
-          satisfied = true;
-        } else if (isSemanticCertain || isSemanticBorderline) {
-          satisfied = true;
-          reasons.push({
-            label: predicates[0] ? predicates[0].label : q,
-            channel: "Vision AI (CLIP)",
-            score: Math.round(clipScore * 100)
-          });
-        }
-
-        if (satisfied) {
-          let confidence = "borderline";
-          if (isSemanticCertain || (lexicalSatisfied && reasons.some(r => r.channel === "objects"))) {
-            confidence = "certain";
-          }
+        if (satisfied && reasons.length > 0) {
+          const confidence = reasons.every(r => r.channel === "objects") ? "certain" : "borderline";
           matches.push({ photo, reasons, confidence, clipScore });
         }
       });

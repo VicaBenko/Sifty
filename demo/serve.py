@@ -293,7 +293,7 @@ def get_local_clip():
 
 def analyze_with_local_clip(b64_data: str, filename: str) -> dict | None:
     try:
-        import base64, io
+        import base64, io, re
         from PIL import Image
         import torch
 
@@ -319,28 +319,37 @@ def analyze_with_local_clip(b64_data: str, filename: str) -> dict | None:
             "sunset", "beach", "sky", "outdoor", "indoor", "nature",
             "tree", "flower", "park", "book", "chair", "shoes", "clothes"
         ]
-        text_inputs = processor(text=candidate_labels, return_tensors="pt", padding=True)
+        prompts = [
+            f"a photo of a {l}" if l not in ["receipt", "invoice", "document", "screenshot", "whiteboard", "text"]
+            else f"a {l}"
+            for l in candidate_labels
+        ]
+        text_inputs = processor(text=prompts, return_tensors="pt", padding=True)
         with torch.no_grad():
             raw_text = model.get_text_features(**text_inputs)
             t_text = raw_text.pooler_output if hasattr(raw_text, 'pooler_output') and raw_text.pooler_output is not None else (raw_text[0] if isinstance(raw_text, tuple) else raw_text)
             text_feat = t_text / t_text.norm(p=2, dim=-1, keepdim=True)
 
-        sims = (img_feat @ text_feat.T)[0].tolist()
-        scored = sorted(zip(candidate_labels, sims), key=lambda x: x[1], reverse=True)
+            logits = (img_feat @ text_feat.T) * 100.0
+            probs = logits.softmax(dim=-1)[0].tolist()
 
-        top_tags = [label for label, score in scored if score >= 0.20][:5]
-        if not top_tags and scored:
+        scored = sorted(zip(candidate_labels, probs), key=lambda x: x[1], reverse=True)
+
+        # Select tags with significant probability (>= 7% probability, or top 1 if >= 10%)
+        top_tags = [label for label, p in scored if p >= 0.07][:5]
+        if not top_tags and scored and scored[0][1] >= 0.10:
             top_tags = [scored[0][0]]
 
+        # Whole-word filename matching (avoids substring false positives like "vacation" matching "cat")
         fn_lower = filename.lower()
         for kw in ["receipt", "invoice", "document", "dog", "cat", "laptop", "coffee", "cup", "car", "food"]:
-            if kw in fn_lower and kw not in top_tags:
+            if re.search(r"(?:^|[^a-z])" + re.escape(kw) + r"s?(?:[^a-z]|$)", fn_lower) and kw not in top_tags:
                 top_tags.append(kw)
 
         return {
             "objects": top_tags,
             "clipEmbedding": clip_vec,
-            "caption": f"Photo containing {', '.join(top_tags[:3])}",
+            "caption": f"Photo containing {', '.join(top_tags[:3])}" if top_tags else f"Photo {filename}",
             "setting": "indoor/outdoor",
             "source": "local-clip-vit"
         }
