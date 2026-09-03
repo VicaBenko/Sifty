@@ -78,7 +78,6 @@ http://127.0.0.1:8091
 │   ├── 08-handover-to-development.md        # Handover guide
 │   ├── 09-ux-decisions.md       # Results screen & UX decisions
 │   ├── 10-superpowers-runbook.md            # Build loop runbook
-│   ├── 11-monday-demo-status.md             # Demo status & metrics
 │   ├── 12-process-retrospective.md          # 18-step project retrospective
 │   ├── 13-demo-script.md        # Presentation & demonstration script
 │   └── 14-clip-search-engine-upgrade.md     # Transformers.js (CLIP) upgrade specs

@@ -1,16 +1,12 @@
-# Demo Spec — Monday demo
+# Demo Specification
 
-> **Throwaway demo code, exactly like `validation/`.** NOT the product, NOT an
-> implementation of any spec under `specs/`. It exists to show, on real photos,
-> that the core idea works. The real build still follows `specs/01-indexing.md`
-> onward, unchanged.
+> **Interactive Demo Application.** Shows, on real photos and multimodal zero-shot vectors,
+> that the core idea works. The full production architecture follows `specs/`
+> and `docs/14-clip-search-engine-upgrade.md`.
 
-**Time budget: under 4 hours.** Scope is fixed by that. Anything that does not
-serve the demo moment is out of scope.
-
-**Audience:** a course instructor. The point being made is that the planning
-process produced something that survives contact with real data — the same
-tagging harness that passed the validation gate feeds this demo unchanged.
+**Audience:** Technical & Professional. Shows the pipeline workflow surviving
+contact with real image data — combining client-side Transformers.js CLIP embeddings
+with high-certainty query predicate matching.
 
 ---
 
