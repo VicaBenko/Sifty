@@ -1,66 +1,56 @@
-# 🦉 Sifty — Smart AI Photo Curation & Organization
+# 🦉 Sifty
 
-> **An on-device AI curation platform that filters, sorts, and organizes photo galleries using natural language — with maximum accuracy, zero cloud data retention, and instant clean ZIP export.**
+> **Stop scrolling. Start asking.** 🔎✨
 
----
+Sifty is a personal project concept exploring a smarter way to organize photo galleries with natural-language search — instead of endless scrolling through thousands of images. 📸🤖
 
 ## 🌐 Live Demo
-✨ **[Experience Sifty Live on GitHub Pages](http://127.0.0.1:8091/)** ✨
 
----
+👉 [Try the Sifty demo](https://vicabenko.github.io/Sifty/)
 
-## ✨ Key Features
+## ✨ What it explores
 
-- ⚡ **On-Device Vision AI**: Powered by in-browser neural computer vision (COCO-SSD / Multimodal Vision) to accurately detect receipts, screenshots, documents, pets, objects, and complex scenes.
-- 🛡️ **Zero Data Retention (100% In-Memory)**: Your photos are processed exclusively in local session memory. No images or metadata are ever saved or uploaded to external cloud servers.
-- 📦 **Instant Clean ZIP Export**: Quarantine unwanted photos, verify with a transparent approval gate, and download your organized gallery directly to your machine.
-- 🌍 **Multilingual Support (11 Languages)**: Seamless localization in English, Hebrew (RTL), Arabic, Russian, Chinese, Spanish, French, Italian, German, Portuguese, and Japanese.
-- 🧮 **Interactive Scope & Cost Estimator**: Real-time interactive calculation for time saved, storage freed, and transparent pay-per-batch pricing.
-- ♿ **Full Accessibility (WCAG 2.1 AA Compliant)**: Built-in accessibility toolbar with text scaling, high-contrast modes, legible typography, and comprehensive keyboard/screen-reader navigation.
+- 💬 Search for photos using everyday language
+- 🧠 Find receipts, screenshots, documents, blurry photos, and more
+- 🦉 Meet Sifty, the helpful photo-curation owl
+- 👀 Review results before taking action
+- ⚡ Turn gallery chaos into a clearer workflow
+- 🎨 Modern, colorful, tech-inspired product design
 
----
+## 🚧 Project Status
 
-## 🚀 Quick Start & Local Setup
+Sifty is currently a **personal concept and local demo** — not a hosted commercial product yet. The interface, features, and privacy messaging may evolve as development continues.
 
-Want to run Sifty locally on your machine?
+## 🚀 Run Locally
 
-### Easy 1-Click Launch (Windows):
-Simply double-click:
+On Windows, double-click:
+
 ```text
 RUN-DEMO.bat
 ```
-This restores the sample catalog and launches your default browser at `http://127.0.0.1:8091`.
 
-### Terminal Command:
+Or run:
+
 ```bash
 python demo/serve.py --port 8091
 ```
 
----
+Then open:
 
-## 📂 Repository Structure
-
-| Directory / File | Description |
-| :--- | :--- |
-| 📁 `demo/` | **Single Source of Truth** — contains `index.html`, `serve.py`, sample photo catalog, and vision engine logic |
-| 📁 `dist/` | Production-ready static build for GitHub Pages / web hosting (auto-generated) |
-| 📁 `docs/` | Comprehensive architecture specifications, design documents, and project retrospective |
-| 📄 `sifty-single.html` | Completely self-contained single-file HTML build with all scripts and image assets embedded |
-| 📄 `RUN-DEMO.bat` | 1-click launcher for Windows local demo |
-
----
-
-## 🛠️ Building & Updating the Site
-
-When modifying the UI, edit **`demo/index.html`** and rebuild the distribution bundles with:
-
-```bash
-python demo/build_site.py
+```text
+http://127.0.0.1:8091
 ```
 
-This automatically regenerates `dist/` and `sifty-single.html`.
+## 🧭 The Idea
+
+> Tell Sifty what you want to find. 🗣️
+> Review what it found. 👀
+> Keep control of your gallery. ✅
+
+## 💡 Why Sifty?
+
+Because your camera roll should be a library — not a junk drawer. 🗂️✨
 
 ---
 
-## 📄 License & Credits
-© 2026 Sifty Technologies Ltd. Open demonstration project built as part of the Moshal AI Workshop.
+Made as a personal creative project with curiosity, code, and way too many photos. 🦉💙
