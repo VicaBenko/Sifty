@@ -6796,8 +6796,6 @@ window.SIFT_CATALOG_DATA = {"photos": [{"id": "0000", "filename": "000000000143.
             // Sort detections by score descending
             detections.sort((a, b) => b.score - a.score);
 
-            const hasPet = detections.some(d => (d.class === "cat" || d.class === "dog") && d.score >= 0.40);
-
             detections.forEach(d => {
               let cleanLabel = d.class.toLowerCase().trim();
               if (cleanLabel === "potted plant") cleanLabel = "plant";
@@ -6805,10 +6803,9 @@ window.SIFT_CATALOG_DATA = {"photos": [{"id": "0000", "filename": "000000000143.
               if (cleanLabel === "cell phone") cleanLabel = "phone";
               if (cleanLabel === "bowl" || cleanLabel === "pizza" || cleanLabel === "sandwich") cleanLabel = "food";
 
-              // High-precision threshold rules:
+              // Multi-object precision detection:
               if (cleanLabel === "person") {
-                // Require high certainty (>= 0.65) and do not tag pet photos as person
-                if (d.score >= 0.65 && !hasPet) {
+                if (d.score >= 0.45) {
                   if (!results.includes("person")) results.push("person");
                 }
               } else if (cleanLabel === "cat" || cleanLabel === "dog") {
@@ -6819,7 +6816,7 @@ window.SIFT_CATALOG_DATA = {"photos": [{"id": "0000", "filename": "000000000143.
                     if (!results.includes("pet")) results.push("pet");
                   }
                 }
-              } else if (d.score >= 0.42) {
+              } else if (d.score >= 0.40) {
                 if (!results.includes(cleanLabel)) results.push(cleanLabel);
               }
             });
