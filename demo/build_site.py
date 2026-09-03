@@ -10,7 +10,7 @@ from pathlib import Path
 
 DEMO = Path(__file__).parent.resolve()
 ROOT = DEMO.parent
-PAGE_ASSETS = ["owl_mascot.jpg", "promo_scene1.jpg", "promo_scene2.jpg", "promo_scene3.jpg"]
+PAGE_ASSETS = ["owl_mascot.jpg", "sifty_key_visual.jpg", "promo_scene1.jpg", "promo_scene2.jpg", "promo_scene3.jpg"]
 
 src = (DEMO / "index.html").read_text(encoding="utf-8")
 
@@ -27,9 +27,9 @@ try:
     from PIL import Image  # recompress so the single file stays small
     for name in PAGE_ASSETS:
         im = Image.open(DEMO / "assets" / name).convert("RGB")
-        im.thumbnail((1000, 1000))
+        im.thumbnail((1200, 1200))
         buf = io.BytesIO()
-        im.save(buf, "JPEG", quality=72, optimize=True, progressive=True)
+        im.save(buf, "JPEG", quality=85, optimize=True, progressive=True)
         data = buf.getvalue()
         single = single.replace("assets/" + name, "data:image/jpeg;base64," + base64.b64encode(data).decode())
 except ImportError:
