@@ -3397,6 +3397,18 @@ window.I18N_DATA = {
       display: block;
     }
 
+    .studio-mockup-main-img video.hero-promo-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: #f8fafc;
+    }
+
+    .studio-mockup-main-img .hero-promo-poster { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-promo-play { position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%); width: 68px; height: 68px; border: 2px solid rgba(255,255,255,.9); border-radius: 50%; background: rgba(2,132,199,.9); color: #fff; font-size: 28px; line-height: 1; cursor: pointer; box-shadow: 0 8px 24px rgba(0,0,0,.28); z-index: 3; transition: transform .2s ease, background .2s ease; }
+    .hero-promo-play:hover { transform: translate(-50%, -50%) scale(1.08); background: rgba(14,165,233,.98); }
+
     /* Floating UI Badges */
     .floating-social-tag {
       position: absolute;
@@ -4996,7 +5008,7 @@ window.I18N_DATA = {
         <header class="hero-top-nav" role="banner">
           <a href="#" class="brand-logo" aria-label="Sifty Studio">
             <div class="brand-logo-icon">
-              <img src="/assets/owl_mascot.jpg" alt="Sifty הינשוף">
+              <img src="assets/owl_mascot.jpg" alt="Sifty הינשוף">
             </div>
             <span>Sifty.</span>
           </a>
@@ -5100,12 +5112,16 @@ window.I18N_DATA = {
               </div>
 
               <div class="studio-mockup-main-img">
-                <img src="/assets/owl_mascot.jpg" alt="Sifty — הינשוף החכם של Sift">
+                <img class="hero-promo-poster" src="assets/owl_mascot.jpg" alt="Sifty הינשוף החכם של Sift">
+                 <button class="hero-promo-play" type="button" aria-label="Play Sifty concept video" onclick="showHeroPromoVideo()">▶</button>
+                 <video class="hero-promo-video" src="assets/video-playback.mp4" muted loop playsinline controls preload="metadata" aria-label="Sifty personal project concept demo" hidden>
+                   <source src="assets/video-playback.mp4" type="video/mp4">
+                 </video>
 
                 <!-- Floating Social & Accuracy Tags -->
                 <div class="floating-social-tag">
                   <div class="floating-tag-avatar">
-                    <img src="/assets/owl_mascot.jpg" alt="Sifty avatar">
+                    <img src="assets/owl_mascot.jpg" alt="Sifty avatar">
                   </div>
                   <span>@Sifty Curation</span>
                 </div>
@@ -7546,6 +7562,31 @@ window.I18N_DATA = {
         }
       }
       if (typeof updateQuarantineStatusUI === "function") updateQuarantineStatusUI();
+    }
+
+    function showHeroPromoVideo() {
+      const poster = document.querySelector(".hero-promo-poster");
+      const playButton = document.querySelector(".hero-promo-play");
+      const video = document.querySelector(".hero-promo-video");
+      if (!video) return;
+      if (poster) { poster.hidden = true; poster.style.display = "none"; }
+      if (playButton) { playButton.hidden = true; playButton.style.display = "none"; }
+      video.hidden = false;
+      video.style.display = "block";
+      video.load();
+      video.play().catch(() => {});
+    }
+
+    const heroPromoPoster = document.querySelector(".hero-promo-poster");
+    const heroPromoPlay = document.querySelector(".hero-promo-play");
+    const heroPromoVideo = document.querySelector(".hero-promo-video");
+    if (heroPromoPlay && heroPromoPoster && heroPromoVideo) {
+      heroPromoPlay.addEventListener("click", () => {
+        heroPromoPoster.hidden = true;
+        heroPromoPlay.hidden = true;
+        heroPromoVideo.hidden = false;
+        heroPromoVideo.play().catch(() => {});
+      });
     }
 
     window.setLanguage = setLanguage;

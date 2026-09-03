@@ -546,12 +546,44 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def _send_file(self, path: Path, content_type: str) -> None:
-        data = path.read_bytes()
-        self.send_response(200)
+        size = path.stat().st_size
+        range_header = self.headers.get("Range", "")
+        start, end = 0, size - 1
+        status = 200
+        if range_header.startswith("bytes="):
+            try:
+                spec = range_header[6:].split(",", 1)[0].strip()
+                left, right = spec.split("-", 1)
+                if left:
+                    start = int(left)
+                    end = int(right) if right else size - 1
+                else:
+                    length = int(right)
+                    start = max(0, size - length)
+                if start < 0 or start >= size or end < start:
+                    raise ValueError("invalid range")
+                end = min(end, size - 1)
+                status = 206
+            except (ValueError, IndexError):
+                self.send_error(416, "Invalid range")
+                return
+        length = end - start + 1
+        self.send_response(status)
         self.send_header("Content-Type", content_type)
-        self.send_header("Content-Length", str(len(data)))
+        self.send_header("Accept-Ranges", "bytes")
+        self.send_header("Content-Length", str(length))
+        if status == 206:
+            self.send_header("Content-Range", f"bytes {start}-{end}/{size}")
         self.end_headers()
-        self.wfile.write(data)
+        with path.open("rb") as stream:
+            stream.seek(start)
+            remaining = length
+            while remaining:
+                chunk = stream.read(min(1024 * 1024, remaining))
+                if not chunk:
+                    break
+                self.wfile.write(chunk)
+                remaining -= len(chunk)
 
     def do_GET(self) -> None:  # noqa: N802 — required method name
         parsed = urlparse(self.path)
@@ -580,6 +612,12 @@ class Handler(BaseHTTPRequestHandler):
         if path == "/api/quarantine":
             self._send_json(200, quarantine_status())
             return
+
+        if path == "/promo-video.mp4":
+            promo = Path(r"C:\Users\vicab\Movies\Hub\Projects\sifty-3\sifty-final-end-card.mp4")
+            if promo.is_file():
+                self._send_file(promo, "video/mp4")
+                return
 
         if path.startswith("/assets/"):
             name = path[len("/assets/") :]
