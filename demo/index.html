@@ -5603,6 +5603,7 @@ window.I18N_DATA = {
 
       // In-Browser Vision AI (CLIP)
       clipStatus: "idle",
+      clipClassifier: null,
       clipTokenizer: null,
       clipTextModel: null,
       clipProcessor: null,
@@ -5640,11 +5641,18 @@ window.I18N_DATA = {
       try {
         SIFT.clipStatus = "loading";
         console.log("[Vision AI] Preloading Transformers.js CLIP In-Browser model...");
+        if (window.Transformers.pipeline) {
+          SIFT.clipClassifier = await window.Transformers.pipeline(
+            'zero-shot-image-classification',
+            'Xenova/clip-vit-base-patch32',
+            { quantized: true }
+          );
+        }
         const { AutoTokenizer, CLIPTextModelWithProjection } = window.Transformers;
         SIFT.clipTokenizer = await AutoTokenizer.from_pretrained('Xenova/clip-vit-base-patch32');
         SIFT.clipTextModel = await CLIPTextModelWithProjection.from_pretrained('Xenova/clip-vit-base-patch32', { quantized: true });
         SIFT.clipStatus = "ready";
-        console.log("[Vision AI] Transformers.js CLIP model ready for instant local recognition!");
+        console.log("[Vision AI] Transformers.js CLIP model & zero-shot classifier ready!");
       } catch (e) {
         console.warn("[Vision AI] Preload note:", e);
         SIFT.clipStatus = "error";
@@ -6748,30 +6756,40 @@ window.I18N_DATA = {
         // Fall through to in-browser AI
       }
 
-      // Tier 2: In-browser Transformers.js (CLIP)
-      const imgEl = new Image();
-      imgEl.src = dataUrl;
-      await new Promise(res => { imgEl.onload = res; imgEl.onerror = res; });
-
+      // Tier 2: In-browser Transformers.js (CLIP Zero-Shot Vision AI)
       try {
-        if (window.Transformers) {
-          if (!SIFT.clipVisionModel || !SIFT.clipProcessor) {
-            const { AutoProcessor, CLIPVisionModelWithProjection } = window.Transformers;
-            SIFT.clipProcessor = await AutoProcessor.from_pretrained('Xenova/clip-vit-base-patch32');
-            SIFT.clipVisionModel = await CLIPVisionModelWithProjection.from_pretrained('Xenova/clip-vit-base-patch32', { quantized: true });
+        if (window.Transformers && window.Transformers.pipeline) {
+          if (!SIFT.clipClassifier) {
+            SIFT.clipClassifier = await window.Transformers.pipeline(
+              'zero-shot-image-classification',
+              'Xenova/clip-vit-base-patch32',
+              { quantized: true }
+            );
           }
-          if (SIFT.clipVisionModel && SIFT.clipProcessor && imgEl.width > 0) {
-            const image_inputs = await SIFT.clipProcessor(imgEl);
-            const out = await SIFT.clipVisionModel(image_inputs);
-            const raw = Array.from(out.image_embeds.data);
-            let norm = 0;
-            for (let v of raw) norm += v * v;
-            norm = Math.sqrt(norm) || 1;
-            clipVec = raw.map(v => Math.round((v / norm) * 100000) / 100000);
+          if (SIFT.clipClassifier) {
+            const candidate_labels = [
+              "dog", "cat", "laptop", "computer", "desk", "food", "cup",
+              "coffee cup", "car", "person", "receipt", "document", "chair", "book"
+            ];
+            const predictions = await SIFT.clipClassifier(dataUrl, candidate_labels);
+            if (Array.isArray(predictions) && predictions.length > 0) {
+              predictions.slice(0, 3).forEach(p => {
+                if (p.score >= 0.12 && !results.includes(p.label)) {
+                  results.push(p.label);
+                }
+              });
+              if (results.length === 0 && predictions[0]) {
+                results.push(predictions[0].label);
+              }
+              const topLabel = results[0];
+              if (SIFT.queryEmbeddings && SIFT.queryEmbeddings[topLabel]) {
+                clipVec = [...SIFT.queryEmbeddings[topLabel]];
+              }
+            }
           }
         }
       } catch (err) {
-        console.warn("[Vision AI] In-browser CLIP vision note:", err);
+        console.warn("[Vision AI] In-browser CLIP zero-shot classification note:", err);
       }
 
       // Tier 3: Client-side Visual & Semantic Heuristics
