@@ -5102,7 +5102,7 @@ window.I18N_DATA = {
               <div class="studio-mockup-main-img">
                 <img class="hero-promo-poster" src="demo/assets/owl_mascot.jpg" alt="Sifty הינשוף החכם של Sift">
                  <button class="hero-promo-play" type="button" aria-label="Play Sifty concept video" onclick="showHeroPromoVideo()">▶</button>
-                 <video class="hero-promo-video" src="assets/video-playback.mp4" muted loop playsinline controls preload="metadata" aria-label="Sifty personal project concept demo" hidden>
+                 <video class="demo/assets/video-playback.mp4" src="demo/assets/video-playback.mp4" muted loop playsinline controls preload="metadata" aria-label="Sifty personal project concept demo" hidden>
                    <source src="assets/video-playback.mp4" type="video/mp4">
                  </video>
 
@@ -6397,9 +6397,9 @@ window.I18N_DATA = {
       const sampleItems = [
         { id: "s_rec1", filename: "supermarket_receipt.jpg", src: "assets/promo_scene1.jpg", bytes: 145000, caption: "grocery supermarket receipt store checkout invoice", objects: ["receipt", "invoice", "document", "store"], is_personal: true },
         { id: "s_doc2", filename: "contract_page_1.png", src: "assets/promo_scene2.jpg", bytes: 280000, caption: "legal contract document paper text invoice signature", objects: ["document", "invoice", "paper", "text"], is_personal: true },
-        { id: "s_dog3", filename: "golden_retriever_park.jpg", src: "demo/assets/owl_mascot.jpg", bytes: 320000, caption: "cute golden retriever dog puppy playing outdoors", objects: ["dog", "puppy", "animal", "pet"], is_personal: true },
+        { id: "s_dog3", filename: "golden_retriever_park.jpg", src: "demo/assets/hero-promo-video", bytes: 320000, caption: "cute golden retriever dog puppy playing outdoors", objects: ["dog", "puppy", "animal", "pet"], is_personal: true },
         { id: "s_lap4", filename: "office_laptop_desk.jpg", src: "assets/promo_scene3.jpg", bytes: 210000, caption: "modern laptop computer screen desk workspace", objects: ["laptop", "computer", "desk", "screen"], is_personal: true },
-        { id: "s_food5", filename: "lunch_coffee_sandwich.jpg", src: "demo/assets/owl_mascot.jpg", bytes: 190000, caption: "delicious sandwich coffee cup meal lunch", objects: ["food", "coffee cup", "cup", "dining table"], is_personal: true }
+        { id: "s_food5", filename: "lunch_coffee_sandwich.jpg", src: "demo/assets/hero-promo-video", bytes: 190000, caption: "delicious sandwich coffee cup meal lunch", objects: ["food", "coffee cup", "cup", "dining table"], is_personal: true }
       ];
       sampleItems.forEach(item => wizardBatchItems.push(item));
       renderWizardStep1();
@@ -7555,7 +7555,7 @@ window.I18N_DATA = {
     function showHeroPromoVideo() {
       const poster = document.querySelector(".hero-promo-poster");
       const playButton = document.querySelector(".hero-promo-play");
-      const video = document.querySelector(".hero-promo-video");
+      const video = document.querySelector(".demo/assets/video-playback.mp4");
       if (!video) return;
       if (poster) { poster.hidden = true; poster.style.display = "none"; }
       if (playButton) { playButton.hidden = true; playButton.style.display = "none"; }
