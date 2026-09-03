@@ -6616,15 +6616,26 @@ window.I18N_DATA = {
       const total = wizardBatchItems.length;
       const dict = getDict();
 
-      // Check if neural model needs first-time download
+      // Check if neural model needs first-time download with real-time percentage
       if (!SIFT.clipClassifier && window.Transformers && window.Transformers.pipeline) {
-        if (statusText) statusText.textContent = "📥 Downloading CLIP Neural Model (one-time setup, please wait)...";
+        if (statusText) statusText.textContent = "📥 Connecting to CLIP Neural Model...";
         try {
-          SIFT.clipClassifier = await window.Transformers.pipeline(
+          const downloadPromise = window.Transformers.pipeline(
             'zero-shot-image-classification',
             'Xenova/clip-vit-base-patch32',
-            { quantized: true }
+            { 
+              quantized: true,
+              progress_callback: (p) => {
+                if (statusText && p.status === 'progress') {
+                  const pct = Math.round(p.progress || 0);
+                  statusText.textContent = `📥 Downloading AI Model: ${pct}%...`;
+                }
+              }
+            }
           );
+          // 10-second timeout failsafe so it never hangs indefinitely
+          const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error("Timeout")), 10000));
+          SIFT.clipClassifier = await Promise.race([downloadPromise, timeoutPromise]);
         } catch (loadErr) {
           console.warn("Classifier pipeline load note:", loadErr);
         }
@@ -6744,61 +6755,58 @@ window.I18N_DATA = {
       const results = [];
       let clipVec = null;
 
-      // Tier 1: Try Local Python Server AI endpoint (/api/catalog_photos)
-      try {
-        const resp = await fetch("/api/catalog_photos", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            photos: [{ id: "temp", filename: filename, src: dataUrl }]
-          })
-        });
-        if (resp.ok) {
-          const data = await resp.json();
-          if (data.results && data.results[0]) {
-            const r = data.results[0];
-            if (r.objects && r.objects.length > 0 && r.objects[0] !== "photo") {
-              return {
-                objects: r.objects,
-                clipEmbedding: r.clipEmbedding || null,
-                caption: r.caption || ""
-              };
+      // Tier 1: Try Local Python Server AI endpoint ONLY if running on localhost
+      const isLocalServer = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+      if (isLocalServer) {
+        try {
+          const resp = await fetch("/api/catalog_photos", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              photos: [{ id: "temp", filename: filename, src: dataUrl }]
+            })
+          });
+          if (resp.ok) {
+            const data = await resp.json();
+            if (data.results && data.results[0]) {
+              const r = data.results[0];
+              if (r.objects && r.objects.length > 0 && r.objects[0] !== "photo") {
+                return {
+                  objects: r.objects,
+                  clipEmbedding: r.clipEmbedding || null,
+                  caption: r.caption || ""
+                };
+              }
             }
           }
+        } catch (serverErr) {
+          // Fall through to in-browser AI
         }
-      } catch (serverErr) {
-        // Fall through to in-browser AI
       }
 
       // Tier 2: In-browser Transformers.js (CLIP Zero-Shot Vision AI)
-      try {
-        if (window.Transformers && window.Transformers.pipeline) {
-          if (!SIFT.clipClassifier) {
-            SIFT.clipClassifier = await window.Transformers.pipeline(
-              'zero-shot-image-classification',
-              'Xenova/clip-vit-base-patch32',
-              { quantized: true }
-            );
-          }
-          if (SIFT.clipClassifier) {
-            // Fast downscale to 224x224 (native CLIP input size) to accelerate inference by 3-5x
-            const fastCanvas = document.createElement("canvas");
-            fastCanvas.width = 224;
-            fastCanvas.height = 224;
-            const fastCtx = fastCanvas.getContext("2d");
-            const fastImg = new Image();
-            fastImg.src = dataUrl;
-            if (!fastImg.complete) {
-              await new Promise(res => { fastImg.onload = res; fastImg.onerror = res; });
-            }
-            fastCtx.drawImage(fastImg, 0, 0, 224, 224);
-            const fastDataUrl = fastCanvas.toDataURL("image/jpeg", 0.7);
+      if (SIFT.clipClassifier) {
+        try {
+          // Fast downscale to 224x224 (native CLIP input size) to accelerate inference by 3-5x
+          const fastCanvas = document.createElement("canvas");
+          fastCanvas.width = 224;
+          fastCanvas.height = 224;
+          const fastCtx = fastCanvas.getContext("2d");
+          const fastImg = new Image();
+          fastImg.src = dataUrl;
+          await new Promise(res => {
+            if (fastImg.complete) return res();
+            fastImg.onload = res;
+            fastImg.onerror = res;
+            setTimeout(res, 200);
+          });
+          fastCtx.drawImage(fastImg, 0, 0, 224, 224);
+          const fastDataUrl = fastCanvas.toDataURL("image/jpeg", 0.7);
 
-            const candidate_labels = [
-              "dog", "cat", "laptop", "computer", "desk", "food", "cup",
-              "coffee cup", "car", "person", "receipt", "document", "chair", "book"
-            ];
-            const predictions = await SIFT.clipClassifier(fastDataUrl, candidate_labels);
+          const candidate_labels = [
+            "dog", "cat", "laptop", "food", "cup", "car", "person", "receipt", "document"
+          ];
+          const predictions = await SIFT.clipClassifier(fastDataUrl, candidate_labels);
             if (Array.isArray(predictions) && predictions.length > 0) {
               predictions.slice(0, 3).forEach(p => {
                 if (p.score >= 0.12 && !results.includes(p.label)) {
