@@ -5109,7 +5109,7 @@ window.I18N_DATA = {
                 <!-- Floating Social & Accuracy Tags -->
                 <div class="floating-social-tag">
                   <div class="floating-tag-avatar">
-                    <img src="assets/owl_mascot.jpg" alt="Sifty avatar">
+                    <img src="demo/assets/owl_mascot.jpg" alt="Sifty avatar">
                   </div>
                   <span>@Sifty Curation</span>
                 </div>
@@ -5767,7 +5767,7 @@ window.I18N_DATA = {
     function getThumbSrc(photo) {
       if (photo.src) return photo.src;
       if (photo.thumb) return photo.thumb;
-      return "assets/owl_mascot.jpg";
+      return "demo/assets/owl_mascot.jpg";
     }
 
     function getActivePhotosList() {
@@ -6397,9 +6397,9 @@ window.I18N_DATA = {
       const sampleItems = [
         { id: "s_rec1", filename: "supermarket_receipt.jpg", src: "assets/promo_scene1.jpg", bytes: 145000, caption: "grocery supermarket receipt store checkout invoice", objects: ["receipt", "invoice", "document", "store"], is_personal: true },
         { id: "s_doc2", filename: "contract_page_1.png", src: "assets/promo_scene2.jpg", bytes: 280000, caption: "legal contract document paper text invoice signature", objects: ["document", "invoice", "paper", "text"], is_personal: true },
-        { id: "s_dog3", filename: "golden_retriever_park.jpg", src: "assets/owl_mascot.jpg", bytes: 320000, caption: "cute golden retriever dog puppy playing outdoors", objects: ["dog", "puppy", "animal", "pet"], is_personal: true },
+        { id: "s_dog3", filename: "golden_retriever_park.jpg", src: "demo/assets/owl_mascot.jpg", bytes: 320000, caption: "cute golden retriever dog puppy playing outdoors", objects: ["dog", "puppy", "animal", "pet"], is_personal: true },
         { id: "s_lap4", filename: "office_laptop_desk.jpg", src: "assets/promo_scene3.jpg", bytes: 210000, caption: "modern laptop computer screen desk workspace", objects: ["laptop", "computer", "desk", "screen"], is_personal: true },
-        { id: "s_food5", filename: "lunch_coffee_sandwich.jpg", src: "assets/owl_mascot.jpg", bytes: 190000, caption: "delicious sandwich coffee cup meal lunch", objects: ["food", "coffee cup", "cup", "dining table"], is_personal: true }
+        { id: "s_food5", filename: "lunch_coffee_sandwich.jpg", src: "demo/assets/owl_mascot.jpg", bytes: 190000, caption: "delicious sandwich coffee cup meal lunch", objects: ["food", "coffee cup", "cup", "dining table"], is_personal: true }
       ];
       sampleItems.forEach(item => wizardBatchItems.push(item));
       renderWizardStep1();
