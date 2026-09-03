@@ -6831,26 +6831,6 @@ window.SIFT_CATALOG_DATA = {"photos": [{"id": "0000", "filename": "000000000143.
         if (!results.includes(t) && t !== "photo") results.push(t);
       });
 
-      // Link recognized objects to official CLIP 512-D vector embeddings
-      // Prioritize pets, food, technology over generic person
-      if (results.length > 0 && SIFT.queryEmbeddings) {
-        let chosenLabel = null;
-        for (const resLabel of results) {
-          if (SIFT.queryEmbeddings[resLabel]) {
-            if (resLabel !== "person" || results.length === 1) {
-              chosenLabel = resLabel;
-              break;
-            }
-          }
-        }
-        if (!chosenLabel && SIFT.queryEmbeddings[results[0]]) {
-          chosenLabel = results[0];
-        }
-        if (chosenLabel && SIFT.queryEmbeddings[chosenLabel]) {
-          clipVec = [...SIFT.queryEmbeddings[chosenLabel]];
-        }
-      }
-
       if (results.length === 0) {
         results.push("photo");
       }
