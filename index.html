@@ -6628,25 +6628,18 @@ window.SIFT_CATALOG_DATA = {"photos": [{"id": "0000", "filename": "000000000143.
       const tags = [];
       const lowerName = (filename || "").toLowerCase();
 
-      // 1. Filename keyword hints
+      // 1. Specific filename keyword hints (no generic words like 'screen', 'shot', 'doc', 'img')
       const keywordMap = {
-        receipt: ["receipt", "invoice", "document"],
-        invoice: ["invoice", "receipt", "document"],
-        bill: ["receipt", "invoice", "document"],
-        doc: ["document", "paper", "text"],
-        contract: ["document", "contract", "paper"],
-        dog: ["dog", "pet", "animal"],
-        cat: ["cat", "pet", "animal"],
-        laptop: ["laptop", "computer", "desk"],
-        screen: ["screenshot", "screen", "computer"],
-        shot: ["screenshot", "document"],
-        coffee: ["coffee cup", "cup", "drink"],
-        cup: ["cup", "coffee cup"],
+        receipt: ["receipt", "invoice"],
+        invoice: ["invoice", "receipt"],
+        bill: ["receipt", "invoice"],
+        dog: ["dog", "pet"],
+        cat: ["cat", "pet"],
+        laptop: ["laptop", "computer"],
+        coffee: ["coffee cup", "cup"],
         car: ["car", "vehicle"],
-        food: ["food", "sandwich", "dining table"],
-        table: ["dining table", "table"],
-        sunset: ["sunset", "beach", "sky"],
-        beach: ["beach", "sky", "outdoor"]
+        sunset: ["sunset", "sky"],
+        beach: ["beach", "sky"]
       };
 
       for (const [kw, mapped] of Object.entries(keywordMap)) {
@@ -6676,10 +6669,9 @@ window.SIFT_CATALOG_DATA = {"photos": [{"id": "0000", "filename": "000000000143.
             const luma = 0.299 * r + 0.587 * g + 0.114 * b;
             totalLuma += luma;
 
-            // Check horizontal edge with next pixel
             if (i + 4 < imgData.length) {
               const nextLuma = 0.299 * imgData[i + 4] + 0.587 * imgData[i + 5] + 0.114 * imgData[i + 6];
-              if (Math.abs(luma - nextLuma) > 60) highContrastEdges++;
+              if (Math.abs(luma - nextLuma) > 70) highContrastEdges++;
             }
           }
 
@@ -6690,30 +6682,24 @@ window.SIFT_CATALOG_DATA = {"photos": [{"id": "0000", "filename": "000000000143.
           const avgB = bSum / pixelCount;
           const aspectRatio = (imgEl.height || 1) / (imgEl.width || 1);
 
-          // Document / Receipt heuristic:
-          // Paper is white/bright (avgLuma > 185) with many high-contrast text edges
-          if ((avgLuma > 185 && highContrastEdges > 400) || (aspectRatio > 1.35 && avgLuma > 170)) {
+          // Authentic Paper Document / Receipt heuristic:
+          if (avgLuma > 195 && highContrastEdges > 450 && aspectRatio > 1.25) {
             if (!tags.includes("receipt")) tags.push("receipt");
             if (!tags.includes("document")) tags.push("document");
-            if (!tags.includes("invoice")) tags.push("invoice");
-          } else if (avgG > avgR * 1.15 && avgG > avgB * 1.1) {
+          } else if (avgG > avgR * 1.2 && avgG > avgB * 1.15) {
             if (!tags.includes("nature")) tags.push("nature");
             if (!tags.includes("outdoor")) tags.push("outdoor");
-            if (!tags.includes("park")) tags.push("park");
-          } else if (avgB > avgR * 1.2 && avgLuma > 140) {
+          } else if (avgB > avgR * 1.25 && avgLuma > 145) {
             if (!tags.includes("sky")) tags.push("sky");
             if (!tags.includes("outdoor")) tags.push("outdoor");
-          } else if (avgR > avgG && avgR > avgB && avgLuma < 150) {
-            if (!tags.includes("indoor")) tags.push("indoor");
           }
         }
       } catch (canvasErr) {
         console.warn("Canvas heuristic note:", canvasErr);
       }
 
-      // Fallback default tags if still empty
       if (tags.length === 0) {
-        tags.push("document", "photo");
+        tags.push("photo");
       }
 
       return tags;
@@ -6746,7 +6732,7 @@ window.SIFT_CATALOG_DATA = {"photos": [{"id": "0000", "filename": "000000000143.
           }
         }
       } catch (serverErr) {
-        // Fall through to in-browser AI or client-side vision heuristics
+        // Fall through to in-browser AI
       }
 
       // Tier 2: In-browser Transformers.js (CLIP)
@@ -6781,36 +6767,25 @@ window.SIFT_CATALOG_DATA = {"photos": [{"id": "0000", "filename": "000000000143.
         if (!results.includes(t)) results.push(t);
       });
 
-      // If CLIP vector exists, test against queryEmbeddings to extract best matching tags
+      // If authentic CLIP vector exists, compare against queryEmbeddings
       if (clipVec && SIFT.queryEmbeddings) {
         const tagCandidates = [];
         for (const [tag, tVec] of Object.entries(SIFT.queryEmbeddings)) {
           const sim = cosineSimilarity(clipVec, tVec);
-          if (sim >= 0.21) {
+          if (sim >= 0.238) {
             tagCandidates.push({ tag, sim });
           }
         }
         tagCandidates.sort((a, b) => b.sim - a.sim);
-        tagCandidates.slice(0, 5).forEach(c => {
+        tagCandidates.slice(0, 4).forEach(c => {
           if (!results.includes(c.tag)) results.push(c.tag);
         });
-      }
-
-      // If clipVec is not set yet, borrow vector from best matching tag in queryEmbeddings
-      if (!clipVec && SIFT.queryEmbeddings) {
-        for (const t of results) {
-          const tVec = SIFT.queryEmbeddings[t] || SIFT.queryEmbeddings[t + 's'];
-          if (tVec) {
-            clipVec = [...tVec];
-            break;
-          }
-        }
       }
 
       return { 
         objects: results, 
         clipEmbedding: clipVec, 
-        caption: `Photo containing ${results.slice(0, 3).join(', ')}` 
+        caption: `Photo containing ${results.join(', ')}` 
       };
     }
 
