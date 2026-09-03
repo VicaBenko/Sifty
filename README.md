@@ -47,7 +47,7 @@ http://127.0.0.1:8091
 ## ✨ Key Capabilities
 Contextual Natural-Language Search: Query photos using everyday descriptions (e.g., "whiteboard notes", "parking ticket receipt", "blurry concert shots").
 
-##  The Idea
+## ✨ The Idea
 Smart Artifact Filtering: Quickly surface screenshots, documents, utility receipts, and duplicates.
 
 > Tell Sifty what you want to find. 
