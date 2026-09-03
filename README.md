@@ -50,9 +50,9 @@ Contextual Natural-Language Search: Query photos using everyday descriptions (e.
 ##  The Idea
 Smart Artifact Filtering: Quickly surface screenshots, documents, utility receipts, and duplicates.
 
-> Tell Sifty what you want to find. 🗣️
-> Review what it found. 👀
-> Keep control of your gallery. ✅
+> Tell Sifty what you want to find. 
+> Review what it found.
+> Keep control of your gallery. 
 Human-in-the-Loop Review: Staged search results allow users to review matches before applying batch actions.
 
 ## 💡 Why Sifty?
