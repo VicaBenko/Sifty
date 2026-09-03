@@ -5,7 +5,7 @@
 ---
 
 ## 🌐 Live Demo
-✨ **[Experience Sifty Live on GitHub Pages](https://vicabenko.github.io/sifty/)** ✨
+✨ **[Experience Sifty Live on GitHub Pages](http://127.0.0.1:8091/)** ✨
 
 ---
 
