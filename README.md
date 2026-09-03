@@ -21,11 +21,11 @@ Sifty is a prototype that transforms photo gallery navigation. Instead of endles
 - ⚡ Turn gallery chaos into a clearer workflow
 - 🎨 Modern, colorful, tech-inspired product design
 
-## 🚧 Project Status
+## Project Status
 
 Sifty is currently a **personal concept and local demo** — not a hosted commercial product yet. The interface, features, and privacy messaging may evolve as development continues.
 
-## 🚀 Run Locally
+##  Run Locally
 
 On Windows, double-click:
 
@@ -47,7 +47,7 @@ http://127.0.0.1:8091
 ✨ Key Capabilities
 Contextual Natural-Language Search: Query photos using everyday descriptions (e.g., "whiteboard notes", "parking ticket receipt", "blurry concert shots").
 
-## 🧭 The Idea
+##  The Idea
 Smart Artifact Filtering: Quickly surface screenshots, documents, utility receipts, and duplicates.
 
 > Tell Sifty what you want to find. 🗣️
@@ -58,12 +58,12 @@ Human-in-the-Loop Review: Staged search results allow users to review matches be
 ## 💡 Why Sifty?
 Privacy-First Design: Conceived for local/on-device processing, keeping personal media secure.
 
-Because your camera roll should be a library — not a junk drawer. 🗂️✨
+Because your camera roll should be a library — not a junk drawer. 
 🚀 Quickstart
 Prerequisites
 Python 3.8+
 
 ---
 
-Made as a personal creative project with curiosity, code, and way too many photos. 🦉💙
-Made as a personal creative project with curiosity, code, and way too many photos. 🦉💙
+Made as a personal creative project with curiosity, code, and way too many photos. 
+Made as a personal creative project with curiosity, code, and way too many photos. 
