@@ -79,7 +79,6 @@ http://127.0.0.1:8091
 │   ├── 09-ux-decisions.md       # Results screen & UX decisions
 │   ├── 10-superpowers-runbook.md            # Build loop runbook
 │   ├── 12-process-retrospective.md          # 18-step project retrospective
-│   ├── 13-demo-script.md        # Presentation & demonstration script
 │   └── 14-clip-search-engine-upgrade.md     # Transformers.js (CLIP) upgrade specs
 │
 └── specs/                       # Technical implementation specifications
@@ -98,7 +97,7 @@ http://127.0.0.1:8091
 * **Full Story & Process:** [`docs/12-process-retrospective.md`](docs/12-process-retrospective.md)
 * **Search Engine Upgrade (CLIP):** [`docs/14-clip-search-engine-upgrade.md`](docs/14-clip-search-engine-upgrade.md)
 * **Product Requirements (PRD):** [`docs/06-prd.md`](docs/06-prd.md)
-* **Presenting / Demo Script:** [`docs/13-demo-script.md`](docs/13-demo-script.md)
+* **Engineering Handover:** [`docs/08-handover-to-development.md`](docs/08-handover-to-development.md)
 
 ---
 
