@@ -6618,11 +6618,25 @@ window.SIFT_CATALOG_DATA = {"photos": [{"id": "0000", "filename": "000000000143.
       const total = wizardBatchItems.length;
       const dict = getDict();
 
+      // Check if neural model needs first-time download
+      if (!SIFT.clipClassifier && window.Transformers && window.Transformers.pipeline) {
+        if (statusText) statusText.textContent = "📥 Downloading CLIP Neural Model (one-time setup, please wait)...";
+        try {
+          SIFT.clipClassifier = await window.Transformers.pipeline(
+            'zero-shot-image-classification',
+            'Xenova/clip-vit-base-patch32',
+            { quantized: true }
+          );
+        } catch (loadErr) {
+          console.warn("Classifier pipeline load note:", loadErr);
+        }
+      }
+
       for (let i = 0; i < total; i++) {
         const item = wizardBatchItems[i];
         if (progressFill) progressFill.style.width = `${Math.round(((i + 1) / total) * 100)}%`;
         if (statusText) {
-          statusText.textContent = (dict.wizard_scanning_status_proc || "Processing photo {current} of {total}...").replace('{current}', i + 1).replace('{total}', total);
+          statusText.textContent = `⚡ Analyzing photo ${i + 1} of ${total} with Vision AI...`;
         }
 
         const visionRes = await runVisionAiOnImage(item.src, item.filename);
@@ -6639,7 +6653,7 @@ window.SIFT_CATALOG_DATA = {"photos": [{"id": "0000", "filename": "000000000143.
           }
         });
 
-        await new Promise(r => setTimeout(r, 60));
+        await new Promise(r => setTimeout(r, 40));
       }
 
       if (statusText) statusText.textContent = dict.wizard_scanning_status_done || "Scan completed successfully!";
@@ -6769,11 +6783,24 @@ window.SIFT_CATALOG_DATA = {"photos": [{"id": "0000", "filename": "000000000143.
             );
           }
           if (SIFT.clipClassifier) {
+            // Fast downscale to 224x224 (native CLIP input size) to accelerate inference by 3-5x
+            const fastCanvas = document.createElement("canvas");
+            fastCanvas.width = 224;
+            fastCanvas.height = 224;
+            const fastCtx = fastCanvas.getContext("2d");
+            const fastImg = new Image();
+            fastImg.src = dataUrl;
+            if (!fastImg.complete) {
+              await new Promise(res => { fastImg.onload = res; fastImg.onerror = res; });
+            }
+            fastCtx.drawImage(fastImg, 0, 0, 224, 224);
+            const fastDataUrl = fastCanvas.toDataURL("image/jpeg", 0.7);
+
             const candidate_labels = [
               "dog", "cat", "laptop", "computer", "desk", "food", "cup",
               "coffee cup", "car", "person", "receipt", "document", "chair", "book"
             ];
-            const predictions = await SIFT.clipClassifier(dataUrl, candidate_labels);
+            const predictions = await SIFT.clipClassifier(fastDataUrl, candidate_labels);
             if (Array.isArray(predictions) && predictions.length > 0) {
               predictions.slice(0, 3).forEach(p => {
                 if (p.score >= 0.12 && !results.includes(p.label)) {
