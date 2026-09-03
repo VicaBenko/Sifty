@@ -328,21 +328,19 @@ def analyze_with_local_clip(b64_data: str, filename: str) -> dict | None:
         with torch.no_grad():
             raw_text = model.get_text_features(**text_inputs)
             t_text = raw_text.pooler_output if hasattr(raw_text, 'pooler_output') and raw_text.pooler_output is not None else (raw_text[0] if isinstance(raw_text, tuple) else raw_text)
-            text_feat = t_text / t_text.norm(p=2, dim=-1, keepdim=True)
+            # Multi-label independent cosine similarity scoring (does not let one dominant label extinguish others)
+            sims = (img_feat @ text_feat.T)[0].tolist()
 
-            logits = (img_feat @ text_feat.T) * 100.0
-            probs = logits.softmax(dim=-1)[0].tolist()
+        scored = sorted(zip(candidate_labels, sims), key=lambda x: x[1], reverse=True)
 
-        scored = sorted(zip(candidate_labels, probs), key=lambda x: x[1], reverse=True)
-
-        # Select tags with significant probability (>= 7% probability, or top 1 if >= 10%)
-        top_tags = [label for label, p in scored if p >= 0.07][:5]
-        if not top_tags and scored and scored[0][1] >= 0.10:
+        # Select all tags with solid similarity (>= 0.21, or top 2 if borderline)
+        top_tags = [label for label, s in scored if s >= 0.21][:5]
+        if not top_tags and scored:
             top_tags = [scored[0][0]]
 
         # Whole-word filename matching (avoids substring false positives like "vacation" matching "cat")
         fn_lower = filename.lower()
-        for kw in ["receipt", "invoice", "document", "dog", "cat", "laptop", "coffee", "cup", "car", "food"]:
+        for kw in ["receipt", "invoice", "document", "dog", "cat", "person", "laptop", "coffee", "cup", "car", "food"]:
             if re.search(r"(?:^|[^a-z])" + re.escape(kw) + r"s?(?:[^a-z]|$)", fn_lower) and kw not in top_tags:
                 top_tags.append(kw)
 

@@ -6673,16 +6673,41 @@ window.SIFT_CATALOG_DATA = {"photos": [{"id": "0000", "filename": "000000000143.
         invoice: ["invoice", "receipt"],
         bill: ["receipt", "invoice"],
         dog: ["dog", "pet"],
+        puppy: ["dog", "pet"],
+        pup: ["dog", "pet"],
         cat: ["cat", "pet"],
+        kitten: ["cat", "pet"],
+        pet: ["pet"],
+        person: ["person"],
+        man: ["person"],
+        woman: ["person"],
+        boy: ["person"],
+        girl: ["person"],
+        human: ["person"],
+        people: ["person"],
         laptop: ["laptop", "computer"],
         coffee: ["coffee cup", "cup"],
         car: ["car", "vehicle"],
         sunset: ["sunset", "sky"],
-        beach: ["beach", "sky"]
+        beach: ["beach", "sky"],
+        כלב: ["dog", "pet"],
+        גור: ["dog", "pet"],
+        חתול: ["cat", "pet"],
+        איש: ["person"],
+        אדם: ["person"],
+        אישה: ["person"],
+        ילד: ["person"],
+        ילדה: ["person"],
+        קבלה: ["receipt", "invoice"],
+        חשבונית: ["invoice", "receipt"],
+        מחשב: ["laptop", "computer"],
+        קפה: ["coffee cup", "cup"],
+        רכב: ["car", "vehicle"],
+        מכונית: ["car", "vehicle"]
       };
 
       for (const [kw, mapped] of Object.entries(keywordMap)) {
-        const regex = new RegExp(`(^|[^a-z])${kw}s?([^a-z]|$)`, "i");
+        const regex = new RegExp(`(^|[^a-z0-9\u0590-\u05FF])${kw}s?([^a-z0-9\u0590-\u05FF]|$)`, "i");
         if (regex.test(lowerName)) {
           mapped.forEach(t => { if (!tags.includes(t)) tags.push(t); });
         }
@@ -6791,10 +6816,14 @@ window.SIFT_CATALOG_DATA = {"photos": [{"id": "0000", "filename": "000000000143.
       try {
         const model = await getWebglVisionModel();
         if (model && imgEl.width > 0) {
-          const detections = await model.detect(imgEl);
+          // Pass minScore = 0.22 so secondary objects in multi-object scenes are not cut off by the default 0.50 cutoff
+          const detections = await model.detect(imgEl, 25, 0.22);
           if (Array.isArray(detections) && detections.length > 0) {
             // Sort detections by score descending
             detections.sort((a, b) => b.score - a.score);
+
+            const hasPet = detections.some(d => (d.class === "cat" || d.class === "dog") && d.score >= 0.25);
+            const hasPerson = detections.some(d => d.class === "person" && d.score >= 0.25);
 
             detections.forEach(d => {
               let cleanLabel = d.class.toLowerCase().trim();
@@ -6805,18 +6834,22 @@ window.SIFT_CATALOG_DATA = {"photos": [{"id": "0000", "filename": "000000000143.
 
               // Multi-object precision detection:
               if (cleanLabel === "person") {
-                if (d.score >= 0.45) {
+                // If a pet is also present, allow person down to 0.28; otherwise require 0.40
+                const personThreshold = hasPet ? 0.28 : 0.40;
+                if (d.score >= personThreshold) {
                   if (!results.includes("person")) results.push("person");
                 }
               } else if (cleanLabel === "cat" || cleanLabel === "dog") {
-                if (d.score >= 0.40) {
+                // If a person is present, allow pet down to 0.28; otherwise require 0.35
+                const petThreshold = hasPerson ? 0.28 : 0.35;
+                if (d.score >= petThreshold) {
                   const otherPet = cleanLabel === "cat" ? "dog" : "cat";
-                  if (!results.includes(otherPet) || d.score >= 0.60) {
+                  if (!results.includes(otherPet) || d.score >= 0.55) {
                     if (!results.includes(cleanLabel)) results.push(cleanLabel);
                     if (!results.includes("pet")) results.push("pet");
                   }
                 }
-              } else if (d.score >= 0.40) {
+              } else if (d.score >= 0.38) {
                 if (!results.includes(cleanLabel)) results.push(cleanLabel);
               }
             });
@@ -6919,11 +6952,14 @@ window.SIFT_CATALOG_DATA = {"photos": [{"id": "0000", "filename": "000000000143.
        Matching Engine & Predicates
        -------------------------------------------------------------------------- */
     function fallbackExtractPredicates(query) {
-      const segments = query.split(/,| and /i);
+      // Split on commas, "and", "with", Hebrew "וגם", "עם", and Hebrew prefix "ו"
+      const segments = query.split(/,| and | with | וגם | עם |(?<=\s)ו(?=[\u0590-\u05FFa-zA-Z])/i);
       const preds = [];
       const synonymDict = {
-        cat: ["cat", "cats", "kitten", "kitty", "feline"],
-        dog: ["dog", "dogs", "puppy", "pup", "canine"],
+        cat: ["cat", "cats", "kitten", "kitty", "feline", "pet"],
+        dog: ["dog", "dogs", "puppy", "pup", "canine", "pet"],
+        pet: ["pet", "pets", "dog", "cat", "puppy", "kitten"],
+        puppy: ["dog", "dogs", "puppy", "pup", "canine", "pet"],
         receipt: ["receipt", "receipts", "invoice", "invoices", "bill"],
         invoice: ["invoice", "invoices", "receipt", "receipts", "bill"],
         document: ["document", "documents", "paper", "text", "contract"],
@@ -6932,12 +6968,49 @@ window.SIFT_CATALOG_DATA = {"photos": [{"id": "0000", "filename": "000000000143.
         cup: ["cup", "cups", "mug", "coffee cup"],
         table: ["table", "tables", "desk", "dining table"],
         food: ["food", "meal", "sandwich", "pizza", "snack"],
-        person: ["person", "people", "man", "woman", "human"]
+        person: ["person", "people", "man", "woman", "human", "boy", "girl"],
+        man: ["person", "people", "man", "human"],
+        woman: ["person", "people", "woman", "human"],
+        people: ["person", "people", "human"],
+        human: ["person", "people", "human"],
+        boy: ["person", "people", "boy", "human"],
+        girl: ["person", "people", "girl", "human"],
+
+        // Hebrew query mappings
+        כלב: ["dog", "dogs", "puppy", "pup", "canine", "pet", "כלב", "כלבים"],
+        כלבים: ["dog", "dogs", "puppy", "pup", "canine", "pet", "כלב", "כלבים"],
+        גור: ["dog", "dogs", "puppy", "pup", "pet", "גור"],
+        חתול: ["cat", "cats", "kitten", "kitty", "feline", "pet", "חתול", "חתולים"],
+        חתולים: ["cat", "cats", "kitten", "kitty", "feline", "pet", "חתול", "חתולים"],
+        אדם: ["person", "people", "man", "woman", "human", "אדם", "בן אדם", "איש"],
+        "בן אדם": ["person", "people", "man", "woman", "human", "אדם", "בן אדם", "איש"],
+        איש: ["person", "people", "man", "human", "אדם", "בן אדם", "איש"],
+        אישה: ["person", "people", "woman", "human", "אדם", "אישה"],
+        אנשים: ["person", "people", "human", "אנשים"],
+        ילד: ["person", "people", "boy", "human", "ילד"],
+        ילדה: ["person", "people", "girl", "human", "ילדה"],
+        קבלה: ["receipt", "receipts", "invoice", "invoices", "bill", "קבלה", "קבלות"],
+        קבלות: ["receipt", "receipts", "invoice", "invoices", "bill", "קבלה", "קבלות"],
+        חשבונית: ["invoice", "invoices", "receipt", "receipts", "bill", "חשבונית", "חשבוניות"],
+        חשבוניות: ["invoice", "invoices", "receipt", "receipts", "bill", "חשבונית", "חשבוניות"],
+        מסמך: ["document", "documents", "paper", "text", "contract", "מסמך", "מסמכים"],
+        מסמכים: ["document", "documents", "paper", "text", "contract", "מסמך", "מסמכים"],
+        מחשב: ["laptop", "laptops", "computer", "notebook", "מחשב"],
+        לפטופ: ["laptop", "laptops", "computer", "notebook", "לפטופ"],
+        רכב: ["car", "cars", "automobile", "vehicle", "רכב"],
+        מכונית: ["car", "cars", "automobile", "vehicle", "מכונית"],
+        כוס: ["cup", "cups", "mug", "coffee cup", "כוס"],
+        קפה: ["coffee cup", "cup", "coffee", "קפה"],
+        שולחן: ["table", "tables", "desk", "dining table", "שולחן"],
+        אוכל: ["food", "meal", "sandwich", "pizza", "snack", "אוכל"]
       };
 
       segments.forEach(seg => {
-        let phr = seg.trim().toLowerCase().replace(/^(a|an|the)\s+/i, "");
+        let phr = seg.trim().toLowerCase().replace(/^(a|an|the|ה)\s*/i, "");
         if (phr) {
+          if (phr.startsWith("ו") && phr.length > 2 && !synonymDict[phr] && synonymDict[phr.slice(1)]) {
+            phr = phr.slice(1);
+          }
           const terms = synonymDict[phr] ? [...synonymDict[phr]] : [phr];
           if (!terms.includes(phr)) terms.unshift(phr);
           preds.push({ label: phr, terms: terms });
