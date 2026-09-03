@@ -44,7 +44,7 @@ Then open:
 ```text
 http://127.0.0.1:8091
 ```
-✨ Key Capabilities
+## ✨ Key Capabilities
 Contextual Natural-Language Search: Query photos using everyday descriptions (e.g., "whiteboard notes", "parking ticket receipt", "blurry concert shots").
 
 ##  The Idea
