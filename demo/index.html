@@ -124,7 +124,7 @@ window.I18N_DATA = {
     "faq_badge": "FAQ",
     "faq_title": "שאלות נפוצות",
     "faq_desc": "פירוט לגבי אבטחה, פרטיות וזרימת העבודה במערכת.",
-    "faq1_a": "המערכת משתמשת במודל Vision AI הפועל ישירות בדפדפן ובשרת המקומי (COCO-SSD / Multimodal Vision). המודל סורק את הפיקסלים ומזהה בדיוק מירבי קבלות, מסמכים, אנשים, חיות, מחשבים, כוסות, שולחנות וסצנות שלמות.",
+    "faq1_a": "המערכת משתמשת במודל Vision AI הפועל ישירות בדפדפן ובשרת המקומי (Transformers.js / CLIP Multimodal Vision). המודל סורק את הפיקסלים ומזהה בדיוק מירבי קבלות, מסמכים, אנשים, חיות, מחשבים, כוסות, שולחנות וסצנות שלמות.",
     "faq2_q": "האם התמונות האישיות נשמרות בשרת ענן?",
     "faq2_a": "לא. Sifty פועלת במודל Zero Data Retention. התמונות מעובדות בזיכרון הסשן המקומי בלבד, אינן נשמרות במאגר חיצוני ונמחקות לחלוטין בסגירת הדפדפן.",
     "faq3_q": "כיצד מחושב התשלום?",
@@ -162,10 +162,10 @@ window.I18N_DATA = {
     "a11y_statement_li3": "תגיות ARIA מותאמות לקוראי מסך ואזורים חיים.",
     "a11y_statement_contact": "לפניות בנושאי נגישות: accessibility@sift.co.il",
     "ai_modal_title": "⚡ הגדרות מנוע דיוק AI (Vision Engine)",
-    "ai_modal_desc": "המערכת פועלת כברירת מחדל עם מודל <strong>In-Browser Neural Vision (COCO-SSD)</strong> ישירות במכשיר שלך (100% חינם וללא שליחת תמונות לענן).",
+    "ai_modal_desc": "המערכת פועלת כברירת מחדל עם מודל <strong>In-Browser Neural Vision (Transformers.js (CLIP))</strong> ישירות במכשיר שלך (100% חינם וללא שליחת תמונות לענן).",
     "ai_modal_active_lbl": "🟢 מנוע נוכחי פעיל:",
     "ai_modal_engine_gemini": "Gemini 2.5 Flash Vision (Cloud LLM Active)",
-    "ai_modal_engine_local": "In-Browser Vision AI (COCO-SSD Neural Local)",
+    "ai_modal_engine_local": "In-Browser Vision AI (Transformers.js CLIP Semantic AI)",
     "ai_modal_key_lbl": "מפתח Google Gemini API (אופציונלי ל-OCR ומסמכים מורכבים):",
     "ai_modal_soon_lbl": "מודל ענן מותאם — בקרוב",
     "ai_modal_soon_note": "תיוג בענן מתוכנן להמשך. בינתיים הכול רץ בדפדפן שלך, ושום תמונה או מפתח לא עוזבים את המכשיר.",
@@ -309,7 +309,7 @@ window.I18N_DATA = {
     "hero_trust_memory": "100% In-Memory (Zero Cloud Retention)",
     "hero_trust_ai": "Real-Time Vision AI",
     "hero_trust_zip": "Instant Clean ZIP Export",
-    "hero_quote": "🦉 \"Accurately identifying every single item in your gallery!\"",
+    "hero_quote": "🦉 \"Accurately identifies every single item in your gallery.\"",
     "arch_badge": "PIPELINE WORKFLOW",
     "arch_title": "Maximum Precision Architecture",
     "arch_desc": "Direct visual detection, logical predicate matching, and protected ZIP export.",
@@ -389,7 +389,7 @@ window.I18N_DATA = {
     "faq_title": "Frequently Asked Questions",
     "faq_desc": "Detailed insights into security, privacy, and system workflows.",
     "faq1_q": "How does the AI accurately identify objects in my photos?",
-    "faq1_a": "Sifty utilizes on-device and local Multimodal Vision AI (COCO-SSD / Neural Vision). It examines pixels directly to accurately identify receipts, documents, animals, people, laptops, cups, and full scenes.",
+    "faq1_a": "Sifty utilizes on-device and local Multimodal Vision AI (Transformers.js / CLIP Multimodal Vision). It examines pixels directly to accurately identify receipts, documents, animals, people, laptops, cups, and full scenes.",
     "faq2_q": "Are personal photos uploaded or stored on cloud servers?",
     "faq2_a": "No. Sifty enforces a strict Zero Data Retention policy. Photos are processed exclusively in your browser/local session memory and are permanently wiped when closing the window.",
     "faq3_q": "How is billing calculated?",
@@ -427,10 +427,10 @@ window.I18N_DATA = {
     "a11y_statement_li3": "Optimized ARIA landmarks and live regions for screen readers.",
     "a11y_statement_contact": "For inquiries or accessibility assistance: accessibility@sift.co.il",
     "ai_modal_title": "⚡ AI Vision Engine Settings",
-    "ai_modal_desc": "The system runs by default with the <strong>In-Browser Neural Vision (COCO-SSD)</strong> model directly on your device (100% free with zero cloud image transfer).",
+    "ai_modal_desc": "The system runs by default with the <strong>In-Browser Neural Vision (Transformers.js (CLIP))</strong> model directly on your device (100% free with zero cloud image transfer).",
     "ai_modal_active_lbl": "🟢 Currently Active Engine:",
     "ai_modal_engine_gemini": "Gemini 2.5 Flash Vision (Cloud LLM Active)",
-    "ai_modal_engine_local": "In-Browser Vision AI (COCO-SSD Neural Local)",
+    "ai_modal_engine_local": "In-Browser Vision AI (Transformers.js CLIP Semantic AI)",
     "ai_modal_key_lbl": "Google Gemini API Key (Optional for OCR & Complex Docs):",
     "ai_modal_soon_lbl": "Custom cloud model — coming soon",
     "ai_modal_soon_note": "Cloud-based tagging is planned. For now everything runs in your browser, and no image or key ever leaves your device.",
@@ -650,7 +650,7 @@ window.I18N_DATA = {
     "faq_title": "Частые вопросы",
     "faq_desc": "Подробно о безопасности, приватности и принципах работы.",
     "faq1_q": "Как ИИ распознает объекты на моих фото?",
-    "faq1_a": "Sifty использует нейросетевую модель локального компьютерного зрения (COCO-SSD / Multimodal Vision). Модель анализирует пиксели напрямую в браузере и находит чеки, документы, животных, людей, ноутбуки, чашки и предметы сцены.",
+    "faq1_a": "Sifty использует нейросетевую модель локального компьютерного зрения (Transformers.js / CLIP Multimodal Vision). Модель анализирует пиксели напрямую в браузере и находит чеки, документы, животных, людей, ноутбуки, чашки и предметы сцены.",
     "faq2_q": "Сохраняются ли личные фото на облачных серверах?",
     "faq2_a": "Нет. Sifty строго придерживается политики Zero Data Retention. Фото обрабатываются исключительно в оперативной памяти локальной сессии и полностью удаляются при закрытии браузера.",
     "faq3_q": "Как рассчитывается стоимость?",
@@ -688,10 +688,10 @@ window.I18N_DATA = {
     "a11y_statement_li3": "Оптимизированные ARIA-метки и live regions для скринридеров.",
     "a11y_statement_contact": "По вопросам доступности: accessibility@sift.co.il",
     "ai_modal_title": "⚡ Настройки движка Vision AI",
-    "ai_modal_desc": "По умолчанию система использует встроенную нейросеть <strong>In-Browser Neural Vision (COCO-SSD)</strong> прямо на вашем устройстве (бесплатно и без облака).",
+    "ai_modal_desc": "По умолчанию система использует встроенную нейросеть <strong>In-Browser Neural Vision (Transformers.js (CLIP))</strong> прямо на вашем устройстве (бесплатно и без облака).",
     "ai_modal_active_lbl": "🟢 Текущий активный движок:",
     "ai_modal_engine_gemini": "Gemini 2.5 Flash Vision (Облачный LLM активен)",
-    "ai_modal_engine_local": "In-Browser Vision AI (COCO-SSD Локальный)",
+    "ai_modal_engine_local": "In-Browser Vision AI (Transformers.js (CLIP) Локальный)",
     "ai_modal_key_lbl": "API-ключ Google Gemini (опционально для OCR и сложных документов):",
     "ai_modal_key_note": "Ключ сохраняется только в локальной сессии браузера и не передается на наши серверы.",
     "ai_modal_btn_save": "Сохранить настройки",
@@ -914,7 +914,7 @@ window.I18N_DATA = {
     "faq_title": "الأسئلة الشائعة",
     "faq_desc": "تفاصيل حول الأمان والخصوصية وسير العمل في النظام.",
     "faq1_q": "كيف يتعرف الذكاء الاصطناعي بدقة على العناصر في صوري؟",
-    "faq1_a": "يستخدم Sifty نموذج رؤية اصطناعية محلي متعدد الوسائط (COCO-SSD / Vision). يقوم النموذج بفحص البكسلات مباشرة وتحديد الفواتير، المستندات، الحيوانات، الأشخاص، الأجهزة والأكواب بدقة عالية.",
+    "faq1_a": "يستخدم Sifty نموذج رؤية اصطناعية محلي متعدد الوسائط (Transformers.js (CLIP) / Vision). يقوم النموذج بفحص البكسلات مباشرة وتحديد الفواتير، المستندات، الحيوانات، الأشخاص، الأجهزة والأكواب بدقة عالية.",
     "faq2_q": "هل يتم حفظ الصور الشخصية على خوادم سحابية؟",
     "faq2_a": "لا. يعمل Sifty بمبدأ Zero Data Retention. تتم معالجة الصور حصرياً في ذاكرة الجلسة المحلية بالمتصفح وتُحذف نهائياً عند إغلاق النافذة.",
     "faq3_q": "كيف يتم حساب التكلفة؟",
@@ -952,7 +952,7 @@ window.I18N_DATA = {
     "a11y_statement_li3": "تسميات ARIA متوافقة تماماً مع قارئات الشاشة.",
     "a11y_statement_contact": "للاستفسارات المتعلقة بإمكانية الوصول: accessibility@sift.co.il",
     "ai_modal_title": "⚡ إعدادات محرك Vision AI",
-    "ai_modal_desc": "يعمل النظام افتراضياً باستخدام نموذج <strong>In-Browser Neural Vision (COCO-SSD)</strong> مباشرة على جهازك (مجاني تماماً وبدون رفع للسحابة).",
+    "ai_modal_desc": "يعمل النظام افتراضياً باستخدام نموذج <strong>In-Browser Neural Vision (Transformers.js (CLIP))</strong> مباشرة على جهازك (مجاني تماماً وبدون رفع للسحابة).",
     "ai_modal_active_lbl": "🟢 المحرك النشط حالياً:",
     "ai_modal_engine_gemini": "Gemini 2.5 Flash Vision (سحابي نشط)",
     "ai_modal_engine_local": "In-Browser Vision AI (محلي في المتصفح)",
@@ -1178,7 +1178,7 @@ window.I18N_DATA = {
     "faq_title": "常见问题",
     "faq_desc": "深入了解安全性、隐私政策与处理流程。",
     "faq1_q": "AI 是如何精准识别照片中的物体的？",
-    "faq1_a": "Sifty 采用端侧多模态视觉 AI 模型 (COCO-SSD / Neural Vision)，直接在本地对图像像素进行实时计算，高精度识别收据、证件、猫狗、人物、电脑及生活场景。",
+    "faq1_a": "Sifty 采用端侧多模态视觉 AI 模型 (Transformers.js / CLIP Multimodal Vision)，直接在本地对图像像素进行实时计算，高精度识别收据、证件、猫狗、人物、电脑及生活场景。",
     "faq2_q": "个人照片会被上传或保存在云端服务器吗？",
     "faq2_a": "绝不会。Sifty 严格执行零数据留存（Zero Data Retention）政策。照片仅在浏览器本地会话内存中处理，关闭页面即刻彻底销毁。",
     "faq3_q": "费用是如何计算的？",
@@ -1216,7 +1216,7 @@ window.I18N_DATA = {
     "a11y_statement_li3": "全面优化 ARIA 标签与屏幕阅读器动态读报。",
     "a11y_statement_contact": "无障碍相关建议与支持: accessibility@sift.co.il",
     "ai_modal_title": "⚡ AI 视觉引擎设置",
-    "ai_modal_desc": "系统默认在本地端侧运行 <strong>In-Browser Neural Vision (COCO-SSD)</strong> 模型（完全免费且绝不上云）。",
+    "ai_modal_desc": "系统默认在本地端侧运行 <strong>In-Browser Neural Vision (Transformers.js (CLIP))</strong> 模型（完全免费且绝不上云）。",
     "ai_modal_active_lbl": "🟢 当前运行引擎:",
     "ai_modal_engine_gemini": "Gemini 2.5 Flash Vision (云端 LLM 已激活)",
     "ai_modal_engine_local": "In-Browser Vision AI (本地端侧神经网络)",
@@ -1442,7 +1442,7 @@ window.I18N_DATA = {
     "faq_title": "Preguntas Frecuentes",
     "faq_desc": "Detalles sobre seguridad, privacidad y flujo de trabajo.",
     "faq1_q": "¿Cómo identifica la IA con precisión los objetos de mis fotos?",
-    "faq1_a": "Sifty utiliza un modelo de visión artificial multimodal local (COCO-SSD / Neural Vision). Examina los píxeles directamente en el navegador para identificar recibos, documentos, animales, personas, portátiles y escenas.",
+    "faq1_a": "Sifty utiliza un modelo de visión artificial multimodal local (Transformers.js / CLIP Multimodal Vision). Examina los píxeles directamente en el navegador para identificar recibos, documentos, animales, personas, portátiles y escenas.",
     "faq2_q": "¿Se almacenan las fotos personales en servidores en la nube?",
     "faq2_a": "No. Sifty opera bajo la política Zero Data Retention. Las fotos se procesan exclusivamente en la memoria local de la sesión y se eliminan al cerrar el navegador.",
     "faq3_q": "¿Cómo se calcula el coste?",
@@ -1480,10 +1480,10 @@ window.I18N_DATA = {
     "a11y_statement_li3": "Etiquetas ARIA optimizadas para lectores de pantalla.",
     "a11y_statement_contact": "Consultas de accesibilidad: accessibility@sift.co.il",
     "ai_modal_title": "⚡ Ajustes del Motor Vision AI",
-    "ai_modal_desc": "El sistema funciona por defecto con el modelo <strong>In-Browser Neural Vision (COCO-SSD)</strong> directamente en tu dispositivo (gratis y sin nube).",
+    "ai_modal_desc": "El sistema funciona por defecto con el modelo <strong>In-Browser Neural Vision (Transformers.js (CLIP))</strong> directamente en tu dispositivo (gratis y sin nube).",
     "ai_modal_active_lbl": "🟢 Motor actualmente activo:",
     "ai_modal_engine_gemini": "Gemini 2.5 Flash Vision (Nube LLM Activo)",
-    "ai_modal_engine_local": "In-Browser Vision AI (COCO-SSD Local)",
+    "ai_modal_engine_local": "In-Browser Vision AI (Transformers.js (CLIP) Local)",
     "ai_modal_key_lbl": "Clave API de Google Gemini (Opcional para OCR y documentos complejos):",
     "ai_modal_key_note": "La clave se guarda solo en tu sesión local y nunca se envía a nuestros servidores.",
     "ai_modal_btn_save": "Guardar Ajustes",
@@ -1706,7 +1706,7 @@ window.I18N_DATA = {
     "faq_title": "Foire Aux Questions",
     "faq_desc": "Détails sur la sécurité, la vie privée et le fonctionnement.",
     "faq1_q": "Comment l'IA identifie-t-elle avec précision les objets sur mes photos ?",
-    "faq1_a": "Sifty s'appuie sur un modèle de vision artificielle multimodal local (COCO-SSD / Neural Vision). Il analyse directement les pixels dans le navigateur pour détecter reçus, documents, animaux, personnes, ordinateurs et tasses.",
+    "faq1_a": "Sifty s'appuie sur un modèle de vision artificielle multimodal local (Transformers.js / CLIP Multimodal Vision). Il analyse directement les pixels dans le navigateur pour détecter reçus, documents, animaux, personnes, ordinateurs et tasses.",
     "faq2_q": "Mes photos sont-elles stockées sur des serveurs cloud ?",
     "faq2_a": "Non. Sifty applique une stricte politique Zero Data Retention. Les photos sont traitées exclusivement dans la mémoire vive locale du navigateur et sont définitivement détruites à la fermeture.",
     "faq3_q": "Comment le tarif est-il calculé ?",
@@ -1744,10 +1744,10 @@ window.I18N_DATA = {
     "a11y_statement_li3": "Balises ARIA optimisées pour les lecteurs d'écran.",
     "a11y_statement_contact": "Contact accessibilité : accessibility@sift.co.il",
     "ai_modal_title": "⚡ Paramètres du moteur Vision AI",
-    "ai_modal_desc": "Le système fonctionne par défaut avec le modèle <strong>In-Browser Neural Vision (COCO-SSD)</strong> directement sur votre appareil (gratuit et sans cloud).",
+    "ai_modal_desc": "Le système fonctionne par défaut avec le modèle <strong>In-Browser Neural Vision (Transformers.js (CLIP))</strong> directement sur votre appareil (gratuit et sans cloud).",
     "ai_modal_active_lbl": "🟢 Moteur actuellement actif :",
     "ai_modal_engine_gemini": "Gemini 2.5 Flash Vision (Cloud LLM Actif)",
-    "ai_modal_engine_local": "In-Browser Vision AI (COCO-SSD Local)",
+    "ai_modal_engine_local": "In-Browser Vision AI (Transformers.js (CLIP) Local)",
     "ai_modal_key_lbl": "Clé API Google Gemini (Optionnelle pour OCR et documents complexes) :",
     "ai_modal_key_note": "La clé est stockée uniquement dans votre session locale et n'est jamais transmise à nos serveurs.",
     "ai_modal_btn_save": "Enregistrer",
@@ -1970,7 +1970,7 @@ window.I18N_DATA = {
     "faq_title": "Domande Frequenti",
     "faq_desc": "Approfondimenti su sicurezza, privacy e flussi di lavoro.",
     "faq1_q": "Come fa l'IA a riconoscere accuratamente gli oggetti nelle mie foto?",
-    "faq1_a": "Sifty utilizza un modello multimodale di visione artificiale locale (COCO-SSD / Neural Vision). Analizza direttamente i pixel nel browser per individuare scontrini, documenti, animali, persone, computer e tazze.",
+    "faq1_a": "Sifty utilizza un modello multimodale di visione artificiale locale (Transformers.js / CLIP Multimodal Vision). Analizza direttamente i pixel nel browser per individuare scontrini, documenti, animali, persone, computer e tazze.",
     "faq2_q": "Le foto personali vengono salvate sui server cloud?",
     "faq2_a": "No. Sifty applica una rigida politica Zero Data Retention. Le foto vengono elaborate solo nella memoria di sessione locale e cancellate alla chiusura della scheda.",
     "faq3_q": "Come viene calcolato il prezzo?",
@@ -2008,10 +2008,10 @@ window.I18N_DATA = {
     "a11y_statement_li3": "Etichette ARIA ottimizzate per screen reader.",
     "a11y_statement_contact": "Supporto accessibilità: accessibility@sift.co.il",
     "ai_modal_title": "⚡ Impostazioni Vision AI Engine",
-    "ai_modal_desc": "Il sistema opera di default con il modello <strong>In-Browser Neural Vision (COCO-SSD)</strong> direttamente sul dispositivo (gratuito e senza cloud).",
+    "ai_modal_desc": "Il sistema opera di default con il modello <strong>In-Browser Neural Vision (Transformers.js (CLIP))</strong> direttamente sul dispositivo (gratuito e senza cloud).",
     "ai_modal_active_lbl": "🟢 Motore attualmente attivo:",
     "ai_modal_engine_gemini": "Gemini 2.5 Flash Vision (Cloud LLM Attivo)",
-    "ai_modal_engine_local": "In-Browser Vision AI (COCO-SSD Locale)",
+    "ai_modal_engine_local": "In-Browser Vision AI (Transformers.js (CLIP) Locale)",
     "ai_modal_key_lbl": "Chiave API Google Gemini (Opzionale per OCR e documenti complessi):",
     "ai_modal_key_note": "La chiave è salvata solo nella sessione locale e non viene mai inviata ai nostri server.",
     "ai_modal_btn_save": "Salva Impostazioni",
@@ -2234,7 +2234,7 @@ window.I18N_DATA = {
     "faq_title": "Häufig gestellte Fragen",
     "faq_desc": "Details zu Sicherheit, Datenschutz und Funktionsweise.",
     "faq1_q": "Wie erkennt die KI Objekte in meinen Fotos präzise?",
-    "faq1_a": "Sifty verwendet ein lokales multimodales Computer-Vision-Modell (COCO-SSD / Neural Vision). Es analysiert Pixel direkt im Browser, um Belege, Dokumente, Tiere, Personen, Laptops und Tassen zu identifizieren.",
+    "faq1_a": "Sifty verwendet ein lokales multimodales Computer-Vision-Modell (Transformers.js / CLIP Multimodal Vision). Es analysiert Pixel direkt im Browser, um Belege, Dokumente, Tiere, Personen, Laptops und Tassen zu identifizieren.",
     "faq2_q": "Werden persönliche Fotos in der Cloud gespeichert?",
     "faq2_a": "Nein. Sifty verfolgt eine strikte Zero Data Retention Policy. Fotos werden ausschließlich im lokalen Arbeitsspeicher verarbeitet und beim Schließen des Fensters vollständig gelöscht.",
     "faq3_q": "Wie erfolgt die Abrechnung?",
@@ -2272,10 +2272,10 @@ window.I18N_DATA = {
     "a11y_statement_li3": "Optimierte ARIA-Tags für Bildschirmlesegeräte.",
     "a11y_statement_contact": "Kontakt für Barrierefreiheit: accessibility@sift.co.il",
     "ai_modal_title": "⚡ Vision-KI-Engine-Einstellungen",
-    "ai_modal_desc": "Das System läuft standardmäßig mit dem <strong>In-Browser Neural Vision (COCO-SSD)</strong> Modell direkt auf Ihrem Gerät (kostenlos und ohne Cloud).",
+    "ai_modal_desc": "Das System läuft standardmäßig mit dem <strong>In-Browser Neural Vision (Transformers.js (CLIP))</strong> Modell direkt auf Ihrem Gerät (kostenlos und ohne Cloud).",
     "ai_modal_active_lbl": "🟢 Aktuell aktive Engine:",
     "ai_modal_engine_gemini": "Gemini 2.5 Flash Vision (Cloud-LLM aktiv)",
-    "ai_modal_engine_local": "In-Browser Vision AI (COCO-SSD lokal)",
+    "ai_modal_engine_local": "In-Browser Vision AI (Transformers.js (CLIP) lokal)",
     "ai_modal_key_lbl": "Google Gemini API-Schlüssel (Optional für OCR und komplexe Dokumente):",
     "ai_modal_key_note": "Der Schlüssel wird nur in Ihrer lokalen Sitzung gespeichert und nie an unsere Server gesendet.",
     "ai_modal_btn_save": "Einstellungen speichern",
@@ -2498,7 +2498,7 @@ window.I18N_DATA = {
     "faq_title": "Perguntas Frequentes",
     "faq_desc": "Detalhes sobre segurança, privacidade e fluxo de trabalho.",
     "faq1_q": "Como a IA identifica com precisão os objetos nas fotos?",
-    "faq1_a": "O Sifty utiliza um modelo multimodal de visão computacional local (COCO-SSD / Neural Vision). Ele analisa pixels diretamente no navegador para identificar recibos, documentos, animais, pessoas e computadores.",
+    "faq1_a": "O Sifty utiliza um modelo multimodal de visão computacional local (Transformers.js / CLIP Multimodal Vision). Ele analisa pixels diretamente no navegador para identificar recibos, documentos, animais, pessoas e computadores.",
     "faq2_q": "As fotos pessoais ficam salvas em servidores na nuvem?",
     "faq2_a": "Não. O Sifty aplica estritamente a política Zero Data Retention. As fotos são processadas exclusivamente na memória local da sessão e excluídas ao fechar a janela.",
     "faq3_q": "Como é cobrado o serviço?",
@@ -2536,10 +2536,10 @@ window.I18N_DATA = {
     "a11y_statement_li3": "Etiquetas ARIA otimizadas para leitores de tela.",
     "a11y_statement_contact": "Contato de acessibilidade: accessibility@sift.co.il",
     "ai_modal_title": "⚡ Configurações do Vision AI Engine",
-    "ai_modal_desc": "O sistema opera por padrão com o modelo <strong>In-Browser Neural Vision (COCO-SSD)</strong> diretamente no seu dispositivo (gratuito e sem nuvem).",
+    "ai_modal_desc": "O sistema opera por padrão com o modelo <strong>In-Browser Neural Vision (Transformers.js (CLIP))</strong> diretamente no seu dispositivo (gratuito e sem nuvem).",
     "ai_modal_active_lbl": "🟢 Motor atualmente ativo:",
     "ai_modal_engine_gemini": "Gemini 2.5 Flash Vision (Nuvem LLM Ativo)",
-    "ai_modal_engine_local": "In-Browser Vision AI (COCO-SSD Local)",
+    "ai_modal_engine_local": "In-Browser Vision AI (Transformers.js (CLIP) Local)",
     "ai_modal_key_lbl": "Chave de API do Google Gemini (Opcional para OCR e documentos complexos):",
     "ai_modal_key_note": "A chave é salva apenas na sua sessão local e nunca enviada aos nossos servidores.",
     "ai_modal_btn_save": "Salvar Configurações",
@@ -2762,7 +2762,7 @@ window.I18N_DATA = {
     "faq_title": "よくある質問",
     "faq_desc": "セキュリティ、プライバシー、処理の流れについて。",
     "faq1_q": "AIはどのように写真の物体を正確に識別しますか？",
-    "faq1_a": "Siftyは端末内で動作するマルチモーダルビジョンAIモデル（COCO-SSD）を採用しています。ブラウザ上で直接ピクセルを計算し、レシート、書類、動物、人物、PC、コップなどを高精度に検出します。",
+    "faq1_a": "Siftyは端末内で動作するマルチモーダルビジョンAIモデル（Transformers.js (CLIP)）を採用しています。ブラウザ上で直接ピクセルを計算し、レシート、書類、動物、人物、PC、コップなどを高精度に検出します。",
     "faq2_q": "個人写真がクラウドサーバーに保存されることはありますか？",
     "faq2_a": "一切ありません。Siftyは厳格な Zero Data Retention ポリシーを適用しています。写真はブラウザのローカルメモリでのみ処理され、ページを閉じると完全に消去されます。",
     "faq3_q": "料金はどのように計算されますか？",
@@ -2800,7 +2800,7 @@ window.I18N_DATA = {
     "a11y_statement_li3": "スクリーンリーダー向けのARIAランドマークを最適化。",
     "a11y_statement_contact": "アクセシビリティに関するお問い合わせ: accessibility@sift.co.il",
     "ai_modal_title": "⚡ Vision AI エンジン設定",
-    "ai_modal_desc": "システムは初期状態で端末内 <strong>In-Browser Neural Vision (COCO-SSD)</strong> モデルを使用します（無料・クラウド送信なし）。",
+    "ai_modal_desc": "システムは初期状態で端末内 <strong>In-Browser Neural Vision (Transformers.js (CLIP))</strong> モデルを使用します（無料・クラウド送信なし）。",
     "ai_modal_active_lbl": "🟢 現在稼働中のエンジン:",
     "ai_modal_engine_gemini": "Gemini 2.5 Flash Vision (クラウドLLM有効)",
     "ai_modal_engine_local": "In-Browser Vision AI (端末内ローカルAI)",
@@ -2929,9 +2929,18 @@ window.I18N_DATA = {
 };
   </script>
 
-  <!-- TensorFlow.js & COCO-SSD for In-Browser Local Object Detection -->
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.17.0/dist/tf.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"></script>
+  <!-- Transformers.js (CLIP) for In-Browser Zero-Shot Semantic Vision AI -->
+  <script type="module">
+    import { pipeline, env, AutoTokenizer, AutoProcessor, CLIPTextModelWithProjection, CLIPVisionModelWithProjection } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
+    env.allowLocalModels = false;
+    env.useBrowserCache = true;
+    window.Transformers = { pipeline, env, AutoTokenizer, AutoProcessor, CLIPTextModelWithProjection, CLIPVisionModelWithProjection };
+    window.dispatchEvent(new CustomEvent('transformers-loaded'));
+    if (typeof loadInBrowserVisionModel === 'function') {
+      loadInBrowserVisionModel();
+    }
+  </script>
+
 
   <style>
     /* ==========================================================================
@@ -5113,10 +5122,6 @@ window.I18N_DATA = {
 
               <div class="studio-mockup-main-img">
                 <img class="hero-promo-poster" src="assets/owl_mascot.jpg" alt="Sifty הינשוף החכם של Sift">
-                 <button class="hero-promo-play" type="button" aria-label="Play Sifty concept video" onclick="showHeroPromoVideo()">▶</button>
-                 <video class="hero-promo-video" src="assets/video-playback.mp4" muted loop playsinline controls preload="metadata" aria-label="Sifty personal project concept demo" hidden>
-                   <source src="assets/video-playback.mp4" type="video/mp4">
-                 </video>
 
                 <!-- Floating Social & Accuracy Tags -->
                 <div class="floating-social-tag">
@@ -5133,7 +5138,7 @@ window.I18N_DATA = {
 
               <!-- Mini Controls inside Showcase -->
               <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-surface-elevated); border-radius: var(--radius-sm); padding: 8px 12px; font-size: 12px; color: var(--ink-primary); border: 1px solid var(--border-subtle);">
-                <span data-i18n="hero_quote">🦉 "Accurately finds every photo in your gallery!"</span>
+                <span data-i18n="hero_quote">🦉 "Accurately identifies every single item in your gallery."</span>
                 <span style="color: var(--certain-ink); font-weight: 700;">Vision AI Active ✓</span>
               </div>
 
@@ -5344,7 +5349,7 @@ window.I18N_DATA = {
           <div class="studio-topbar">
             <div class="studio-status-indicator">
               <span class="pulse-dot"></span>
-              <span id="catalogStatusText">Demo Catalog: 128 COCO Photos</span>
+              <span id="catalogStatusText">Demo Catalog: 128 Photos (CLIP Indexed)</span>
             </div>
             <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
               <button id="openUploadWizardBtn" class="btn-upload-photos">
@@ -5478,7 +5483,7 @@ window.I18N_DATA = {
               <span class="faq-icon">▼</span>
             </div>
             <div class="faq-answer" data-i18n="faq1_a">
-              המערכת משתמשת במודל Vision AI הפועל ישירות בדפדפן ובשרת המקומי (COCO-SSD / Multimodal Vision). המודל סורק את הפיקסלים ומזהה בדיוק מירבי קבלות, מסמכים, אנשים, חיות, מחשבים, כוסות, שולחנות וסצנות שלמות.
+              המערכת משתמשת במודל Vision AI הפועל ישירות בדפדפן ובשרת המקומי (Transformers.js / CLIP Multimodal Vision). המודל סורק את הפיקסלים ומזהה בדיוק מירבי קבלות, מסמכים, אנשים, חיות, מחשבים, כוסות, שולחנות וסצנות שלמות.
             </div>
           </div>
 
@@ -5593,33 +5598,94 @@ window.I18N_DATA = {
       usdToIlsRate: 3.65,
       pricePerPhotoUSD: 0.005,
 
-      // In-Browser Vision AI
-      cocoModel: null,
+      // In-Browser Vision AI (CLIP)
+      clipStatus: "idle",
+      clipTokenizer: null,
+      clipTextModel: null,
+      clipProcessor: null,
+      clipVisionModel: null,
       customApiKey: ""
     };
 
     if (window.SIFT_CATALOG_DATA) {
       SIFT.demoPhotos = [...(window.SIFT_CATALOG_DATA.photos || [])];
       SIFT.cache = window.SIFT_CATALOG_DATA.predicatesCache || {};
+      SIFT.queryEmbeddings = window.SIFT_CATALOG_DATA.queryEmbeddings || {};
       SIFT.exceptions = window.SIFT_CATALOG_DATA.lexicalExceptions || {
         dog: ["hot dog", "hot dogs", "hot dog bun", "corn dog"],
         cat: ["cat toy", "cat food"]
       };
     }
 
-    // Preload In-Browser Vision Model
+    // Cosine similarity between two float arrays
+    function cosineSimilarity(vecA, vecB) {
+      if (!vecA || !vecB || vecA.length !== vecB.length) return 0;
+      let dot = 0;
+      for (let i = 0; i < vecA.length; i++) {
+        dot += vecA[i] * vecB[i];
+      }
+      return dot;
+    }
+
+    // Preload In-Browser Vision Model (Transformers.js CLIP)
     async function loadInBrowserVisionModel() {
-      if (window.cocoSsd && !SIFT.cocoModel) {
-        try {
-          console.log("[Vision AI] Preloading COCO-SSD In-Browser model...");
-          SIFT.cocoModel = await cocoSsd.load();
-          console.log("[Vision AI] COCO-SSD model ready for instant local recognition!");
-        } catch (e) {
-          console.warn("[Vision AI] Preload note:", e);
-        }
+      if (SIFT.clipStatus === "loading" || SIFT.clipStatus === "ready") return;
+      if (!window.Transformers) {
+        window.addEventListener("transformers-loaded", () => loadInBrowserVisionModel(), { once: true });
+        return;
+      }
+      try {
+        SIFT.clipStatus = "loading";
+        console.log("[Vision AI] Preloading Transformers.js CLIP In-Browser model...");
+        const { AutoTokenizer, CLIPTextModelWithProjection } = window.Transformers;
+        SIFT.clipTokenizer = await AutoTokenizer.from_pretrained('Xenova/clip-vit-base-patch32');
+        SIFT.clipTextModel = await CLIPTextModelWithProjection.from_pretrained('Xenova/clip-vit-base-patch32', { quantized: true });
+        SIFT.clipStatus = "ready";
+        console.log("[Vision AI] Transformers.js CLIP model ready for instant local recognition!");
+      } catch (e) {
+        console.warn("[Vision AI] Preload note:", e);
+        SIFT.clipStatus = "error";
       }
     }
     window.addEventListener("DOMContentLoaded", loadInBrowserVisionModel);
+
+    async function getQueryVector(queryStr) {
+      const q = (queryStr || "").trim().toLowerCase();
+      if (!q) return null;
+
+      // 1. Check pre-computed query embeddings cache (instant 0ms)
+      if (SIFT.queryEmbeddings && SIFT.queryEmbeddings[q]) {
+        return SIFT.queryEmbeddings[q];
+      }
+      const singular = q.endsWith('s') ? q.slice(0, -1) : q;
+      const plural = q + 's';
+      if (SIFT.queryEmbeddings && SIFT.queryEmbeddings[singular]) {
+        return SIFT.queryEmbeddings[singular];
+      }
+      if (SIFT.queryEmbeddings && SIFT.queryEmbeddings[plural]) {
+        return SIFT.queryEmbeddings[plural];
+      }
+
+      // 2. If Transformers.js text model is ready, compute live text embedding
+      if (SIFT.clipTextModel && SIFT.clipTokenizer) {
+        try {
+          const text_inputs = SIFT.clipTokenizer([q], { padding: true, truncation: true });
+          const out = await SIFT.clipTextModel(text_inputs);
+          const raw = Array.from(out.text_embeds.data);
+          let norm = 0;
+          for (let v of raw) norm += v * v;
+          norm = Math.sqrt(norm) || 1;
+          const vec = raw.map(v => Math.round((v / norm) * 100000) / 100000);
+          if (!SIFT.queryEmbeddings) SIFT.queryEmbeddings = {};
+          SIFT.queryEmbeddings[q] = vec;
+          return vec;
+        } catch (err) {
+          console.warn("[Vision AI] Live text embedding error:", err);
+        }
+      }
+
+      return null;
+    }
 
     /* --------------------------------------------------------------------------
        DOM References
@@ -5978,7 +6044,7 @@ window.I18N_DATA = {
       const dict = getDict();
       const activeEngineName = SIFT.customApiKey 
         ? (dict.ai_modal_engine_gemini || "Gemini 2.5 Flash Vision (Cloud LLM Active)")
-        : (dict.ai_modal_engine_local || "In-Browser Vision AI (COCO-SSD Neural Local)");
+        : (dict.ai_modal_engine_local || "In-Browser Vision AI (Transformers.js CLIP Semantic AI)");
 
       const html = `
         <h2 class="modal-title">${dict.ai_modal_title || "⚡ AI Vision Engine Settings"}</h2>
@@ -6531,8 +6597,11 @@ window.I18N_DATA = {
           statusText.textContent = (dict.wizard_scanning_status_proc || "Processing photo {current} of {total}...").replace('{current}', i + 1).replace('{total}', total);
         }
 
-        const detectedObjects = await runVisionAiOnImage(item.src, item.filename);
-        detectedObjects.forEach(obj => {
+        const visionRes = await runVisionAiOnImage(item.src, item.filename);
+        if (visionRes.clipEmbedding) {
+          item.clipEmbedding = visionRes.clipEmbedding;
+        }
+        (visionRes.objects || []).forEach(obj => {
           if (!item.objects.includes(obj)) item.objects.push(obj);
           if (liveTagsBox) {
             const chip = document.createElement("span");
@@ -6550,35 +6619,194 @@ window.I18N_DATA = {
       completeWizardCataloging();
     }
 
+    function analyzeImageFeaturesClientSide(imgEl, filename) {
+      const tags = [];
+      const lowerName = (filename || "").toLowerCase();
+
+      // 1. Filename keyword hints
+      const keywordMap = {
+        receipt: ["receipt", "invoice", "document"],
+        invoice: ["invoice", "receipt", "document"],
+        bill: ["receipt", "invoice", "document"],
+        doc: ["document", "paper", "text"],
+        contract: ["document", "contract", "paper"],
+        dog: ["dog", "pet", "animal"],
+        cat: ["cat", "pet", "animal"],
+        laptop: ["laptop", "computer", "desk"],
+        screen: ["screenshot", "screen", "computer"],
+        shot: ["screenshot", "document"],
+        coffee: ["coffee cup", "cup", "drink"],
+        cup: ["cup", "coffee cup"],
+        car: ["car", "vehicle"],
+        food: ["food", "sandwich", "dining table"],
+        table: ["dining table", "table"],
+        sunset: ["sunset", "beach", "sky"],
+        beach: ["beach", "sky", "outdoor"]
+      };
+
+      for (const [kw, mapped] of Object.entries(keywordMap)) {
+        if (lowerName.includes(kw)) {
+          mapped.forEach(t => { if (!tags.includes(t)) tags.push(t); });
+        }
+      }
+
+      // 2. Canvas visual pixel analysis
+      try {
+        const canvas = document.createElement("canvas");
+        canvas.width = 100;
+        canvas.height = 100;
+        const ctx = canvas.getContext("2d");
+        if (ctx && imgEl.width > 0) {
+          ctx.drawImage(imgEl, 0, 0, 100, 100);
+          const imgData = ctx.getImageData(0, 0, 100, 100).data;
+          let totalLuma = 0;
+          let rSum = 0, gSum = 0, bSum = 0;
+          let highContrastEdges = 0;
+
+          for (let i = 0; i < imgData.length; i += 4) {
+            const r = imgData[i];
+            const g = imgData[i + 1];
+            const b = imgData[i + 2];
+            rSum += r; gSum += g; bSum += b;
+            const luma = 0.299 * r + 0.587 * g + 0.114 * b;
+            totalLuma += luma;
+
+            // Check horizontal edge with next pixel
+            if (i + 4 < imgData.length) {
+              const nextLuma = 0.299 * imgData[i + 4] + 0.587 * imgData[i + 5] + 0.114 * imgData[i + 6];
+              if (Math.abs(luma - nextLuma) > 60) highContrastEdges++;
+            }
+          }
+
+          const pixelCount = 100 * 100;
+          const avgLuma = totalLuma / pixelCount;
+          const avgR = rSum / pixelCount;
+          const avgG = gSum / pixelCount;
+          const avgB = bSum / pixelCount;
+          const aspectRatio = (imgEl.height || 1) / (imgEl.width || 1);
+
+          // Document / Receipt heuristic:
+          // Paper is white/bright (avgLuma > 185) with many high-contrast text edges
+          if ((avgLuma > 185 && highContrastEdges > 400) || (aspectRatio > 1.35 && avgLuma > 170)) {
+            if (!tags.includes("receipt")) tags.push("receipt");
+            if (!tags.includes("document")) tags.push("document");
+            if (!tags.includes("invoice")) tags.push("invoice");
+          } else if (avgG > avgR * 1.15 && avgG > avgB * 1.1) {
+            if (!tags.includes("nature")) tags.push("nature");
+            if (!tags.includes("outdoor")) tags.push("outdoor");
+            if (!tags.includes("park")) tags.push("park");
+          } else if (avgB > avgR * 1.2 && avgLuma > 140) {
+            if (!tags.includes("sky")) tags.push("sky");
+            if (!tags.includes("outdoor")) tags.push("outdoor");
+          } else if (avgR > avgG && avgR > avgB && avgLuma < 150) {
+            if (!tags.includes("indoor")) tags.push("indoor");
+          }
+        }
+      } catch (canvasErr) {
+        console.warn("Canvas heuristic note:", canvasErr);
+      }
+
+      // Fallback default tags if still empty
+      if (tags.length === 0) {
+        tags.push("document", "photo");
+      }
+
+      return tags;
+    }
+
     async function runVisionAiOnImage(dataUrl, filename) {
       const results = [];
+      let clipVec = null;
+
+      // Tier 1: Try Local Python Server AI endpoint (/api/catalog_photos)
       try {
-        if (!SIFT.cocoModel && window.cocoSsd) {
-          SIFT.cocoModel = await cocoSsd.load();
+        const resp = await fetch("/api/catalog_photos", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            photos: [{ id: "temp", filename: filename, src: dataUrl }]
+          })
+        });
+        if (resp.ok) {
+          const data = await resp.json();
+          if (data.results && data.results[0]) {
+            const r = data.results[0];
+            if (r.objects && r.objects.length > 0 && r.objects[0] !== "photo") {
+              return {
+                objects: r.objects,
+                clipEmbedding: r.clipEmbedding || null,
+                caption: r.caption || ""
+              };
+            }
+          }
         }
-        if (SIFT.cocoModel) {
-          const imgEl = new Image();
-          imgEl.src = dataUrl;
-          await new Promise(res => { imgEl.onload = res; imgEl.onerror = res; });
-          if (imgEl.width > 0) {
-            const predictions = await SIFT.cocoModel.detect(imgEl);
-            predictions.forEach(p => {
-              const cls = p.class.toLowerCase();
-              if (!results.includes(cls)) results.push(cls);
-            });
+      } catch (serverErr) {
+        // Fall through to in-browser AI or client-side vision heuristics
+      }
+
+      // Tier 2: In-browser Transformers.js (CLIP)
+      const imgEl = new Image();
+      imgEl.src = dataUrl;
+      await new Promise(res => { imgEl.onload = res; imgEl.onerror = res; });
+
+      try {
+        if (window.Transformers) {
+          if (!SIFT.clipVisionModel || !SIFT.clipProcessor) {
+            const { AutoProcessor, CLIPVisionModelWithProjection } = window.Transformers;
+            SIFT.clipProcessor = await AutoProcessor.from_pretrained('Xenova/clip-vit-base-patch32');
+            SIFT.clipVisionModel = await CLIPVisionModelWithProjection.from_pretrained('Xenova/clip-vit-base-patch32', { quantized: true });
+          }
+          if (SIFT.clipVisionModel && SIFT.clipProcessor && imgEl.width > 0) {
+            const image_inputs = await SIFT.clipProcessor(imgEl);
+            const out = await SIFT.clipVisionModel(image_inputs);
+            const raw = Array.from(out.image_embeds.data);
+            let norm = 0;
+            for (let v of raw) norm += v * v;
+            norm = Math.sqrt(norm) || 1;
+            clipVec = raw.map(v => Math.round((v / norm) * 100000) / 100000);
           }
         }
       } catch (err) {
-        console.warn("Vision AI local note:", err);
+        console.warn("[Vision AI] In-browser CLIP vision note:", err);
       }
 
-      const lowerName = filename.toLowerCase();
-      const keywords = ["receipt", "invoice", "dog", "cat", "laptop", "computer", "desk", "coffee", "cup", "car", "sandwich", "document", "food", "contract", "screenshot"];
-      keywords.forEach(kw => {
-        if (lowerName.includes(kw) && !results.includes(kw)) results.push(kw);
+      // Tier 3: Client-side Visual & Semantic Heuristics
+      const detectedTags = analyzeImageFeaturesClientSide(imgEl, filename);
+      detectedTags.forEach(t => {
+        if (!results.includes(t)) results.push(t);
       });
 
-      return results;
+      // If CLIP vector exists, test against queryEmbeddings to extract best matching tags
+      if (clipVec && SIFT.queryEmbeddings) {
+        const tagCandidates = [];
+        for (const [tag, tVec] of Object.entries(SIFT.queryEmbeddings)) {
+          const sim = cosineSimilarity(clipVec, tVec);
+          if (sim >= 0.21) {
+            tagCandidates.push({ tag, sim });
+          }
+        }
+        tagCandidates.sort((a, b) => b.sim - a.sim);
+        tagCandidates.slice(0, 5).forEach(c => {
+          if (!results.includes(c.tag)) results.push(c.tag);
+        });
+      }
+
+      // If clipVec is not set yet, borrow vector from best matching tag in queryEmbeddings
+      if (!clipVec && SIFT.queryEmbeddings) {
+        for (const t of results) {
+          const tVec = SIFT.queryEmbeddings[t] || SIFT.queryEmbeddings[t + 's'];
+          if (tVec) {
+            clipVec = [...tVec];
+            break;
+          }
+        }
+      }
+
+      return { 
+        objects: results, 
+        clipEmbedding: clipVec, 
+        caption: `Photo containing ${results.slice(0, 3).join(', ')}` 
+      };
     }
 
     async function renderWizardStep3() {
@@ -6696,31 +6924,62 @@ window.I18N_DATA = {
       return null;
     }
 
-    function executeSearch(predicates, photos) {
+    function executeSearch(predicates, photos, queryVec) {
       const matches = [];
+      const q = (SIFT.activeQuery || "").trim().toLowerCase();
+
       photos.forEach(photo => {
         const reasons = [];
-        let satisfied = true;
+        let satisfied = false;
+        let clipScore = 0;
 
+        // 1. Calculate CLIP semantic cosine similarity if vectors exist
+        if (queryVec && photo.clipEmbedding) {
+          clipScore = cosineSimilarity(queryVec, photo.clipEmbedding);
+        }
+
+        // 2. Calculate channel predicates (lexical matching)
+        let lexicalSatisfied = true;
         for (const pred of predicates) {
           const terms = pred.terms || [pred.label];
           const ch = getChannelForPhoto(photo, terms);
           if (ch === null) {
-            satisfied = false;
-            break;
+            lexicalSatisfied = false;
+          } else {
+            reasons.push({ label: pred.label, channel: ch });
           }
-          reasons.push({ label: pred.label, channel: ch });
+        }
+
+        // Semantic thresholds for CLIP:
+        // >= 0.238 is a strong visual/semantic match (Certain)
+        // >= 0.198 is a moderate match (Borderline)
+        const isSemanticCertain = clipScore >= 0.238;
+        const isSemanticBorderline = clipScore >= 0.198;
+
+        if (lexicalSatisfied && reasons.length > 0) {
+          satisfied = true;
+        } else if (isSemanticCertain || isSemanticBorderline) {
+          satisfied = true;
+          reasons.push({
+            label: predicates[0] ? predicates[0].label : q,
+            channel: "Vision AI (CLIP)",
+            score: Math.round(clipScore * 100)
+          });
         }
 
         if (satisfied) {
-          const confidence = reasons.every(r => r.channel === "objects") ? "certain" : "borderline";
-          matches.push({ photo, reasons, confidence });
+          let confidence = "borderline";
+          if (isSemanticCertain || (lexicalSatisfied && reasons.some(r => r.channel === "objects"))) {
+            confidence = "certain";
+          }
+          matches.push({ photo, reasons, confidence, clipScore });
         }
       });
 
       matches.sort((a, b) => {
         if (a.confidence === "certain" && b.confidence !== "certain") return -1;
         if (a.confidence !== "certain" && b.confidence === "certain") return 1;
+        if (b.clipScore !== a.clipScore) return b.clipScore - a.clipScore;
         return a.photo.id.localeCompare(b.photo.id);
       });
 
@@ -6868,7 +7127,7 @@ window.I18N_DATA = {
       if (match.reasons && match.reasons.length > 0) {
         const reason = document.createElement("div");
         reason.className = "card-reason-strip";
-        reason.textContent = match.reasons.map(r => `${r.label} (${r.channel})`).join(", ");
+        reason.textContent = match.reasons.map(r => r.score ? `${r.label} (${r.channel} ${r.score}%)` : `${r.label} (${r.channel})`).join(", ");
         card.appendChild(reason);
       } else if (p.objects && p.objects.length > 0) {
         const reason = document.createElement("div");
@@ -7029,12 +7288,13 @@ window.I18N_DATA = {
       runSearchWithActivePredicates();
     }
 
-    function runSearchWithActivePredicates() {
+    async function runSearchWithActivePredicates() {
       if (SIFT.predicates.length === 0) {
         renderFullGallery();
         return;
       }
-      const matches = executeSearch(SIFT.predicates, getActivePhotosList());
+      const queryVec = await getQueryVector(SIFT.activeQuery);
+      const matches = executeSearch(SIFT.predicates, getActivePhotosList(), queryVec);
       renderResults(matches);
     }
 
@@ -7564,30 +7824,7 @@ window.I18N_DATA = {
       if (typeof updateQuarantineStatusUI === "function") updateQuarantineStatusUI();
     }
 
-    function showHeroPromoVideo() {
-      const poster = document.querySelector(".hero-promo-poster");
-      const playButton = document.querySelector(".hero-promo-play");
-      const video = document.querySelector(".hero-promo-video");
-      if (!video) return;
-      if (poster) { poster.hidden = true; poster.style.display = "none"; }
-      if (playButton) { playButton.hidden = true; playButton.style.display = "none"; }
-      video.hidden = false;
-      video.style.display = "block";
-      video.load();
-      video.play().catch(() => {});
-    }
 
-    const heroPromoPoster = document.querySelector(".hero-promo-poster");
-    const heroPromoPlay = document.querySelector(".hero-promo-play");
-    const heroPromoVideo = document.querySelector(".hero-promo-video");
-    if (heroPromoPlay && heroPromoPoster && heroPromoVideo) {
-      heroPromoPlay.addEventListener("click", () => {
-        heroPromoPoster.hidden = true;
-        heroPromoPlay.hidden = true;
-        heroPromoVideo.hidden = false;
-        heroPromoVideo.play().catch(() => {});
-      });
-    }
 
     window.setLanguage = setLanguage;
 

@@ -259,7 +259,94 @@ def analyze_single_photo_vision(photo: dict, api_key: str = "") -> dict:
         except Exception as e:
             print(f"[Vision] Claude analysis failed: {e}")
 
+    # Try Local In-Process CLIP Vision AI
+    local_clip_res = analyze_with_local_clip(b64_data, filename)
+    if local_clip_res:
+        return {
+            "id": photo.get("id"),
+            "filename": filename,
+            "objects": local_clip_res.get("objects", []),
+            "clipEmbedding": local_clip_res.get("clipEmbedding"),
+            "caption": local_clip_res.get("caption", f"Photo {filename}"),
+            "setting": local_clip_res.get("setting", "scene"),
+            "source": "local-clip-vit"
+        }
+
     return default_res
+
+
+_LOCAL_CLIP_MODEL = None
+_LOCAL_CLIP_PROCESSOR = None
+
+def get_local_clip():
+    global _LOCAL_CLIP_MODEL, _LOCAL_CLIP_PROCESSOR
+    if _LOCAL_CLIP_MODEL is None:
+        try:
+            from transformers import CLIPProcessor, CLIPModel
+            _LOCAL_CLIP_MODEL = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
+            _LOCAL_CLIP_PROCESSOR = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
+            _LOCAL_CLIP_MODEL.eval()
+        except Exception as e:
+            print(f"[Vision] Could not load local CLIP model: {e}")
+    return _LOCAL_CLIP_MODEL, _LOCAL_CLIP_PROCESSOR
+
+
+def analyze_with_local_clip(b64_data: str, filename: str) -> dict | None:
+    try:
+        import base64, io
+        from PIL import Image
+        import torch
+
+        model, processor = get_local_clip()
+        if model is None or processor is None:
+            return None
+
+        img_bytes = base64.b64decode(b64_data)
+        img = Image.open(io.BytesIO(img_bytes)).convert("RGB")
+
+        inputs = processor(images=img, return_tensors="pt")
+        with torch.no_grad():
+            raw_img = model.get_image_features(**inputs)
+            t = raw_img.pooler_output if hasattr(raw_img, 'pooler_output') and raw_img.pooler_output is not None else (raw_img[0] if isinstance(raw_img, tuple) else raw_img)
+            img_feat = t / t.norm(p=2, dim=-1, keepdim=True)
+            clip_vec = [round(float(v), 5) for v in img_feat[0]]
+
+        candidate_labels = [
+            "receipt", "invoice", "document", "screenshot", "whiteboard",
+            "paper", "text", "dog", "cat", "pet", "person", "people",
+            "laptop", "computer", "desk", "screen", "coffee", "cup",
+            "car", "vehicle", "sandwich", "food", "dining table",
+            "sunset", "beach", "sky", "outdoor", "indoor", "nature",
+            "tree", "flower", "park", "book", "chair", "shoes", "clothes"
+        ]
+        text_inputs = processor(text=candidate_labels, return_tensors="pt", padding=True)
+        with torch.no_grad():
+            raw_text = model.get_text_features(**text_inputs)
+            t_text = raw_text.pooler_output if hasattr(raw_text, 'pooler_output') and raw_text.pooler_output is not None else (raw_text[0] if isinstance(raw_text, tuple) else raw_text)
+            text_feat = t_text / t_text.norm(p=2, dim=-1, keepdim=True)
+
+        sims = (img_feat @ text_feat.T)[0].tolist()
+        scored = sorted(zip(candidate_labels, sims), key=lambda x: x[1], reverse=True)
+
+        top_tags = [label for label, score in scored if score >= 0.20][:5]
+        if not top_tags and scored:
+            top_tags = [scored[0][0]]
+
+        fn_lower = filename.lower()
+        for kw in ["receipt", "invoice", "document", "dog", "cat", "laptop", "coffee", "cup", "car", "food"]:
+            if kw in fn_lower and kw not in top_tags:
+                top_tags.append(kw)
+
+        return {
+            "objects": top_tags,
+            "clipEmbedding": clip_vec,
+            "caption": f"Photo containing {', '.join(top_tags[:3])}",
+            "setting": "indoor/outdoor",
+            "source": "local-clip-vit"
+        }
+    except Exception as err:
+        print(f"[Vision] Local CLIP analysis error: {err}")
+        return None
 
 
 def analyze_photos_batch(photos: list[dict], api_key: str = "") -> list[dict]:

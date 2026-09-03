@@ -15,10 +15,11 @@ and it finds those photos for you.
 3. **Quarantine, then confirm.** Matches are **copied** — never moved — into a quarantine folder. You review it like any other folder, take back anything you want to keep, and only the remainder is deleted, in place, after an explicit confirmation.
 
 Nothing is uploaded and there is no account. The demo gallery is 128 public images from the
-COCO 2017 dataset; photos you add yourself are tagged in your browser with TensorFlow.js (COCO-SSD).
+COCO 2017 dataset (pre-indexed with CLIP embeddings); photos you add yourself are tagged and indexed in your browser with Transformers.js (CLIP semantic vision AI).
 
 ## Status
 
-Final project from the Moshal Program – Israel AI workshop, built in three days and still in progress.
-It is free to use and nothing is charged. Next up: a vocabulary wider than COCO's 80 object classes,
+Final project from the Moshal Program – Israel AI workshop, built in three days and updated with state-of-the-art in-browser multi-modal semantic search (Transformers.js CLIP).
+It is free to use and nothing is charged. Supports universal open-vocabulary natural-language photo search beyond COCO's 80 object classes,
+indexing a real folder on disk, and saved queries that run on new photos.
 indexing a real folder on disk, and saved queries that run on new photos.
