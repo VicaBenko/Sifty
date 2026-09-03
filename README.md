@@ -1,12 +1,12 @@
 # 🦉 Sifty
 Natural-Language Search & Curation for Photo Galleries.
-
 Sifty is a prototype that transforms photo gallery navigation. Instead of endless scrolling and manual filtering, it uses natural-language semantic search to help users locate specific memories, documents, receipts, and artifacts instantly.
 
-### 👉 [Try the Sifty demo](http://127.0.0.1:8091/))
+#### 👉 [Try the Sifty demo](http://127.0.0.1:8091/))
 
 
-### ✨ Key Capabilities
+
+#### ✨ Key Capabilities
 Contextual Natural-Language Search: Query photos using everyday descriptions (e.g., "whiteboard notes", "parking ticket receipt", "blurry concert shots").
 
 Smart Artifact Filtering: Quickly surface screenshots, documents, utility receipts, and duplicates.
