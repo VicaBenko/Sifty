@@ -10,7 +10,7 @@ Sifty is a personal project concept exploring a smarter way to organize photo ga
 Sifty is a prototype that transforms photo gallery navigation. Instead of endless scrolling and manual filtering, it uses natural-language semantic search to help users locate specific memories, documents, receipts, and artifacts instantly.
 
 🌐 Live Demo
-👉 [Try the Sifty demo](http://127.0.0.1:8091/)
+👉 [Try the Sifty demo]([http://127.0.0.1:8091/](https://vicabenko.github.io/Sifty/))
 
 ## ✨ What it explores
 
