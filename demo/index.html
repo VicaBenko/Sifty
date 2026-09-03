@@ -6295,12 +6295,27 @@ window.I18N_DATA = {
        -------------------------------------------------------------------------- */
     function switchWorkspaceMode(mode) {
       SIFT.workspaceMode = mode;
+      const statusEl = document.getElementById("catalogStatusText");
       if (mode === "personal") {
         dom.modePersonalBtn.classList.add("active");
         dom.modeDemoBtn.classList.remove("active");
+        dom.modePersonalBtn.style.background = "var(--primary-blue)";
+        dom.modePersonalBtn.style.color = "#fff";
+        dom.modeDemoBtn.style.background = "transparent";
+        dom.modeDemoBtn.style.color = "var(--ink-secondary)";
+        if (statusEl) {
+          statusEl.textContent = `🔒 Personal Gallery: ${SIFT.personalPhotos.length} Photos`;
+        }
       } else {
         dom.modePersonalBtn.classList.remove("active");
         dom.modeDemoBtn.classList.add("active");
+        dom.modeDemoBtn.style.background = "var(--primary-blue)";
+        dom.modeDemoBtn.style.color = "#fff";
+        dom.modePersonalBtn.style.background = "transparent";
+        dom.modePersonalBtn.style.color = "var(--ink-secondary)";
+        if (statusEl) {
+          statusEl.textContent = `🟢 Demo Catalog: ${SIFT.demoPhotos.length} Photos (CLIP Indexed)`;
+        }
       }
       SIFT.visibleCount = SIFT.pageSize;
       renderFullGallery();
@@ -7326,7 +7341,7 @@ window.I18N_DATA = {
           SIFT.personalPhotos = [];
           SIFT.quarantine.items = [];
           if (dom.personalCountNav) dom.personalCountNav.textContent = "0";
-          switchWorkspaceMode("personal");
+          switchWorkspaceMode("demo");
         }
       });
     }
