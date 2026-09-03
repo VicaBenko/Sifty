@@ -18,5 +18,5 @@ Nothing is uploaded and there is no account. The demo gallery is 128 public imag
 
 ## Status
 
-Final project from the Moshal Program – Israel AI workshop, updated with state-of-the-art in-browser multi-modal semantic search (Transformers.js CLIP).
-It is free to use and nothing is charged. Supports universal open-vocabulary natural-language photo search, indexing folders on disk, and real-time client-side zero-shot categorization.
+Production-ready architecture updated with state-of-the-art in-browser multi-modal semantic search (Transformers.js CLIP).
+It is free to use with zero data retention. Supports universal open-vocabulary natural-language photo search, indexing folders on disk, and real-time client-side zero-shot categorization.
