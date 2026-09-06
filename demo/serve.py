@@ -157,6 +157,7 @@ def extract_predicates(query: str) -> tuple[list[dict], str]:
         return predicates, "api"
     except Exception as exc:  # noqa: BLE001 — the demo must never hard-fail on a query
         print(f"[predicates] API extraction failed ({exc}); using literal fallback.")
+        return fallback_predicates(query), "fallback"
 def analyze_single_photo_vision(photo: dict, api_key: str = "") -> dict:
     """Analyzes a single base64 image using Gemini or Claude Vision for maximum accuracy."""
     src = photo.get("src", "")
@@ -328,15 +329,38 @@ def analyze_with_local_clip(b64_data: str, filename: str) -> dict | None:
         with torch.no_grad():
             raw_text = model.get_text_features(**text_inputs)
             t_text = raw_text.pooler_output if hasattr(raw_text, 'pooler_output') and raw_text.pooler_output is not None else (raw_text[0] if isinstance(raw_text, tuple) else raw_text)
+            text_feat = t_text / t_text.norm(p=2, dim=-1, keepdim=True)
             # Multi-label independent cosine similarity scoring (does not let one dominant label extinguish others)
             sims = (img_feat @ text_feat.T)[0].tolist()
 
         scored = sorted(zip(candidate_labels, sims), key=lambda x: x[1], reverse=True)
 
-        # Select all tags with solid similarity (>= 0.21, or top 2 if borderline)
-        top_tags = [label for label, s in scored if s >= 0.21][:5]
+        # Select all tags with solid similarity (>= 0.20)
+        top_tags = [label for label, s in scored if s >= 0.20][:6]
+
+        # Multi-object co-occurrence sensitivity for Person & Pets:
+        # When a pet is detected, look for person/people down to 0.18
+        has_pet = any(l in ["cat", "dog", "pet"] for l in top_tags) or any(l in ["cat", "dog"] and s >= 0.19 for l, s in scored)
+        has_person = any(l in ["person", "people"] for l in top_tags) or any(l in ["person", "people"] and s >= 0.18 for l, s in scored)
+
+        if has_pet and not any(l in ["person", "people"] for l in top_tags):
+            for l, s in scored:
+                if l in ["person", "people"] and s >= 0.18:
+                    top_tags.append("person")
+                    break
+
+        if has_person:
+            for l, s in scored:
+                if l in ["cat", "dog"] and s >= 0.19 and l not in top_tags:
+                    top_tags.append(l)
+                    if "pet" not in top_tags:
+                        top_tags.append("pet")
+
         if not top_tags and scored:
             top_tags = [scored[0][0]]
+
+        if "people" in top_tags and "person" not in top_tags:
+            top_tags.append("person")
 
         # Whole-word filename matching (avoids substring false positives like "vacation" matching "cat")
         fn_lower = filename.lower()

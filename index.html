@@ -4115,20 +4115,22 @@ window.I18N_DATA = {
     .floating-action-bar {
       display: none;
       position: fixed;
-      inset-inline: 0;
+      left: 0;
+      right: 0;
       bottom: 0;
-      z-index: 90;
-      background: rgba(255, 255, 255, 0.95);
+      width: 100%;
+      z-index: 9999;
+      background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border-top: 1px solid var(--border-subtle);
+      border-top: 2px solid var(--primary-blue);
       padding: 14px 24px;
-      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 -6px 25px rgba(0, 0, 0, 0.25);
       animation: modalPop 0.2s ease-out;
     }
     [data-theme="dark"] .floating-action-bar {
-      background: rgba(12, 32, 45, 0.95);
-      border-color: var(--border-strong);
+      background: rgba(12, 32, 45, 0.98);
+      border-color: var(--primary-blue);
     }
     .floating-action-bar.visible,
     .floating-action-bar.active { 
@@ -5403,6 +5405,9 @@ window.I18N_DATA = {
                 <button id="selectAllBtn" class="btn-text-link" data-i18n="studio_btn_select_all">Select All</button>
                 <button id="selectCertainBtn" class="btn-text-link" style="font-weight: 700;" data-i18n="studio_btn_select_certain">Select Certain Only</button>
                 <button id="clearSelectionBtn" class="btn-text-link" data-i18n="studio_btn_clear_selection">Clear Selection</button>
+                <button id="directQuarantineBtn" class="btn-copy-quarantine" style="display: none; padding: 6px 14px; font-size: 13px; margin-inline-start: 8px;">
+                  🔒 <span id="directQuarantineBtnText">Copy to Quarantine</span>
+                </button>
               </div>
             </div>
 
@@ -5740,6 +5745,8 @@ window.SIFT_CATALOG_DATA = {"photos": [{"id": "0000", "filename": "000000000143.
       selectAllBtn: document.getElementById("selectAllBtn"),
       selectCertainBtn: document.getElementById("selectCertainBtn"),
       clearSelectionBtn: document.getElementById("clearSelectionBtn"),
+      directQuarantineBtn: document.getElementById("directQuarantineBtn"),
+      directQuarantineBtnText: document.getElementById("directQuarantineBtnText"),
 
       photoGrid: document.getElementById("photoGrid"),
       loadMoreContainer: document.getElementById("loadMoreContainer"),
@@ -6810,13 +6817,14 @@ window.SIFT_CATALOG_DATA = {"photos": [{"id": "0000", "filename": "000000000143.
         const model = await getWebglVisionModel();
         if (model && imgEl.width > 0) {
           // Pass minScore = 0.22 so secondary objects in multi-object scenes are not cut off by the default 0.50 cutoff
-          const detections = await model.detect(imgEl, 25, 0.22);
+          // Pass minScore = 0.18 so secondary objects in multi-object scenes are not cut off
+          const detections = await model.detect(imgEl, 25, 0.18);
           if (Array.isArray(detections) && detections.length > 0) {
             // Sort detections by score descending
             detections.sort((a, b) => b.score - a.score);
 
-            const hasPet = detections.some(d => (d.class === "cat" || d.class === "dog") && d.score >= 0.25);
-            const hasPerson = detections.some(d => d.class === "person" && d.score >= 0.25);
+            const hasPet = detections.some(d => (d.class === "cat" || d.class === "dog") && d.score >= 0.18);
+            const hasPerson = detections.some(d => d.class === "person" && d.score >= 0.18);
 
             detections.forEach(d => {
               let cleanLabel = d.class.toLowerCase().trim();
@@ -6827,22 +6835,22 @@ window.SIFT_CATALOG_DATA = {"photos": [{"id": "0000", "filename": "000000000143.
 
               // Multi-object precision detection:
               if (cleanLabel === "person") {
-                // If a pet is also present, allow person down to 0.28; otherwise require 0.40
-                const personThreshold = hasPet ? 0.28 : 0.40;
+                // If a pet is also present, allow person down to 0.18; otherwise require 0.35
+                const personThreshold = hasPet ? 0.18 : 0.35;
                 if (d.score >= personThreshold) {
                   if (!results.includes("person")) results.push("person");
                 }
               } else if (cleanLabel === "cat" || cleanLabel === "dog") {
-                // If a person is present, allow pet down to 0.28; otherwise require 0.35
-                const petThreshold = hasPerson ? 0.28 : 0.35;
+                // If a person is present, allow pet down to 0.18; otherwise require 0.30
+                const petThreshold = hasPerson ? 0.18 : 0.30;
                 if (d.score >= petThreshold) {
                   const otherPet = cleanLabel === "cat" ? "dog" : "cat";
-                  if (!results.includes(otherPet) || d.score >= 0.55) {
+                  if (!results.includes(otherPet) || d.score >= 0.50) {
                     if (!results.includes(cleanLabel)) results.push(cleanLabel);
                     if (!results.includes("pet")) results.push("pet");
                   }
                 }
-              } else if (d.score >= 0.38) {
+              } else if (d.score >= 0.35) {
                 if (!results.includes(cleanLabel)) results.push(cleanLabel);
               }
             });
@@ -7125,6 +7133,17 @@ window.SIFT_CATALOG_DATA = {"photos": [{"id": "0000", "filename": "000000000143.
         dom.floatingCopyBtn.textContent = selectedCount > 0
           ? (dict.floating_copy_btn_text || "Copy {count} Photos to Quarantine").replace('{count}', selectedCount)
           : (dict.floating_copy_btn_default || "Copy to Quarantine");
+      }
+
+      if (dom.directQuarantineBtn) {
+        if (selectedCount > 0) {
+          dom.directQuarantineBtn.style.display = "inline-flex";
+          if (dom.directQuarantineBtnText) {
+            dom.directQuarantineBtnText.textContent = (dict.floating_copy_btn_text || "Copy {count} Photos to Quarantine").replace('{count}', selectedCount);
+          }
+        } else {
+          dom.directQuarantineBtn.style.display = "none";
+        }
       }
 
       if (dom.floatingDownloadCleanBtn) {
@@ -7759,6 +7778,7 @@ window.SIFT_CATALOG_DATA = {"photos": [{"id": "0000", "filename": "000000000143.
     }
 
     if (dom.floatingCopyBtn) dom.floatingCopyBtn.addEventListener("click", copySelectedToQuarantine);
+    if (dom.directQuarantineBtn) dom.directQuarantineBtn.addEventListener("click", copySelectedToQuarantine);
     if (dom.openApprovalBtn) {
       dom.openApprovalBtn.addEventListener("click", (e) => {
         e.stopPropagation();
