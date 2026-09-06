@@ -4130,7 +4130,10 @@ window.I18N_DATA = {
       background: rgba(12, 32, 45, 0.95);
       border-color: var(--border-strong);
     }
-    .floating-action-bar.active { display: flex; }
+    .floating-action-bar.visible,
+    .floating-action-bar.active { 
+      display: flex !important; 
+    }
     .floating-bar-inner {
       max-width: 1200px;
       margin: 0 auto;
@@ -7129,8 +7132,10 @@ window.I18N_DATA = {
       if (dom.floatingBar) {
         if (selectedCount > 0) {
           dom.floatingBar.classList.add("visible");
+          dom.floatingBar.classList.add("active");
         } else {
           dom.floatingBar.classList.remove("visible");
+          dom.floatingBar.classList.remove("active");
         }
       }
     }
@@ -7484,6 +7489,11 @@ window.I18N_DATA = {
         dom.quarantineCountBadge.textContent = activeCount;
         dom.quarantineCountBadge.style.display = activeCount > 0 ? "inline-block" : "none";
       }
+      const bannerText = document.getElementById("quarantineBannerText");
+      if (bannerText) {
+        const dict = getDict();
+        bannerText.innerHTML = `<strong>${activeCount} ${dict.quarantine_photos_count || "photos in quarantine"}</strong> ${dict.quarantine_awaiting_approval || "awaiting approval."}`;
+      }
       if (dom.quarantineBanner) {
         if (activeCount > 0) dom.quarantineBanner.classList.add("active");
         else dom.quarantineBanner.classList.remove("active");
@@ -7754,6 +7764,8 @@ window.I18N_DATA = {
       });
     }
     if (dom.quarantineBanner) dom.quarantineBanner.addEventListener("click", openQuarantineDrawer);
+    const qDrawerTopBtn = document.getElementById("openQuarantineDrawerBtn");
+    if (qDrawerTopBtn) qDrawerTopBtn.addEventListener("click", openQuarantineDrawer);
     if (dom.resetGalleryBtn) {
       dom.resetGalleryBtn.addEventListener("click", () => {
         SIFT.visibleCount = SIFT.pageSize;
