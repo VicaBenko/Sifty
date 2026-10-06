@@ -30,7 +30,7 @@ Try Sifty directly in your browser with zero installation:
 ### Prerequisites
 * Python 3.8+ (with PyTorch and Transformers for local AI acceleration)
 * Modern web browser (Chrome, Safari, Edge, Firefox)
-* experimental demo project, Requires an Anthropic API key
+* Experimental demo project, Requires an Anthropic API key
 
 ### Quickstart on Windows
 Double-click:
